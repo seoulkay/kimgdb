@@ -14,4 +14,10 @@ public class KimgController {
 		
 		return "home";
 	}
+	
+	@RequestMapping(value = "/photo", method = RequestMethod.POST)
+	public void photoInput(Locale locale, Model model) {
+		System.out.println("HERE");
+		//return "home";
+	}
 }
