@@ -137,7 +137,7 @@
         $('#fine-uploader-gallery').fineUploader({
             template: 'qq-template-gallery',
             request: {
-                endpoint: 'photo'
+                endpoint: 'photoAction'
             },
             thumbnails: {
                 placeholders: {
