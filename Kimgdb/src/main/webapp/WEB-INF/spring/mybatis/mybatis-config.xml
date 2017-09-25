@@ -9,8 +9,8 @@
 	</settings>
 	
 	<typeAliases>
-<!-- 		<typeAlias type="pix.gdc.com.vo.PixArticle" alias="pixArticle"/> -->
-
+		<typeAlias type="www.ufo79.com.vo.KimgPersonVO" alias="KimgPerson"/>
+		<typeAlias type="www.ufo79.com.vo.KimgPhotoVO" alias="KimgPhoto"/>
 	</typeAliases>
 	
 	<mappers>

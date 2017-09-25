@@ -25,6 +25,18 @@
 
     <!-- FooTable -->
     <script src="${pageContext.request.contextPath}/resources/js/plugins/footable/footable.all.min.js"></script>
+    <!-- Flot -->
+    <script src="${pageContext.request.contextPath}/resources/js/plugins/flot/jquery.flot.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/plugins/flot/jquery.flot.resize.js"></script>
+
+    <!-- ChartJS-->
+    <script src="${pageContext.request.contextPath}/resources/js/plugins/chartJs/Chart.min.js"></script>
+
+    <!-- Peity -->
+    <script src="${pageContext.request.contextPath}/resources/js/plugins/peity/jquery.peity.min.js"></script>
+    <!-- Peity demo -->
+    <script src="${pageContext.request.contextPath}/resources/js/demo/peity-demo.js"></script>
 
     <!-- Page-Level Scripts -->
     <script>

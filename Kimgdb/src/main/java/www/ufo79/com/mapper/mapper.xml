@@ -1,8 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper">
-<!--   	<select id="getAllpixArticle"  resultType="pixArticle"> -->
-<!--   		select * from pix_article where is_use = "Y" order by pix_idx desc; -->
-<!--   	</select> -->
-  	
+	<select id="selectPasswordPerson"  resultType="KimgPerson" parameterType="KimgPerson">
+  		select * from `KIMG`.`kimgPerson` where nPerDel = 0 and cPerId = #{cPerId} and cPerPwd = #{cPerPwd}
+  	</select>
+  	<select id="selectAllPerson"  resultType="KimgPerson">
+  		select * from `KIMG`.`kimgPerson` where nPerDel = 0
+  	</select>
+  	<select id="selectOnePerson"  resultType="KimgPerson" parameterType="KimgPerson">
+  		select * from `KIMG`.`kimgPerson` where nPerDel = 0 and nPerCnt = #{nPerCnt}
+  	</select>
+  	<insert id="insertPerson" parameterType="KimgPerson">
+  		INSERT INTO `KIMG`.`kimgPerson`
+		(
+		`cPerId`,
+		`cPerPwd`,
+		`cPerName`,
+		`cPerCom`,
+		`cPerPos`,
+		`cPerCon`,
+		`cPerEmail`,
+		`dPerCrt`,
+		`cPerCrtUsr`,
+		`dPerMod`,
+		`cPerModUsr`,
+		`nPerDel`)
+		VALUES
+		(
+		#{cPerId},
+		#{cPerPwd},
+		#{cPerName},
+		#{cPerCom},
+		#{cPerPos},
+		#{cPerCon},
+		#{cPerEmail},
+		now(),
+		#{cPerCrtUsr},
+		now(),
+		#{cPerModUsr},
+		0);
+  	</insert>
+  	<update id="updatePerson" parameterType="KimgPerson">
+	  	UPDATE `KIMG`.`kimgPerson`
+		SET
+		<if test="cPerId != null and cPerId != ''">
+		`cPerId` = #{cPerId},
+		</if>
+		<if test="cPerPwd != null and cPerPwd != ''">
+		`cPerPwd` = #{cPerPwd},
+		</if>
+		<if test="cPerName != null and cPerName != ''">
+		`cPerName` = #{cPerName},
+		</if>
+		<if test="cPerCom != null and cPerCom != ''">
+		`cPerCom` = #{cPerCom},
+		</if>
+		<if test="cPerPos != null and cPerPos != ''">
+		`cPerPos` = #{cPerPos},
+		</if>
+		<if test="cPerCon != null and cPerCon != ''">
+		`cPerCon` = #{cPerCon},
+		</if>
+		<if test="cPerEmail != null and cPerEmail != ''">
+		`cPerEmail` = #{cPerEmail},
+		</if>
+		<if test="nPerDel != null and nPerDel != ''">
+		`nPerDel` = #{nPerDel}
+		</if>
+		`dPerMod` = now(),
+		`cPerModUsr` = #{cPerModUsr}
+		WHERE `nPerCnt` = #{nPerCnt};
+  	</update>
+  	<insert id="insertPhoto" parameterType="KimgPhoto">
+	  	INSERT INTO `KIMG`.`kimgPhoto`
+		(
+		`cPhoType`,
+		`cRefCode`,
+		`cPhoName`,
+		`dPhoCrt`,
+		`cPhoCrtUsr`,
+		`dPhoMod`,
+		`cPhoModUsr`,
+		`nPhoDel`)
+		VALUES
+		(
+		#{cPhoType},
+		#{cRefCode},
+		#{cPhoName},
+		now(),
+		#{cPhoCrtUsr},
+		now(),
+		#{cPhoModUsr},
+		0);
+  	</insert>
+  	<select id="selectPhotoByParam" parameterType="KimgPhoto" resultType="KimgPhoto">
+  	select * from `KIMG`.`kimgPhoto`
+  	WHERE
+  	`cPhoType` = #{cPhoType}
+  	and
+  	`cRefCode` = #{cRefCode}
+  	and
+  	`nPhoDel` = 0
+  	</select>
 </mapper>

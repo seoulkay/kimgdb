@@ -10,8 +10,8 @@
                             <img alt="image" class="img-circle" src="${pageContext.request.contextPath}/resources/img/profile_small.jpg" />
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">최성준</strong>
-                             </span> <span class="text-muted text-xs block">프로젝트 관리자 </span> </span> </a>
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">${sessionScope.cred.cPerName }</strong>
+                             </span> <span class="text-muted text-xs block">${sessionScope.cred.cPerPos } </span> </span> </a>
                     </div>
                     <div class="logo-element">
                         KIMG
