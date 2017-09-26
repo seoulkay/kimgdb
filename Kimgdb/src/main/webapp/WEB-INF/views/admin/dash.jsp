@@ -48,7 +48,7 @@
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
                             <span class="label label-success pull-right">Monthly</span>
-                            <h5>Views</h5>
+                            <h5>아이템</h5>
                         </div>
                         <div class="ibox-content">
                             <h1 class="no-margins">386,200</h1>
@@ -61,7 +61,7 @@
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
                             <span class="label label-info pull-right">Annual</span>
-                            <h5>Orders</h5>
+                            <h5>제품</h5>
                         </div>
                         <div class="ibox-content">
                                     <h1 class="no-margins">80,800</h1>
@@ -75,7 +75,7 @@
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
                             <span class="label label-primary pull-right">Today</span>
-                            <h5>visits</h5>
+                            <h5>결산</h5>
                         </div>
                         <div class="ibox-content">
 
@@ -97,7 +97,7 @@
                 <div class="col-md-4">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>Monthly income</h5>
+                            <h5>작업 건수</h5>
                             <div class="ibox-tools">
                                 <span class="label label-primary">Updated 12.2015</span>
                             </div>
@@ -122,7 +122,7 @@
                                             All sales: 162,862
                                         </span>
                                     <h3 class="font-bold no-margins">
-                                        Half-year revenue margin
+                                        프로젝트 진행
                                     </h3>
                                     <small>Sales marketing.</small>
                                 </div>
@@ -174,7 +174,7 @@
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                                 <span class="label label-warning pull-right">Data has changed</span>
-                                <h5>User activity</h5>
+                                <h5>작업량 추이</h5>
                             </div>
                             <div class="ibox-content">
                                 <div class="row">
@@ -237,7 +237,7 @@
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
-                                <h5>Custom responsive table </h5>
+                                <h5>이슈 트래커 </h5>
                                 <div class="ibox-tools">
                                     <a class="collapse-link">
                                         <i class="fa fa-chevron-up"></i>

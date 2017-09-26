@@ -5,7 +5,7 @@ import java.util.Date;
 public class KimgPhotoVO {
 	private int nPhoCnt;
 	private String cPhoType;
-	private String cRefCode;
+	private int nRefCode;
 	private String cPhoName;
 	private Date dPhoCrt;
 	private String cPhoCrtUsr;
@@ -24,11 +24,11 @@ public class KimgPhotoVO {
 	public void setcPhoType(String cPhoType) {
 		this.cPhoType = cPhoType;
 	}
-	public String getcRefCode() {
-		return cRefCode;
+	public int getnRefCode() {
+		return nRefCode;
 	}
-	public void setcRefCode(String cRefCode) {
-		this.cRefCode = cRefCode;
+	public void setnRefCode(int nRefCode) {
+		this.nRefCode = nRefCode;
 	}
 	public String getcPhoName() {
 		return cPhoName;

@@ -11,6 +11,9 @@
 	<typeAliases>
 		<typeAlias type="www.ufo79.com.vo.KimgPersonVO" alias="KimgPerson"/>
 		<typeAlias type="www.ufo79.com.vo.KimgPhotoVO" alias="KimgPhoto"/>
+		<typeAlias type="www.ufo79.com.vo.KimgCompanyVO" alias="KimgCompany"/>
+		<typeAlias type="www.ufo79.com.vo.KimgProductVO" alias="KimgProduct"/>
+		<typeAlias type="www.ufo79.com.vo.KimgItemVO" alias="KimgItem"/>
 	</typeAliases>
 	
 	<mappers>

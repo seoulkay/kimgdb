@@ -2,7 +2,7 @@ package www.ufo79.com.vo;
 
 import java.util.Date;
 
-public class KimgPersonVO {
+public class KimgPersonVO extends KimgPhotoVO{
 	private int nPerCnt;
 	private String cPerId;
 	private String cPerPwd;
@@ -16,6 +16,14 @@ public class KimgPersonVO {
 	private Date dPerMod;
 	private String cPerModUsr;
 	private int nPerDel;
+	
+	//조인
+	private int nComCnt;
+	private String cComName;
+	
+	//인풋
+	private String photoUid;
+	
 	public int getnPerCnt() {
 		return nPerCnt;
 	}
@@ -93,6 +101,24 @@ public class KimgPersonVO {
 	}
 	public void setnPerDel(int nPerDel) {
 		this.nPerDel = nPerDel;
+	}
+	public int getnComCnt() {
+		return nComCnt;
+	}
+	public void setnComCnt(int nComCnt) {
+		this.nComCnt = nComCnt;
+	}
+	public String getcComName() {
+		return cComName;
+	}
+	public void setcComName(String cComName) {
+		this.cComName = cComName;
+	}
+	public String getPhotoUid() {
+		return photoUid;
+	}
+	public void setPhotoUid(String photoUid) {
+		this.photoUid = photoUid;
 	}
 	
 	

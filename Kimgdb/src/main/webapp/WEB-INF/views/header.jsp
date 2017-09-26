@@ -17,5 +17,8 @@
     <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
 
     <link href="${pageContext.request.contextPath}/resources/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
-
+	
+	<link href="${pageContext.request.contextPath}/resources/fineupload/fine-uploader-new.min.css" rel="stylesheet">
+    
+	
 </head>

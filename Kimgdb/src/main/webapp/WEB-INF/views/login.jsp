@@ -36,10 +36,10 @@
             <p>로그인 해주세요.</p>
             <form class="m-t" role="form" action="loginAction" method="POST">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Username" required="required" name="cPerId" maxlength="30">
+                    <input type="text" class="form-control" placeholder="아이디" required="required" name="cPerId" maxlength="30">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" required="required" name="cPerPwd" maxlength="30">
+                    <input type="password" class="form-control" placeholder="비밀번호" required="required" name="cPerPwd" maxlength="30">
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b">로그인</button>
 

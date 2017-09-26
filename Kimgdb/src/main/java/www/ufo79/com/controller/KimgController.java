@@ -1,9 +1,8 @@
 package www.ufo79.com.controller;
 
 
-import java.io.File;
 import java.io.IOException;
-import java.net.Inet4Address;
+import java.io.UnsupportedEncodingException;
 import java.net.UnknownHostException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -33,10 +32,18 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import www.ufo79.com.dao.KimgDAO;
 import www.ufo79.com.service.UploadReceiver;
+import www.ufo79.com.vo.KimgCompanyVO;
+import www.ufo79.com.vo.KimgItemVO;
 import www.ufo79.com.vo.KimgPersonVO;
+import www.ufo79.com.vo.KimgPhotoVO;
+import www.ufo79.com.vo.KimgProductVO;
 
 @Controller
 public class KimgController {
+	//로컬//
+	//private static String UPLOADED_FOLDER = "/Users/Kay/Documents/";
+	//서버//
+	private static String UPLOADED_FOLDER = "/home/ubuntu/KIMG/img/";
 	
 	@Autowired
 	KimgDAO dao;
@@ -66,7 +73,7 @@ public class KimgController {
 		KimgPersonVO cred = dao.selectPasswordPerson(vo);
 		
 		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT, locale);
 		String formattedDate = dateFormat.format(date);
 
 		
@@ -87,7 +94,7 @@ public class KimgController {
 		return "home2";
 	}
 	
-	
+	//안쓸꺼 같음
 	@RequestMapping(value = "/photoAction", method = RequestMethod.POST)
 	public void photoInput(Model model, HttpServletRequest req, HttpServletResponse resp) {
 		System.out.println("HERE");
@@ -113,17 +120,27 @@ public class KimgController {
 	}
 	
 	@RequestMapping(value = "/admin/profile", method = RequestMethod.GET)
-	public String adminProfile(Model model, HttpSession session) {
+	public String adminProfile(Model model, HttpSession session, @RequestParam(value = "srcPar", required=false) String srcPar ) throws UnsupportedEncodingException {
 		if(session.getAttribute("cPerId") == null){
 			return "redirect:../";
 		}
 		
-		List<KimgPersonVO> personList = dao.selectAllPerson();
-
+			
+		List<KimgPersonVO> personList;
+		List<KimgCompanyVO> companyList = dao.selectAllCompany();
+		
+		if(srcPar == null){
+			personList = dao.selectAllPerson();
+		}else{
+			personList = dao.selectAllPersonSrc(new String(srcPar.getBytes("8859_1"), "utf-8"));
+		}
+		
+		model.addAttribute("companyList", companyList);
 		model.addAttribute("personList", personList);
 		model.addAttribute("selectedMenu", "profile");
 		return "admin/profile";
 	}
+	
 	
 	@RequestMapping(value = "/admin/product", method = RequestMethod.GET)
 	public String adminProduct(Model model, HttpSession session) {
@@ -132,7 +149,9 @@ public class KimgController {
 			return "redirect:../";
 		}
 		
+		List<KimgProductVO> productList = dao.selectAllProduct();
 		
+		model.addAttribute("productList", productList);
 		model.addAttribute("selectedMenu", "product");
 		return "admin/product";
 	}
@@ -143,6 +162,10 @@ public class KimgController {
 			return "redirect:../";
 		}
 		
+		List<KimgItemVO> itemList = dao.selectAllItem();
+		
+		
+		model.addAttribute("itemList", itemList);
 		model.addAttribute("selectedMenu", "item");
 		return "admin/item";
 	}
@@ -167,8 +190,39 @@ public class KimgController {
 		return "admin/account";
 	}
 	
+	@RequestMapping(value = "/admin/addAccount", method = RequestMethod.POST)
+	public String adminAddAccount(Model model, HttpSession session, @ModelAttribute("vo")KimgPersonVO vo) {
+		if(session.getAttribute("cPerId") == null){
+			return "redirect:../";
+		}
+		
+		String user = session.getAttribute("cPerId").toString();
+		vo.setcPerCrtUsr(user);
+		vo.setcPerModUsr(user);
+		dao.insertPerson(vo);
+		
+		if(!vo.getPhotoUid().isEmpty()){
+			String[] uids = vo.getPhotoUid().split(", ");
+			for(String ele : uids){
+				
+				KimgPhotoVO tmp = new KimgPhotoVO();
+				tmp.setcPhoType("per");
+				tmp.setnRefCode(vo.getnPerCnt());
+				//키가 정해지면 우선 전에 있던 사진을 지운다. 프로필은 하나의 사진만 필요.
+				dao.updatePhotoByRefCodeToZero(tmp);
+				tmp.setcPhoName(ele);
+				tmp.setnPhoDel(0);
+				tmp.setcPhoCrtUsr(user);
+				tmp.setcPhoModUsr(user);
+				dao.insertPhoto(tmp);
+			}
+		}
+		
+		model.addAttribute("selectedMenu", "profile");
+		return "redirect:profile";
+	}
 	
-	private static String UPLOADED_FOLDER = "/Users/Kay/Documents/";
+	
 	 
 	  private JSONObject getSuccessMessage() {
 	    JSONObject jsonObject = null;
@@ -179,6 +233,16 @@ public class KimgController {
 	    }
 	    return jsonObject;
 	  }
+	  
+	  private JSONObject getFailMessage() {
+		    JSONObject jsonObject = null;
+		    try {
+		      jsonObject = new JSONObject("{\"success\":false}");
+		    } catch (Exception e) {
+		      e.printStackTrace();
+		    }
+		    return jsonObject;
+		  }
 	  
 		// implemented only for Fine Uploader
 	  @RequestMapping(value = "/admin/upload/{qquuid}", method = { RequestMethod.DELETE })
@@ -197,11 +261,8 @@ public class KimgController {
 	    return getSuccessMessage().toString();
 	  }  
 	  @RequestMapping(value = "/admin/upload",method = { RequestMethod.POST })
-	  public @ResponseBody Object upload(
-	          @RequestParam("file") MultipartFile file,
-	          HttpServletRequest request) {
+	  public @ResponseBody Object upload(@RequestParam("file") MultipartFile file, HttpServletRequest request, Locale locale) {
 	    System.out.println("upload() called");
-	 
 	    if (file.isEmpty()) {
 	      request.setAttribute("message", "Please select a file to upload");
 	      return "uploadStatus";
@@ -211,21 +272,25 @@ public class KimgController {
 	      // for Fine Uploader delete functionality
 	      String qquuid = request.getParameter("qquuid");
 	      System.out.println("qquuid=" + qquuid);
-	      if (qquuid != null) {
+	      if (qquuid == null) {
 	        request.getSession().setAttribute(qquuid, file.getOriginalFilename());
+	        Date date = new Date();
+			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT, locale);
+			String formattedDate = dateFormat.format(date);
+			qquuid = formattedDate.replaceAll("/", " ");
 	      }
 	      // for Fine Uploader delete functionality ends
 	 
 	      byte[] bytes = file.getBytes();
-	      Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+	      Path path = Paths.get(UPLOADED_FOLDER + qquuid);
 	      Files.write(path, bytes);
-	      request.setAttribute("message", "You have successfully uploaded '"
-	                      + file.getOriginalFilename() + "'");
+	      request.setAttribute("message", "You have successfully uploaded '" + qquuid + "'");
 	 
 	    } catch (IOException e) {
 	      e.printStackTrace();
 	    }
 	 
 	    return getSuccessMessage().toString();
+	    
 	  }
 }

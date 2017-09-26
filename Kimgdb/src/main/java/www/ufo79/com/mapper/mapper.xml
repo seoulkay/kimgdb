@@ -1,16 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper">
+	<select id="selectAllCompany" resultType="KimgCompany">
+	SELECT * FROM KIMG.kimgCompany
+	</select>
 	<select id="selectPasswordPerson"  resultType="KimgPerson" parameterType="KimgPerson">
-  		select * from `KIMG`.`kimgPerson` where nPerDel = 0 and cPerId = #{cPerId} and cPerPwd = #{cPerPwd}
+  		SELECT * FROM KIMG.kimgPerson per 
+		left join KIMG.kimgPhoto pho 
+		on per.nPerCnt = pho.nRefCode 
+		and pho.cPhoType = 'per' 
+		and pho.nPhoDel = 0
+		left join `KIMG`.`kimgCompany` c on per.cPerCom = c.cComCode 
+		WHERE per.nPerDel = 0 and cPerId = #{cPerId} and cPerPwd = #{cPerPwd}
   	</select>
   	<select id="selectAllPerson"  resultType="KimgPerson">
-  		select * from `KIMG`.`kimgPerson` where nPerDel = 0
+		SELECT * FROM KIMG.kimgPerson per 
+		left join KIMG.kimgPhoto pho 
+		on per.nPerCnt = pho.nRefCode 
+		and pho.cPhoType = 'per' 
+		and pho.nPhoDel = 0
+		left join `KIMG`.`kimgCompany` c on per.cPerCom = c.cComCode 
+		WHERE per.nPerDel = 0
+  	</select>
+  	<select id="selectAllPersonSrc"  resultType="KimgPerson" parameterType="String">
+  		
+		SELECT * FROM KIMG.kimgPerson per 
+		left join KIMG.kimgPhoto pho 
+		on per.nPerCnt = pho.nRefCode 
+		and pho.cPhoType = 'per' 
+		and pho.nPhoDel = 0
+		left join `KIMG`.`kimgCompany` c on per.cPerCom = c.cComCode 
+		WHERE per.nPerDel = 0 and (per.cPerName like CONCAT('%',#{vo},'%') or per.cPerId like CONCAT('%',#{vo},'%'))
   	</select>
   	<select id="selectOnePerson"  resultType="KimgPerson" parameterType="KimgPerson">
   		select * from `KIMG`.`kimgPerson` where nPerDel = 0 and nPerCnt = #{nPerCnt}
   	</select>
-  	<insert id="insertPerson" parameterType="KimgPerson">
+  	<insert id="insertPerson" parameterType="KimgPerson" useGeneratedKeys="true" keyProperty="nPerCnt">
   		INSERT INTO `KIMG`.`kimgPerson`
 		(
 		`cPerId`,
@@ -39,6 +64,7 @@
 		now(),
 		#{cPerModUsr},
 		0);
+
   	</insert>
   	<update id="updatePerson" parameterType="KimgPerson">
 	  	UPDATE `KIMG`.`kimgPerson`
@@ -75,7 +101,7 @@
 	  	INSERT INTO `KIMG`.`kimgPhoto`
 		(
 		`cPhoType`,
-		`cRefCode`,
+		`nRefCode`,
 		`cPhoName`,
 		`dPhoCrt`,
 		`cPhoCrtUsr`,
@@ -85,7 +111,7 @@
 		VALUES
 		(
 		#{cPhoType},
-		#{cRefCode},
+		#{nRefCode},
 		#{cPhoName},
 		now(),
 		#{cPhoCrtUsr},
@@ -98,8 +124,21 @@
   	WHERE
   	`cPhoType` = #{cPhoType}
   	and
-  	`cRefCode` = #{cRefCode}
+  	`nRefCode` = #{nRefCode}
   	and
   	`nPhoDel` = 0
+  	</select>
+  	<update id="updatePhotoByRefCodeToZero" parameterType="KimgPhoto">
+  	Update
+  	`KIMG`.`kimgPhoto`
+  	SET nPhoDel = 1
+  	WHERE nRefCode = #{nRefCode}
+  	and cPhoType = #{cPhoType}
+  	</update>
+  	<select id="selectAllProduct" resultType="KimgProduct">
+  	SELECT * FROM KIMG.kimgProduct where nPrdDel = 0;
+  	</select>
+  	<select id="selectAllItem" resultType="KimgItem">
+  	SELECT * FROM KIMG.kimgItem where nItmDel = 0;
   	</select>
 </mapper>
