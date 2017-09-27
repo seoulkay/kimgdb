@@ -73,10 +73,13 @@
                                                 <tr>
                                                     <td class="client-avatar"><img alt="image" src="https://www.kimgdb.com/image/${ele.cPhoName }"> </td>
                                                     <td><a data-toggle="tab" href="#contact-${var.count }" class="client-link">${ele.cPerName }</a></td>
-                                                    <td> ${ele.cPerId }</td>
-                                                    <td class="contact-type"><i class="fa fa-envelope"> </i></td>
+                                                    <%-- <td> ${ele.cPerId }</td> --%>
+                                                    <td> ${ele.cPerPos }</td>
+                                                    <td class="contact-type"><i class="fa fa-phone"> </i></td>
                                                     <td> ${ele.cPerCon }</td>
-                                                    <td class="client-status"><span class="label label-primary">Active</span></td>
+                                                    <td class="contact-type"><i class="fa fa-envelope"> </i></td>
+                                                    <td> ${ele.cPerEmail }</td>
+                                                    <td class="client-status"><span class="label label-primary">수정</span></td>
                                                 </tr>
                                                 </c:forEach>
                                                 </tbody>
@@ -168,7 +171,7 @@
                             <c:forEach items="${personList }" var="ele" varStatus="var" >
                                 <div id="contact-${var.count }" class="tab-pane <c:if test="${var.count eq 1 }">active</c:if>">
                                     <div class="row m-b-lg">
-                                        <div class="col-lg-4 text-center">
+                                        <div class="col-lg-12 text-center">
                                             <h2>${ele.cPerName}</h2>
 
                                             <div class="m-b-sm">
@@ -176,20 +179,24 @@
                                                      style="width: 62px">
                                             </div>
                                         </div>
-                                        <div class="col-lg-8">
+                                        <!-- <div class="col-lg-8">
                                             <button type="button" class="btn btn-primary btn-sm btn-block"><i
                                                     class="fa fa-envelope"></i> 수정
                                             </button>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="client-detail">
                                     <div class="full-height-scroll">
 
                                         <strong>프로필 정보</strong>
-
+										<%-- <td> ${ele.cPerId }</td> --%>
                                         <ul class="list-group clear-list">
                                             <li class="list-group-item fist-item">
-                                                <span class="pull-right"> ${ele.cComName }</span>
+                                                <span class="pull-right"> ${ele.cPerId }</span>
+                                                아이디
+                                            </li>
+                                            <li class="list-group-item">
+                                                <span class="pull-right"> ${ele.cComName } </span>
                                                 소속
                                             </li>
                                             <li class="list-group-item">

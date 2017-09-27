@@ -5,6 +5,7 @@ import java.util.Date;
 public class KimgItemVO extends KimgProductVO{
 	private int nItmCnt;
 	private String cItmCode;
+	private String cItmCom;
 	private String cItmVenue;
 	private String cItmSport;
 	private String cItmDept;
@@ -254,6 +255,12 @@ public class KimgItemVO extends KimgProductVO{
 	}
 	public void setnItmDel(int nItmDel) {
 		this.nItmDel = nItmDel;
+	}
+	public String getcItmCom() {
+		return cItmCom;
+	}
+	public void setcItmCom(String cItmCom) {
+		this.cItmCom = cItmCom;
 	}
 	
 }

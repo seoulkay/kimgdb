@@ -47,44 +47,61 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="control-label" for="order_id">번호</label>
-                            <input type="text" id="order_id" name="order_id" value="" placeholder="Order ID" class="form-control">
+                            <label class="control-label" for="nItmCnt">번호</label>
+                            <input type="text" id="nItmCnt" name="nItmCnt" value="" placeholder="Item Number" class="form-control">
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="control-label" for="status">아이템코드</label>
-                            <input type="text" id="status" name="status" value="" placeholder="Status" class="form-control">
+                            <label class="control-label" for="cItmCode">아이템코드</label>
+                            <input type="text" id="cItmCode" name="cItmCode" value="" placeholder="Item Code" class="form-control">
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="control-label" for="customer">베뉴</label>
-                            <input type="text" id="customer" name="customer" value="" placeholder="Customer" class="form-control">
+                            <label class="control-label" for="cItmCom">업체</label>
+                            <select class="form-control m-b" id="cItmCom" name="cItmCom">                           		
+                           		<option value="HAN">HAN - 한솔</option>
+                           		<option value="UFO">UFO - 유에포</option>                           		
+                            </select>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="form-group">
-                            <label class="control-label" for="date_added">스포츠</label>
-                            <div class="input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="date_added" type="text" class="form-control" value="03/04/2014">
-                            </div>
+                            <label class="control-label" for="cItmVenue">베뉴</label>
+                            <select class="form-control m-b" id="cItmVenue" name="cItmVenue">                           		
+                           		<option value="ABT">ABT - 알펜시아 바이애슬론 센터</option>
+                           		<option value="ACC">ACC - 알펜시아 크로스컨트리 센터</option>                           		
+                            </select>
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="form-group">
-                            <label class="control-label" for="date_modified">카테고리</label>
-                            <div class="input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="date_modified" type="text" class="form-control" value="03/06/2014">
-                            </div>
+                            <label class="control-label" for="cItmSport">스포츠</label>
+                            <select class="form-control m-b" id="cItmSport" name="cItmSport">                           		
+                           		<option value="ALP">ALP - 알파인 스키</option>
+                           		<option value="BOB">BOB - 봅슬레이</option>                           		
+                            </select>
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="form-group">
-                            <label class="control-label" for="amount">품목</label>
-                            <input type="text" id="amount" name="amount" value="" placeholder="Amount" class="form-control">
+                            <label class="control-label" for="cItmDept">FA</label>
+                            <select class="form-control m-b" id="cItmDept" name="cItmDept">                           		
+                           		<option value="ACM">ACM - 숙박</option>
+                           		<option value="ACR">ACR - 등록</option>                           		
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label" for="cItmEvent">게임</label>                            
+                            <select class="form-control m-b" id="cItmEvent" name="cItmEvent">                           		
+                           		<option value="A">A - 올림픽</option>
+                           		<option value="B">B - 패럴림픽</option>                           		
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -100,12 +117,15 @@
                                 <thead>
                                 <tr>
 
-                                    <th>번호</th>
-                                    <th data-hide="phone">아이템코드</th>
+                                    <th data-hide="phone">번호</th>
+                                    <th>아이템코드</th>
+                                    <th data-hide="phone">업체</th>
                                     <th data-hide="phone">베뉴</th>
-                                    <th data-hide="phone">스포츠</th>
-                                    <th data-hide="phone" >카테고리</th>
-                                    <th data-hide="phone">품목</th>
+                                    <th data-hide="phone">스포츠</th>                                    
+                                    <th data-hide="phone" >FA</th>
+                                    <th data-hide="phone" >게임</th>
+                                    <th data-hide="all">제품</th>
+                                    <th data-hide="all" >카테고리</th>
                                     <th data-hide="all">재질</th>
                                     <th data-hide="all">Floor</th>
                                     <th data-hide="all">Location</th>
@@ -117,8 +137,10 @@
                                     <th data-hide="all">수량</th>
                                     <th data-hide="all">수량 단위</th>
                                     <th data-hide="all">비고</th>
-                                    <th class="text-right">상태 / 행동</th>
-
+                                    <th data-hide="phone" >제작</th>
+                                    <th data-hide="phone" >설치</th>
+                                    <th data-hide="phone" >철거</th> 
+                                    <th data-hide="phone" >이슈</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -131,16 +153,25 @@
                                         ${ele.cItmCode}
                                     </td>
                                     <td>
+                                        ${ele.cItmCom}
+                                    </td>
+                                    <td>
                                         ${ele.cItmVenue}
                                     </td>
                                     <td>
                                         ${ele.cItmSport}
                                     </td>
                                     <td>
-                                        ${ele.cItmCate}
+                                        ${ele.cItmDept}
                                     </td>
                                     <td>
+                                        ${ele.cItmEvent}
+                                    </td>                                    
+                                    <td>
                                         ${ele.cItmProd}
+                                    </td>
+                                    <td>
+                                        ${ele.cItmCate}
                                     </td>
                                     <td>
                                         ${ele.cItmMate}
@@ -175,8 +206,34 @@
                                     <td>
                                         ${ele.cItmDesc}
                                     </td>
-                                    <td class="text-right">
-                                    <span class="label label-primary">설치중</span>
+                                    <td class="text-center">
+	                                    <span class="pie">1,0
+		                                    <svg class="peity" height="16" width="16">
+		                                    	<path d="M 8 8 L 8 0 A 8 8 0 0 1 14.933563796318165 11.990700825968545 Z" fill="#1ab394"></path>
+		                                    	<path d="M 8 8 L 14.933563796318165 11.990700825968545 A 8 8 0 1 1 7.999999999999998 0 Z" fill="#d7d7d7"></path>
+	                                    	</svg>
+	                                    </span>
+                                    </td>
+                                    <td class="text-center">
+	                                    <span class="pie">0,1
+		                                    <svg class="peity" height="16" width="16">
+		                                    	<path d="M 8 8 L 8 0 A 8 8 0 0 1 14.933563796318165 11.990700825968545 Z" fill="#1ab394"></path>
+		                                    	<path d="M 8 8 L 14.933563796318165 11.990700825968545 A 8 8 0 1 1 7.999999999999998 0 Z" fill="#d7d7d7"></path>
+	                                    	</svg>
+	                                    </span>
+                                    </td>
+                                    <td class="text-center">
+	                                    <span class="pie">0,1
+		                                    <svg class="peity" height="16" width="16">
+		                                    	<path d="M 8 8 L 8 0 A 8 8 0 0 1 14.933563796318165 11.990700825968545 Z" fill="#1ab394"></path>
+		                                    	<path d="M 8 8 L 14.933563796318165 11.990700825968545 A 8 8 0 1 1 7.999999999999998 0 Z" fill="#d7d7d7"></path>
+	                                    	</svg>
+	                                    </span>
+                                    </td>
+                                    <td class="text-center">
+	                                    <span class="label label-danger">3</span>
+                                    </td>                                    
+                                    <td class="text-right">                                    
                                         <div class="btn-group">
                                             <button class="btn-white btn btn-xs">보기</button>
                                             <button class="btn-white btn btn-xs">수정</button>
@@ -187,11 +244,11 @@
                                 </c:forEach>
                                 </tbody>
                                 <tfoot>
-                                <tr>
-                                    <td colspan="7">
-                                        <ul class="pagination pull-right"></ul>
-                                    </td>
-                                </tr>
+	                                <tr>
+	                                    <td colspan="7" class="footable-visible">
+	                                        <ul class="pagination pull-right"></ul>
+	                                    </td>
+	                                </tr>
                                 </tfoot>
                             </table>
 

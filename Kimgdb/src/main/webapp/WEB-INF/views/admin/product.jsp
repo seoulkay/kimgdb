@@ -24,7 +24,7 @@
 		
         </div>
             <div class="row wrapper border-bottom white-bg page-heading">
-                <div class="col-lg-10">
+                <div class="col-lg-2">
                     <h2>제품</h2>
                     <ol class="breadcrumb">
                         <li>
@@ -47,46 +47,41 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="control-label" for="order_id">번호</label>
-                            <input type="text" id="order_id" name="order_id" value="" placeholder="Order ID" class="form-control">
+                            <label class="control-label" for="nPrdCnt">번호</label>
+                            <input type="text" id="nPrdCnt" name="nPrdCnt" value="" placeholder="Product Number" class="form-control">
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="control-label" for="status">품목코드</label>
-                            <input type="text" id="status" name="status" value="" placeholder="Status" class="form-control">
+                            <label class="control-label" for="cPrdCode">품목코드</label>
+                            <input type="text" id="cPrdCode" name="cPrdCode" value="" placeholder="Product Code" class="form-control">
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="control-label" for="customer">품목이름(영문)</label>
-                            <input type="text" id="customer" name="customer" value="" placeholder="Customer" class="form-control">
+                            <label class="control-label" for="cPrdCat">카테고리</label>
+                            <select class="form-control m-b" id="cPrdCat" name="cPrdCat">                           		
+                           		<option value="lok">룩</option>
+                           		<option value="sin">사이니지</option>
+                           		<option value="spc">스펙타큘러</option>
+                           		<option value="eqi">스포츠 장비</option>                           		
+                            </select>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="form-group">
-                            <label class="control-label" for="date_added">품목이름(한글)</label>
-                            <div class="input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="date_added" type="text" class="form-control" value="03/04/2014">
-                            </div>
+                            <label class="control-label" for="cPrdName">품목명(영문)</label>
+                            <input type="text" id="cPrdName" name="cPrdName" value="" placeholder="Product Name" class="form-control">
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="form-group">
-                            <label class="control-label" for="date_modified">카테고리</label>
-                            <div class="input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="date_modified" type="text" class="form-control" value="03/06/2014">
-                            </div>
+                            <label class="control-label" for="cPrdLocalName">품목명(한글)</label>
+                            <input type="text" id="cPrdLocalName" name="cPrdLocalName" value="" placeholder="Product Local Name" class="form-control">
                         </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="control-label" for="amount">설명</label>
-                            <input type="text" id="amount" name="amount" value="" placeholder="Amount" class="form-control">
-                        </div>
-                    </div>
+                    </div>                    
                 </div>
 
             </div>
@@ -100,14 +95,13 @@
                                 <thead>
                                 <tr>
 
-                                    <th>번호</th>
-                                    <th data-hide="phone">품목코드</th>
-                                    <th data-hide="phone">품목이름(영문)</th>
-                                    <th data-hide="phone">품목이름(한글)</th>
+                                    <th data-hide="phone">번호</th>
+                                    <th>품목코드</th>
+                                    <th data-hide="phone">품목명(영문)</th>
+                                    <th data-hide="phone">품목명(한글)</th>
                                     <th data-hide="phone" >카테고리</th>
                                     <th data-hide="phone, tablet">설명</th>
-                                    <th class="text-right">행동</th>
-
+                                    <!-- <th class="text-right">행동</th> -->
                                 </tr>
                                 </thead>
                                 <tbody>
