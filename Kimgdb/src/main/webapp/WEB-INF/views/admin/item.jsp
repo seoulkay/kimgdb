@@ -280,7 +280,7 @@
                                 </tbody>
                                 <tfoot>
 	                                <tr>
-	                                    <td colspan="13" class="footable-visible">
+	                                    <td colspan="16" class="footable-visible">
 	                                        <ul class="pagination pull-right"></ul>
 	                                    </td>
 	                                </tr>
