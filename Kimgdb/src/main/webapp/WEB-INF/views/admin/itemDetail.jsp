@@ -73,41 +73,48 @@
                                 </div>
                                 <div class="col-md-7">
 
-                                    <h2 class="font-bold m-b-xs">
+                                    <h3 class="font-bold m-b-xs">
                                         ${item.cVenName } : ${item.cPrdName }
-                                    </h2>
-                                    <small>${item.cItmCode }</small>
-                                    <div class="m-t-md">
+                                    </h3>
+                                    <div class="m-t-md">${item.cItmCode }</div>
+                                    <!-- <div class="m-t-md">
                                         <h2 class="product-main-price">$406,602 <small class="text-muted">Exclude Tax</small> </h2>
+                                    </div> -->
+                                    <hr><!-- 
+
+                                    <h4>아이템 설명</h4> -->
+
+                                    <div class="m-t-md">
+                                    	<%-- <strong>아이템:</strong> ${item.cItmCode }<br>
+                                       	<strong>품목:</strong> ${item.cPrdName }<br>
+                                       	<strong>업체 :</strong> ${item.cItmCom }<br>
+                                       	<strong>베뉴 :</strong>  ${item.cVenName }<br>                                       	
+                                       	<strong>게임 :</strong> ${item.cEvnName }<br>
+                                       	<strong>스포츠 :</strong> ${item.cSptName }<br>
+                                       	<strong>FA :</strong> ${item.cDptName }<br>
+                                       	<strong>카테고리 :</strong> ${item.cCatName }<br>
+                                       	<strong>재질 :</strong> ${item.cItmMate }<br>
+                                       	<strong>위치 :</strong> ${item.cItmFloor } --%>
+                                       	 <table class="table">
+                                       		<tbody>                                       		                                       		
+                                       		<tr><td style="border-top: none; width:15%; font-weight: bold;">게임 :</td>	<td style="border-top: none; width:85%">${item.cEvnName }</td></tr>
+                                       		<tr><td style="border-top: none; width:15%; font-weight: bold;">스포츠 :</td> <td style="border-top: none; width:85%">${item.cSptName }</td></tr>
+                                       		<tr><td style="border-top: none; width:15%; font-weight: bold;">FA :</td>   <td style="border-top: none; width:85%">${item.cDptName }</td></tr>
+                                       		<tr><td style="border-top: none; width:15%; font-weight: bold;">카테고리 :</td><td style="border-top: none; width:85%">${item.cCatName }</td></tr>
+                                       		<tr><td style="border-top: none; width:15%; font-weight: bold;">재질 :</td>	<td style="border-top: none; width:85%">${item.cItmMate }</td></tr>
+                                       		<tr><td style="border-top: none; width:15%; font-weight: bold;">위치 :</td>	<td style="border-top: none; width:85%">${item.cItmFloor }</td></tr>
+                                       		<tr><td style="border-top: none; width:15%; font-weight: bold;">담당업체 :</td>	<td style="border-top: none; width:85%">${item.cItmCom }</td></tr>
+                                       		
+                                       		</tbody>
+                                       	</table>
                                     </div>
-                                    <hr>
-
-                                    <h4>품목 설명</h4>
-
-                                    <div class="small text-muted">
-                                       	${item.cSptName }<br>
-                                       	${item.cDptName }<br>
-                                       	${item.cEvnName }<br>
-                                       	${item.cCatName }<br>
-                                       	${item.cItmMate }<br>
-                                       	${item.cItmFloor }
-
-                                    </div>
-                                    <dl class="small m-t-md">
-                                        <dt>Description lists</dt>
-                                        <dd>A description list is perfect for defining terms.</dd>
-                                        <dt>Euismod</dt>
-                                        <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                                        <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-                                        <dt>Malesuada porta</dt>
-                                        <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-                                    </dl>
+                                    
                                     <hr>
 
                                     <div>
                                         <div class="btn-group">
                                             <button class="btn btn-primary btn-sm"><i class="fa fa-star"></i> 작업추가 </button>
-                                            <button class="btn btn-white btn-sm"><i class="fa fa-envelope"></i> 담당 업체 연락처 </button>
+                                            <button class="btn btn-white btn-sm"><i class="fa fa-phone"></i> 담당업체 연락처 </button>
                                         </div>
                                     </div>
 
@@ -119,7 +126,7 @@
                         </div>
                         <div class="ibox-footer">
                             <span class="pull-right">
-                                Full stock - <i class="fa fa-clock-o"></i> 14.04.2016 10:04 pm
+                                sj.choi <i class="fa fa-clock-o"></i> 14.09.2017 10:04 am
                             </span>
                             The generated Lorem Ipsum is therefore always free
                         </div>

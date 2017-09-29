@@ -157,11 +157,11 @@
                                     <th data-hide="phone">업체</th>
                                     <th data-hide="phone">베뉴</th>
                                     <th data-hide="phone">스포츠</th>                                    
-                                    <th data-hide="phone" >FA</th>
-                                    <th data-hide="phone" >게임</th>
+                                    <th data-hide="all" >FA</th>
+                                    <th data-hide="all" >게임</th>
                                     <th data-hide="all">제품</th>
                                     <th data-hide="phone" >카테고리</th>
-                                    <th data-hide="phone">재질</th>
+                                    <th data-hide="all">재질</th>
                                     <th data-hide="all">Floor</th>
                                     <th data-hide="all">Location</th>
                                     <th data-hide="all">W (가로)</th>
@@ -172,10 +172,10 @@
                                     <th data-hide="all">수량</th>
                                     <th data-hide="all">수량 단위</th>
                                     <th data-hide="all">비고</th>
-                                    <th data-hide="phone" >제작</th>
-                                    <th data-hide="phone" >설치</th>
-                                    <th data-hide="phone" >철거</th> 
-                                    <th data-hide="phone" >이슈</th>
+                                    <th data-hide="phone">제작</th>
+                                    <th data-hide="phone">설치</th>
+                                    <th data-hide="phone">철거</th> 
+                                    <th data-hide="phone">이슈</th>
                                 </tr>
                                 </thead>
                                 <tbody>
