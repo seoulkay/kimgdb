@@ -5,11 +5,16 @@ import java.util.List;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import www.ufo79.com.vo.KimgCategoryVO;
 import www.ufo79.com.vo.KimgCompanyVO;
+import www.ufo79.com.vo.KimgDepartmentVO;
+import www.ufo79.com.vo.KimgEventVO;
 import www.ufo79.com.vo.KimgItemVO;
 import www.ufo79.com.vo.KimgPersonVO;
 import www.ufo79.com.vo.KimgPhotoVO;
 import www.ufo79.com.vo.KimgProductVO;
+import www.ufo79.com.vo.KimgSportVO;
+import www.ufo79.com.vo.KimgVenueVO;
 
 @Repository
 public class KimgDAO extends SqlSessionDaoSupport{
@@ -60,5 +65,35 @@ public class KimgDAO extends SqlSessionDaoSupport{
 	public List<KimgProductVO> selectAllProduct(){
 		return getSqlSession().selectList("mapper.selectAllProduct");
 	}
+	public List<KimgCategoryVO> selectAllCategory(){
+		return getSqlSession().selectList("mapper.selectAllCategory");
+	}
 	
+	public List<KimgEventVO> selectAllEvent(){
+		return getSqlSession().selectList("mapper.selectAllEvent");
+	}
+	
+	public List<KimgSportVO> selectAllSport(){
+		return getSqlSession().selectList("mapper.selectAllSport");
+	}
+	
+	public List<KimgDepartmentVO> selectAllDepartment(){
+		return getSqlSession().selectList("mapper.selectAllDepartment");
+	}
+	
+	public List<KimgVenueVO> selectAllVenue(){
+		return getSqlSession().selectList("mapper.selectAllVenue");
+	}
+	
+	public List<String> selectAllcItmMate(){
+		return getSqlSession().selectList("mapper.selectAllcItmMate");
+	}
+	
+	public List<KimgItemVO> selectAllItemSrcPar(KimgItemVO vo){
+		return getSqlSession().selectList("mapper.selectAllItemSrcPar", vo);
+	}
+	
+	public KimgItemVO selectAllItemDetail(int vo){
+		return getSqlSession().selectOne("mapper.selectAllItemDetail", vo);
+	}
 }

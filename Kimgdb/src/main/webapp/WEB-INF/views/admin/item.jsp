@@ -42,27 +42,45 @@
 
         <div class="wrapper wrapper-content animated fadeInRight ecommerce">
 
-
+			<form action="item" id="searchItemForm">
             <div class="ibox-content m-b-sm border-bottom">
                 <div class="row">
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="control-label" for="nItmCnt">번호</label>
-                            <input type="text" id="nItmCnt" name="nItmCnt" value="" placeholder="Item Number" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="form-group">
                             <label class="control-label" for="cItmCode">아이템코드</label>
                             <input type="text" id="cItmCode" name="cItmCode" value="" placeholder="Item Code" class="form-control">
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label" for="cItmProd">품목</label>
+                           	<select class="selectpicker form-control m-b" data-live-search="true" id="cItmProd" name="cItmProd">
+                           		<option value="">전체</option>
+                            	<c:forEach items="${productList }" var="ele">
+                            	<option value="${ele.cPrdCode }">${ele.cPrdName } - ${ele.cPrdLocalName }</option> 
+                            	</c:forEach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label" for="cItmMate">재질</label>
+                            <select class="selectpicker form-control m-b" data-live-search="true" name="cItmMate" id="cItmMate">
+                            	<option value="">전체</option>
+                            	<c:forEach items="${cItmMateList }" var="ele">
+                            	<option value="${ele }">${ele }</option> 
+                            	</c:forEach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
                         <div class="form-group">
                             <label class="control-label" for="cItmCom">업체</label>
-                            <select class="form-control m-b" id="cItmCom" name="cItmCom">                           		
-                           		<option value="HAN">HAN - 한솔</option>
-                           		<option value="UFO">UFO - 유에포</option>                           		
+                            <select class="selectpicker form-control m-b" data-live-search="true" name="cItmCom" id="cItmCom">
+                            	<option value="">전체</option>
+                            	<c:forEach items="${companyList }" var="ele">
+                            	<option value="${ele.cComCode }">${ele.cComName }</option> 
+                            	</c:forEach>
                             </select>
                         </div>
                     </div>
@@ -70,44 +88,61 @@
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="form-group">
-                            <label class="control-label" for="cItmVenue">베뉴</label>
-                            <select class="form-control m-b" id="cItmVenue" name="cItmVenue">                           		
-                           		<option value="ABT">ABT - 알펜시아 바이애슬론 센터</option>
-                           		<option value="ACC">ACC - 알펜시아 크로스컨트리 센터</option>                           		
+                            <label class="control-label" for="cItmVenue">베뉴</label>                       		
+                           	<select class="selectpicker form-control m-b" data-live-search="true" name="cItmVenue" id="cItmVenue" >
+                           		<option value="">전체</option>
+                            	<c:forEach items="${venueList }" var="ele">
+                            	<option value="${ele.cVenCode }">${ele.cVenName }</option> 
+                            	</c:forEach>
                             </select>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group">
                             <label class="control-label" for="cItmSport">스포츠</label>
-                            <select class="form-control m-b" id="cItmSport" name="cItmSport">                           		
-                           		<option value="ALP">ALP - 알파인 스키</option>
-                           		<option value="BOB">BOB - 봅슬레이</option>                           		
+                           	<select class="selectpicker form-control m-b" data-live-search="true" id="cItmSport" name="cItmSport">
+                           		<option value="">전체</option>
+                            	<c:forEach items="${sportList }" var="ele">
+                            	<option value="${ele.cSptCode }">${ele.cSptName }</option> 
+                            	</c:forEach>
                             </select>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group">
                             <label class="control-label" for="cItmDept">FA</label>
-                            <select class="form-control m-b" id="cItmDept" name="cItmDept">                           		
-                           		<option value="ACM">ACM - 숙박</option>
-                           		<option value="ACR">ACR - 등록</option>                           		
+                           	<select class="selectpicker form-control m-b" data-live-search="true" id="cItmDept" name="cItmDept">
+                           		<option value="">전체</option>
+                            	<c:forEach items="${departmentList }" var="ele">
+                            	<option value="${ele.cDptCode }">${ele.cDptName }</option> 
+                            	</c:forEach>
                             </select>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group">
                             <label class="control-label" for="cItmEvent">게임</label>                            
-                            <select class="form-control m-b" id="cItmEvent" name="cItmEvent">                           		
-                           		<option value="A">A - 올림픽</option>
-                           		<option value="B">B - 패럴림픽</option>                           		
+                           	<select class="selectpicker form-control m-b" data-live-search="true" id="cItmEvent" name="cItmEvent">
+                            	<option value="">전체</option>
+                            	<c:forEach items="${eventList }" var="ele">
+                            	<option value="${ele.cEvnCode }">${ele.cEvnName }</option> 
+                            	</c:forEach>
                             </select>
                         </div>
                     </div>
                 </div>
-
+                <div class="row">
+                	<div class="col-sm-3"></div>
+                	<div class="col-sm-3"></div>
+                	<div class="col-sm-3">
+                		<button type="button" class="btn btn-primary btn-sm btn-block">생성</button>
+                	</div>
+                	<div class="col-sm-3">
+                		<button type="button" class="btn btn-primary btn-sm btn-block" onclick="searchItem()">검색</button>
+                	</div>
+                </div>
             </div>
-
+            </form>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox">
@@ -117,16 +152,16 @@
                                 <thead>
                                 <tr>
 
-                                    <th data-hide="phone">번호</th>
                                     <th>아이템코드</th>
+                                    <th>품목</th>
                                     <th data-hide="phone">업체</th>
                                     <th data-hide="phone">베뉴</th>
                                     <th data-hide="phone">스포츠</th>                                    
                                     <th data-hide="phone" >FA</th>
                                     <th data-hide="phone" >게임</th>
                                     <th data-hide="all">제품</th>
-                                    <th data-hide="all" >카테고리</th>
-                                    <th data-hide="all">재질</th>
+                                    <th data-hide="phone" >카테고리</th>
+                                    <th data-hide="phone">재질</th>
                                     <th data-hide="all">Floor</th>
                                     <th data-hide="all">Location</th>
                                     <th data-hide="all">W (가로)</th>
@@ -146,11 +181,11 @@
                                 <tbody>
                                 <c:forEach items="${itemList}" var="ele">
                                 <tr>
-                                    <td>
-                                        ${ele.nItmCnt}
-                                    </td>
                                      <td>
                                         ${ele.cItmCode}
+                                    </td>
+                                    <td>
+                                    	${ele.cPrdName }
                                     </td>
                                     <td>
                                         ${ele.cItmCom}
@@ -171,7 +206,7 @@
                                         ${ele.cItmProd}
                                     </td>
                                     <td>
-                                        ${ele.cItmCate}
+                                        ${ele.cCatName}
                                     </td>
                                     <td>
                                         ${ele.cItmMate}
@@ -235,7 +270,7 @@
                                     </td>                                    
                                     <td class="text-right">                                    
                                         <div class="btn-group">
-                                            <button class="btn-white btn btn-xs">보기</button>
+                                            <button class="btn-white btn btn-xs" onclick="location.href='itemDetail?nItmCnt= ${ele.nItmCnt}' ">보기</button>
                                             <button class="btn-white btn btn-xs">수정</button>
                                             <button class="btn-white btn btn-xs">삭제</button>
                                         </div>
@@ -245,7 +280,7 @@
                                 </tbody>
                                 <tfoot>
 	                                <tr>
-	                                    <td colspan="7" class="footable-visible">
+	                                    <td colspan="13" class="footable-visible">
 	                                        <ul class="pagination pull-right"></ul>
 	                                    </td>
 	                                </tr>
@@ -267,5 +302,19 @@
 		</div>
     </div>
 </body>
+<script>
+function searchItem(){
+	$("#searchItemForm").submit();
+}
 
+
+$("#cItmCode").val("${srcPar.cItmCode}")
+$('#cItmProd').selectpicker('val', "${srcPar.cItmProd}");
+$('#cItmMate').selectpicker('val', "${srcPar.cItmMate}");
+$('#cItmCom').selectpicker('val', "${srcPar.cItmCom}");
+$('#cItmVenue').selectpicker('val', "${srcPar.cItmVenue}");
+$('#cItmSport').selectpicker('val', "${srcPar.cItmSport}");
+$('#cItmDept').selectpicker('val', "${srcPar.cItmDept}");
+$('#cItmEvent').selectpicker('val', "${srcPar.cItmEvent}");
+</script>
 </html>

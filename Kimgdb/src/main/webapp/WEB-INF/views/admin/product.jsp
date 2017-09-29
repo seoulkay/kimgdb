@@ -45,19 +45,25 @@
 
             <div class="ibox-content m-b-sm border-bottom">
                 <div class="row">
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="control-label" for="nPrdCnt">번호</label>
-                            <input type="text" id="nPrdCnt" name="nPrdCnt" value="" placeholder="Product Number" class="form-control">
+                	<div class="col-sm-3">
+                		<div class="form-group">
+                            <label class="control-label" for="cPrdLocalName">품목명(한글)</label>
+                            <input type="text" id="cPrdLocalName" name="cPrdLocalName" value="" placeholder="Product Local Name" class="form-control">
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label" for="cPrdName">품목명(영문)</label>
+                            <input type="text" id="cPrdName" name="cPrdName" value="" placeholder="Product Name" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
                         <div class="form-group">
                             <label class="control-label" for="cPrdCode">품목코드</label>
                             <input type="text" id="cPrdCode" name="cPrdCode" value="" placeholder="Product Code" class="form-control">
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="form-group">
                             <label class="control-label" for="cPrdCat">카테고리</label>
                             <select class="form-control m-b" id="cPrdCat" name="cPrdCat">                           		
@@ -69,21 +75,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label class="control-label" for="cPrdName">품목명(영문)</label>
-                            <input type="text" id="cPrdName" name="cPrdName" value="" placeholder="Product Name" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label class="control-label" for="cPrdLocalName">품목명(한글)</label>
-                            <input type="text" id="cPrdLocalName" name="cPrdLocalName" value="" placeholder="Product Local Name" class="form-control">
-                        </div>
-                    </div>                    
+                
+				<div class="row">
+                	<div class="col-sm-3"></div>
+                	<div class="col-sm-3"></div>
+                	<div class="col-sm-3">
+                		<button type="button" class="btn btn-primary btn-sm btn-block">생성</button>
+                	</div>
+                	<div class="col-sm-3">
+                		<button type="button" class="btn btn-primary btn-sm btn-block" onclick="searchItem()">검색</button>
+                	</div>
                 </div>
-
             </div>
 
             <div class="row">
@@ -148,7 +150,7 @@
                     </div>
                 </div>
             </div>
-
+			
 
         </div>
         

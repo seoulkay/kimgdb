@@ -20,5 +20,12 @@
 	
 	<link href="${pageContext.request.contextPath}/resources/fineupload/fine-uploader-new.min.css" rel="stylesheet">
     
+	<!-- 특별한 드랍 다운을 위해 -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+	<!-- 특별한 드랍 다운 끝 -->
+	
+	<link href="${pageContext.request.contextPath}/resources/css/plugins/slick/slick.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/plugins/slick/slick-theme.css" rel="stylesheet">
+
 	
 </head>

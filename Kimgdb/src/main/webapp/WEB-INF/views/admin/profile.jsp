@@ -78,7 +78,7 @@
                                                     <td class="contact-type"><i class="fa fa-phone"> </i></td>
                                                     <td> ${ele.cPerCon }</td>
                                                     <td class="contact-type"><i class="fa fa-envelope"> </i></td>
-                                                    <td> ${ele.cPerEmail }</td>
+                                                    <td> ${ele.cComName }</td>
                                                     <td class="client-status"><span class="label label-primary">수정</span></td>
                                                 </tr>
                                                 </c:forEach>

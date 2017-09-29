@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -32,11 +33,16 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import www.ufo79.com.dao.KimgDAO;
 import www.ufo79.com.service.UploadReceiver;
+import www.ufo79.com.vo.KimgCategoryVO;
 import www.ufo79.com.vo.KimgCompanyVO;
+import www.ufo79.com.vo.KimgDepartmentVO;
+import www.ufo79.com.vo.KimgEventVO;
 import www.ufo79.com.vo.KimgItemVO;
 import www.ufo79.com.vo.KimgPersonVO;
 import www.ufo79.com.vo.KimgPhotoVO;
 import www.ufo79.com.vo.KimgProductVO;
+import www.ufo79.com.vo.KimgSportVO;
+import www.ufo79.com.vo.KimgVenueVO;
 
 @Controller
 public class KimgController {
@@ -157,17 +163,68 @@ public class KimgController {
 	}
 	
 	@RequestMapping(value = "/admin/item", method = RequestMethod.GET)
-	public String adminItem(Model model, HttpSession session) {
+	public String adminItem(Model model, HttpSession session, @ModelAttribute("srcPar")KimgItemVO srcPar) throws UnsupportedEncodingException {
 		if(session.getAttribute("cPerId") == null){
 			return "redirect:../";
 		}
 		
-		List<KimgItemVO> itemList = dao.selectAllItem();
+		List<KimgItemVO> itemList = new ArrayList<KimgItemVO>();
 		
+//		if(srcPar == null){
+//			itemList = dao.selectAllItem();
+//		}else{
+			//한글이 섞이는 코드 정리
+			try{
+			srcPar.setcItmCode(new String(srcPar.getcItmCode().getBytes("8859_1"), "utf-8"));
+			}catch(Exception e){
+				
+			}
+			try{
+			srcPar.setcItmMate(new String(srcPar.getcItmMate().getBytes("8859_1"), "utf-8"));
+			}catch(Exception e){
+				
+			}
+			
+			itemList = dao.selectAllItemSrcPar(srcPar);
+//		}
+		
+		List<KimgCategoryVO> catList = dao.selectAllCategory();
+		List<KimgEventVO> eventList = dao.selectAllEvent();
+		List<KimgSportVO> sportList = dao.selectAllSport();
+		List<KimgDepartmentVO> departmentList = dao.selectAllDepartment();
+		List<KimgVenueVO> venueList = dao.selectAllVenue();
+		List<KimgCompanyVO> companyList = dao.selectAllCompany();
+		List<KimgProductVO> productList = dao.selectAllProduct();
+		List<String> cItmMateList = dao.selectAllcItmMate();
 		
 		model.addAttribute("itemList", itemList);
+		model.addAttribute("catList", catList);
+		model.addAttribute("eventList", eventList);
+		model.addAttribute("sportList", sportList);
+		model.addAttribute("departmentList", departmentList);
+		model.addAttribute("venueList", venueList);
+		model.addAttribute("companyList", companyList);
+		model.addAttribute("productList", productList);
+		model.addAttribute("cItmMateList", cItmMateList);
+		
+		model.addAttribute("srcPar", srcPar);		
+		
 		model.addAttribute("selectedMenu", "item");
 		return "admin/item";
+	}
+	
+	@RequestMapping(value = "/admin/itemDetail", method = RequestMethod.GET)
+	public String adminItemDetail(Model model, HttpSession session, @RequestParam("nItmCnt")int nItmCnt) {
+		if(session.getAttribute("cPerId") == null){
+			return "redirect:../";
+		}
+		
+		KimgItemVO item = dao.selectAllItemDetail(nItmCnt);
+		
+		model.addAttribute("item", item);
+		
+		model.addAttribute("selectedMenu", "item");
+		return "admin/itemDetail";
 	}
 	
 	@RequestMapping(value = "/admin/issue", method = RequestMethod.GET)

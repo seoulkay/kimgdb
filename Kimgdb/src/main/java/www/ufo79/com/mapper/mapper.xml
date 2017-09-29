@@ -30,7 +30,7 @@
 		and pho.cPhoType = 'per' 
 		and pho.nPhoDel = 0
 		left join `KIMG`.`kimgCompany` c on per.cPerCom = c.cComCode 
-		WHERE per.nPerDel = 0 and (per.cPerName like CONCAT('%',#{vo},'%') or per.cPerId like CONCAT('%',#{vo},'%'))
+		WHERE per.nPerDel = 0 and (per.cPerName like CONCAT('%',#{vo},'%') or per.cPerId like CONCAT('%',#{vo},'%') or c.cComName like CONCAT('%',#{vo},'%'))
   	</select>
   	<select id="selectOnePerson"  resultType="KimgPerson" parameterType="KimgPerson">
   		select * from `KIMG`.`kimgPerson` where nPerDel = 0 and nPerCnt = #{nPerCnt}
@@ -139,6 +139,73 @@
   	SELECT * FROM KIMG.kimgProduct where nPrdDel = 0;
   	</select>
   	<select id="selectAllItem" resultType="KimgItem">
-  	SELECT * FROM KIMG.kimgItem where nItmDel = 0;
+  	SELECT * FROM KIMG.kimgItem item
+	left join KIMG.kimgProduct prod on item.cItmProd = prod.cPrdCode
+	where nItmDel = 0;
+  	</select>
+  	<select id="selectAllItemSrcPar" resultType="KimgItem" parameterType="KimgItem">
+  	SELECT * FROM KIMG.kimgItem item
+	left join KIMG.kimgProduct prod on item.cItmProd = prod.cPrdCode
+    left join KIMG.kimgCategory cat on item.cItmCate = cat.cCatType
+    left join KIMG.kimgEvent eve on item.cItmEvent = eve.cEvnCode
+    left join KIMG.kimgVenue ven on item.cItmVenue = ven.cVenCode
+    left join KIMG.kimgSport spor on item.cItmSport = spor.cSptCode
+    left join KIMG.kimgDepartment dep on item.cItmDept = dep.cDptCode
+	where nItmDel = 0 and 
+	(
+	1=1
+	<if test="cItmCode != null and cItmCode != ''">
+	and item.cItmCode like CONCAT('%',#{cItmCode},'%') 
+	</if>
+	<if test="cItmProd != null and cItmProd != ''">
+    and item.cItmProd like CONCAT('%',#{cItmProd},'%') 
+    </if>
+    <if test="cItmMate != null and cItmMate != ''"> 
+    and item.cItmMate like CONCAT('%',#{cItmMate},'%') 
+    </if>
+    <if test="cItmCom != null and cItmCom != ''">
+    and item.cItmCom like CONCAT('%',#{cItmCom},'%') 
+    </if>
+    <if test="cItmVenue != null and cItmVenue != ''">
+    and item.cItmVenue like CONCAT('%',#{cItmVenue},'%') 
+    </if>
+    <if test="cItmSport != null and cItmSport != ''">
+    and item.cItmSport like CONCAT('%',#{cItmSport},'%') 
+    </if>
+    <if test="cItmDept != null and cItmDept != ''">
+    and item.cItmDept like CONCAT('%',#{cItmDept},'%') 
+    </if>
+    <if test="cItmEvent != null and cItmEvent != ''">
+    and item.cItmEvent like CONCAT('%',#{cItmEvent},'%') 
+    </if>
+    )
+  	</select>
+  	<select id="selectAllItemDetail" resultType="KimgItem" parameterType="Integer">
+  	SELECT * FROM KIMG.kimgItem item
+	left join KIMG.kimgProduct prod on item.cItmProd = prod.cPrdCode
+    left join KIMG.kimgCategory cat on item.cItmCate = cat.cCatType
+    left join KIMG.kimgEvent eve on item.cItmEvent = eve.cEvnCode
+    left join KIMG.kimgVenue ven on item.cItmVenue = ven.cVenCode
+    left join KIMG.kimgSport spor on item.cItmSport = spor.cSptCode
+    left join KIMG.kimgDepartment dep on item.cItmDept = dep.cDptCode
+	where nItmDel = 0 and item.nItmCnt = #{param}
+	</select>
+  	<select id="selectAllcItmMate" resultType="String">
+  	SELECT distinct cItmMate FROM KIMG.kimgItem
+  	</select>
+  	<select id="selectAllCategory" resultType="KimgCategory">
+  	SELECT * FROM KIMG.kimgCategory
+  	</select>
+  	<select id="selectAllEvent" resultType="KimgEvent">
+  	SELECT * FROM KIMG.kimgEvent
+  	</select>
+  	<select id="selectAllSport" resultType="KimgSport">
+  	SELECT * FROM KIMG.kimgSport
+  	</select>
+  	<select id="selectAllDepartment" resultType="KimgDepartment">
+  	SELECT * FROM KIMG.kimgDepartment
+  	</select>
+  	<select id="selectAllVenue" resultType="KimgVenue">
+  	SELECT * FROM KIMG.kimgVenue
   	</select>
 </mapper>

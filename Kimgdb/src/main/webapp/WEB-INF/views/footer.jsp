@@ -40,7 +40,14 @@
     <script src="${pageContext.request.contextPath}/resources/js/demo/peity-demo.js"></script>
     
 	<script src="${pageContext.request.contextPath}/resources/fineupload/all.fine-uploader.min.js"></script>
+	<!-- 	select picker -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+	<!-- Custom and plugin javascript 네브 바와 충돌남-->
+<%-- 	<script src="${pageContext.request.contextPath}/resources/js/inspinia.js"></script> --%>
+<%-- 	<script src="${pageContext.request.contextPath}/resources/js/plugins/pace/pace.min.js"></script> --%>
 	
+	<!-- slick carousel-->
+	<script src="${pageContext.request.contextPath}/resources/js/plugins/slick/slick.min.js"></script>
     <!-- Page-Level Scripts -->
     <script>
         $(document).ready(function() {

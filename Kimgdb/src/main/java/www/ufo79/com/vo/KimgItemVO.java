@@ -40,6 +40,29 @@ public class KimgItemVO extends KimgProductVO{
 	private Date dItmMod;
 	private String cItmModUsr;
 	private int nItmDel;
+	
+	//조인 밸류
+	private int nCatCnt;
+	private String cCatType;
+	private String cCatName;
+	 
+	private int nEvnCnt;
+	private String cEvnCode;
+	private String cEvnName;
+	 
+	private int nVenCnt;
+	private String cVenCode;
+	private String cVenComp;
+	private String cVenName;
+
+	private int nSptCnt;
+	private String cSptCode;
+	private String cSptName;
+	 
+	private int nDptCnt;
+	private String cDptCode;
+	private String cDptName;
+	
 	public int getnItmCnt() {
 		return nItmCnt;
 	}
@@ -261,6 +284,102 @@ public class KimgItemVO extends KimgProductVO{
 	}
 	public void setcItmCom(String cItmCom) {
 		this.cItmCom = cItmCom;
+	}
+	public int getnCatCnt() {
+		return nCatCnt;
+	}
+	public void setnCatCnt(int nCatCnt) {
+		this.nCatCnt = nCatCnt;
+	}
+	public String getcCatType() {
+		return cCatType;
+	}
+	public void setcCatType(String cCatType) {
+		this.cCatType = cCatType;
+	}
+	public String getcCatName() {
+		return cCatName;
+	}
+	public void setcCatName(String cCatName) {
+		this.cCatName = cCatName;
+	}
+	public int getnEvnCnt() {
+		return nEvnCnt;
+	}
+	public void setnEvnCnt(int nEvnCnt) {
+		this.nEvnCnt = nEvnCnt;
+	}
+	public String getcEvnCode() {
+		return cEvnCode;
+	}
+	public void setcEvnCode(String cEvnCode) {
+		this.cEvnCode = cEvnCode;
+	}
+	public String getcEvnName() {
+		return cEvnName;
+	}
+	public void setcEvnName(String cEvnName) {
+		this.cEvnName = cEvnName;
+	}
+	public int getnVenCnt() {
+		return nVenCnt;
+	}
+	public void setnVenCnt(int nVenCnt) {
+		this.nVenCnt = nVenCnt;
+	}
+	public String getcVenCode() {
+		return cVenCode;
+	}
+	public void setcVenCode(String cVenCode) {
+		this.cVenCode = cVenCode;
+	}
+	public String getcVenComp() {
+		return cVenComp;
+	}
+	public void setcVenComp(String cVenComp) {
+		this.cVenComp = cVenComp;
+	}
+	public String getcVenName() {
+		return cVenName;
+	}
+	public void setcVenName(String cVenName) {
+		this.cVenName = cVenName;
+	}
+	public int getnSptCnt() {
+		return nSptCnt;
+	}
+	public void setnSptCnt(int nSptCnt) {
+		this.nSptCnt = nSptCnt;
+	}
+	public String getcSptCode() {
+		return cSptCode;
+	}
+	public void setcSptCode(String cSptCode) {
+		this.cSptCode = cSptCode;
+	}
+	public String getcSptName() {
+		return cSptName;
+	}
+	public void setcSptName(String cSptName) {
+		this.cSptName = cSptName;
+	}
+	public int getnDptCnt() {
+		return nDptCnt;
+	}
+	public void setnDptCnt(int nDptCnt) {
+		this.nDptCnt = nDptCnt;
+	}
+	public String getcDptCode() {
+		return cDptCode;
+	}
+	public void setcDptCode(String cDptCode) {
+		this.cDptCode = cDptCode;
+	}
+	public String getcDptName() {
+		return cDptName;
+	}
+	public void setcDptName(String cDptName) {
+		this.cDptName = cDptName;
 	}
 	
 }
