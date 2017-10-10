@@ -138,7 +138,8 @@ public class KimgController {
 		if(srcPar == null){
 			personList = dao.selectAllPerson();
 		}else{
-			personList = dao.selectAllPersonSrc(new String(srcPar.getBytes("8859_1"), "utf-8"));
+//			personList = dao.selectAllPersonSrc(new String(srcPar.getBytes("8859_1"), "utf-8"));
+			personList = dao.selectAllPersonSrc(srcPar);
 		}
 		
 		model.addAttribute("companyList", companyList);
@@ -148,21 +149,25 @@ public class KimgController {
 	}
 	
 	
-	@RequestMapping(value = "/admin/product", method = RequestMethod.GET)
-	public String adminProduct(Model model, HttpSession session) {
+	@RequestMapping(value = "/admin/product", method = {RequestMethod.GET, RequestMethod.POST})
+	public String adminProduct(Model model, HttpSession session, @ModelAttribute("srcPar")KimgProductVO srcPar) {
 		
 		if(session.getAttribute("cPerId") == null){
 			return "redirect:../";
 		}
 		
-		List<KimgProductVO> productList = dao.selectAllProduct();
+		List<KimgProductVO> productList = dao.selectAllProductSrcPar(srcPar);
+		List<KimgCategoryVO> catList = dao.selectAllCategory();
+		
+		model.addAttribute("srcPar", srcPar);	
 		
 		model.addAttribute("productList", productList);
+		model.addAttribute("catList", catList);
 		model.addAttribute("selectedMenu", "product");
 		return "admin/product";
 	}
 	
-	@RequestMapping(value = "/admin/item", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/item", method = {RequestMethod.GET, RequestMethod.POST})
 	public String adminItem(Model model, HttpSession session, @ModelAttribute("srcPar")KimgItemVO srcPar) throws UnsupportedEncodingException {
 		if(session.getAttribute("cPerId") == null){
 			return "redirect:../";
@@ -170,23 +175,9 @@ public class KimgController {
 		
 		List<KimgItemVO> itemList = new ArrayList<KimgItemVO>();
 		
-//		if(srcPar == null){
-//			itemList = dao.selectAllItem();
-//		}else{
-			//한글이 섞이는 코드 정리
-			try{
-			srcPar.setcItmCode(new String(srcPar.getcItmCode().getBytes("8859_1"), "utf-8"));
-			}catch(Exception e){
-				
-			}
-			try{
-			srcPar.setcItmMate(new String(srcPar.getcItmMate().getBytes("8859_1"), "utf-8"));
-			}catch(Exception e){
-				
-			}
+
 			
 			itemList = dao.selectAllItemSrcPar(srcPar);
-//		}
 		
 		List<KimgCategoryVO> catList = dao.selectAllCategory();
 		List<KimgEventVO> eventList = dao.selectAllEvent();
@@ -279,6 +270,37 @@ public class KimgController {
 		return "redirect:profile";
 	}
 	
+	@RequestMapping(value = "/admin/addProduct", method = RequestMethod.POST)
+	public String adminAddProduct(Model model, HttpSession session, @ModelAttribute("vo")KimgProductVO vo) {
+		if(session.getAttribute("cPerId") == null){
+			return "redirect:../";
+		}
+		
+		String user = session.getAttribute("cPerId").toString();
+		vo.setcPrdCrtUsr(user);
+		vo.setcPrdModUsr(user);
+		
+		dao.insertProduct(vo);
+		
+		if(!vo.getPhotoUid().isEmpty()){
+			String[] uids = vo.getPhotoUid().split(", ");
+			for(String ele : uids){
+				
+				KimgPhotoVO tmp = new KimgPhotoVO();
+				tmp.setcPhoType("prd");
+				tmp.setnRefCode(vo.getnPrdCnt());
+				tmp.setcPhoName(ele);
+				tmp.setnPhoDel(0);
+				tmp.setcPhoCrtUsr(user);
+				tmp.setcPhoModUsr(user);
+				dao.insertPhoto(tmp);
+			}
+		}
+		
+		model.addAttribute("selectedMenu", "product");
+		return "redirect:product";
+	}
+	
 	
 	 
 	  private JSONObject getSuccessMessage() {
@@ -350,4 +372,76 @@ public class KimgController {
 	    return getSuccessMessage().toString();
 	    
 	  }
+	  
+	  @RequestMapping(value = "/admin/selectDetail/{type}/{ref}", method = { RequestMethod.POST , RequestMethod.GET })
+		public @ResponseBody Object selectDetail(@PathVariable("type")String type, @PathVariable("ref")int ref, HttpServletRequest session){
+//		  if(session.getAttribute("cPerId") == null){
+//				return "redirect:../";
+//		  }
+		  
+		  if(type.equals("prd")){
+			  return dao.selectProductOne(ref);
+		  }else if(type.equals("itm")){
+			  return dao.selectItemOne(ref);
+		  }else{
+			  return "null";  
+		  }
+		}
+	  
+	  @RequestMapping(value = "/admin/updateProduct", method = RequestMethod.POST)
+		public String updateProduct(Model model, HttpSession session, @ModelAttribute("vo")KimgProductVO vo) {
+			if(session.getAttribute("cPerId") == null){
+				return "redirect:../";
+			}
+			
+			String user = session.getAttribute("cPerId").toString();
+			vo.setcPrdModUsr(user);
+			
+			dao.updateProduct(vo);
+			
+			if(!vo.getPhotoUid().isEmpty()){
+				String[] uids = vo.getPhotoUid().split(", ");
+				for(String ele : uids){
+					
+					KimgPhotoVO tmp = new KimgPhotoVO();
+					tmp.setcPhoType("prd");
+					tmp.setnRefCode(vo.getnPrdCnt());
+					tmp.setcPhoName(ele);
+					tmp.setnPhoDel(0);
+					tmp.setcPhoCrtUsr(user);
+					tmp.setcPhoModUsr(user);
+					dao.insertPhoto(tmp);
+				}
+			}
+			
+			model.addAttribute("selectedMenu", "product");
+			return "redirect:product";
+		}
+	  
+	  @RequestMapping(value = "/admin/deleteProduct", method = RequestMethod.GET)
+		public String deleteProduct(Model model, HttpSession session, @ModelAttribute("ref")int ref) {
+			if(session.getAttribute("cPerId") == null){
+				return "redirect:../";
+			}
+			
+			KimgProductVO vo = new KimgProductVO();
+			vo.setnPrdDel(1);
+			vo.setnPrdCnt(ref);
+			String user = session.getAttribute("cPerId").toString();
+			vo.setcPrdModUsr(user);
+			
+			dao.updateProduct(vo);
+			
+			
+			model.addAttribute("selectedMenu", "product");
+			return "redirect:product";
+		}
+	  @RequestMapping(value = "/admin/deletePhoto/{ref}", method = { RequestMethod.POST , RequestMethod.GET })
+		public @ResponseBody Object deletePhoto( @PathVariable("ref")int ref, HttpServletRequest session){
+//		  if(session.getAttribute("cPerId") == null){
+//				return "redirect:../";
+//		  }
+		  
+		  return dao.deletePhoto(ref);
+		}
 }

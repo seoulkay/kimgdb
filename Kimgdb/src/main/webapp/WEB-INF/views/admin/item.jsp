@@ -42,7 +42,7 @@
 
         <div class="wrapper wrapper-content animated fadeInRight ecommerce">
 
-			<form action="item" id="searchItemForm">
+			<form action="item" id="searchItemForm" method="post">
             <div class="ibox-content m-b-sm border-bottom">
                 <div class="row">
                     <div class="col-sm-3">
@@ -135,7 +135,7 @@
                 	<div class="col-sm-3"></div>
                 	<div class="col-sm-3"></div>
                 	<div class="col-sm-3">
-                		<button type="button" class="btn btn-primary btn-sm btn-block">생성</button>
+                		<button type="button" class="btn btn-primary btn-sm btn-block" id="addItemBtn">생성</button>
                 	</div>
                 	<div class="col-sm-3">
                 		<button type="button" class="btn btn-primary btn-sm btn-block" onclick="searchItem()">검색</button>
@@ -301,6 +301,53 @@
 		
 		</div>
     </div>
+  							<div class="modal inmodal" id="addItemModal" tabindex="-1" role="dialog"  aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content animated fadeIn">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">닫기</span></button>
+                                            <i class="fa fa-clock-o modal-icon"></i>
+                                            <h4 class="modal-title">아이템 관리</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                         <form method="POST" class="form-horizontal" id="addItemForm">
+                                         	<input type="hidden" class="form-control" name="nPrdCnt" id="nPrdCnt" maxlength="30" value=0>
+                                            <div class="form-group"><label class="col-sm-2 control-label">품목코드</label>
+			                                    <div class="col-sm-10"><input type="text" class="form-control" name="cPrdCode" id="cPrdCode" maxlength="6"></div>
+			                                </div>
+			                                <div class="form-group"><label class="col-sm-2 control-label">품목이름(영)</label>
+			                                    <div class="col-sm-10"><input type="text" class="form-control" name="cPrdName" id="cPrdName" maxlength="100"></div>
+			                                </div>
+			                                <div class="form-group"><label class="col-sm-2 control-label">품목이름(한)</label>
+			                                    <div class="col-sm-10"><input type="text" class="form-control" name="cPrdLocalName" id="cPrdLocalName" maxlength="200"></div>
+			                                </div>
+			                                <div class="form-group"><label class="col-sm-2 control-label">카테고리</label>
+			                                    <div class="col-sm-10">
+			                                   	<select class="form-control m-b" name="cPrdCat" id="cPrdCat">
+			                                   		<c:forEach items="${catList }" var="ele">
+			                                   		<option value="${ele.cCatType }">${ele.cCatName }</option>
+			                                   		</c:forEach>
+			                                    </select>
+			                                    </div>
+			                                </div>
+			                                <div class="form-group"><label class="col-sm-2 control-label">설명</label>
+			                                    <div class="col-sm-10"><textarea class="form-control" name="cPrdDesc" id="cPrdDesc" maxlength="500"></textarea></div>
+			                                </div>
+			                                <div class="form-group"><label class="col-sm-2 control-label">사진</label>
+			                                <div class="col-sm-10"><div id="fine-uploader"></div></div>
+			                                 </div>
+			                                 <input type="hidden" id="photoUid" name="photoUid">
+			                                 <div id="pictureDom"></div>
+			                             </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-white" data-dismiss="modal">닫기</button>
+                                            <button type="button" class="btn btn-primary" onclick="submitAddForm();" id="addBtn">제출</button>
+                                            <button type="button" class="btn btn-primary" onclick="submitUpdateForm();" id="updateBtn">수정</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 </body>
 <script>
 function searchItem(){
@@ -310,11 +357,163 @@ function searchItem(){
 
 $("#cItmCode").val("${srcPar.cItmCode}")
 $('#cItmProd').selectpicker('val', "${srcPar.cItmProd}");
-$('#cItmMate').selectpicker('val', "${srcPar.cItmMate}");
 $('#cItmCom').selectpicker('val', "${srcPar.cItmCom}");
 $('#cItmVenue').selectpicker('val', "${srcPar.cItmVenue}");
 $('#cItmSport').selectpicker('val', "${srcPar.cItmSport}");
 $('#cItmDept').selectpicker('val', "${srcPar.cItmDept}");
 $('#cItmEvent').selectpicker('val', "${srcPar.cItmEvent}");
+$('#cItmMate').selectpicker('val', "${srcPar.cItmMate}");
+
+</script>
+<script src="https://cdn.ckeditor.com/4.7.1/basic/ckeditor.js"></script>
+							<script>
+							            CKEDITOR.replace( 'cPrdDesc' );
+							</script>
+                            <script>
+					        var uploader = new qq.FineUploader({
+					            debug: true,
+					            element: document.getElementById('fine-uploader'),
+					            request: {
+					              inputName: 'file',
+					                endpoint: 'upload'
+					            },
+					//             deleteFile: {
+					//                 enabled: true,
+					//                 endpoint: 'admin/upload'
+					//             },
+					// 			validation: {
+					//                 allowedExtensions: ['jpeg', 'jpg', 'gif', 'png']
+					//             },
+					            scaling: {
+					                sendOriginal: false,
+					               // includeExif: true,
+					                sizes: [
+					                    {maxSize: 600}
+					                ]
+					            }
+					            ,autoUpload: true
+					//             retry: {
+					//                enableAuto: true
+					//             }
+					            ,callbacks: {
+					            	onAllComplete: function(succeeded) {
+					            		var uuid = "";
+					            		var tempUuid;
+					            		for(i = 0; i < succeeded.length; i++) {
+					            			if(i != 0){
+					            				uuid = uuid + ", " + uploader.getUuid(succeeded[i]);
+					            			}else{
+					            				uuid = uploader.getUuid(succeeded[i]);
+					            			}
+					            		}
+					                	
+					                	if($('#photoUidTmp').val() == ''){
+					                		$('#photoUidTmp').val(uuid);
+					                	}else{
+					                		$('#photoUidTmp').val($('#photoUidTmp').val() + ", " +uuid);
+					                	}
+					                	console.log($('#photoUid').val());
+					                	//uploader.clearStoredFiles();
+					            	}
+					            }
+					        });
+					        $('#trigger-upload').click(function() {
+					           // $('#fine-uploader').fineUploader('uploadStoredFiles');
+					           uploader.uploadStoredFiles();
+					        });
+					    </script>
+<script>
+
+         $("#cPrdLocalNameSrc").val("${srcPar.cPrdLocalName}")
+         $("#cPrdNameSrc").val("${srcPar.cPrdName}")
+         $("#cPrdCodeSrc").val("${srcPar.cPrdCode}")
+         $("#cPrdCatSrc").val("${srcPar.cPrdCat}")
+
+         
+         function searchItem(){
+         	$("#searchItemForm").submit();
+         }
+
+		                     
+		$("#srcBtn").click(function() {
+			var srcPar = $("#srcVal").val();
+			location.href = "profile?srcPar="+srcPar;
+		});
+		
+		$('#srcVal').keypress(function(event){
+		  if(event.keyCode == 13){
+		    $('#srcBtn').click();
+		  }
+		});
+		
+		
+		
+		$('#addItemBtn').click(function(){
+			$("#addBtn").hide();
+			$("#updateBtn").hide();
+			$("#addBtn").show();
+			
+			CKEDITOR.instances['cPrdDesc'].setData('');
+			
+			showItemModal();
+		});
+		
+		function showItemModal(){
+			$("#addItemForm")[0].reset();
+			uploader.clearStoredFiles();
+			$('#addItemModal').modal("show");
+		}
+		
+		function submitAddForm(){
+			$("#photoUid").val($("#photoUidTmp").val());
+			$("#addItemForm").attr('action', 'addItem');
+			$("#addItemForm").submit();
+		}
+		
+		function submitUpdateForm(){
+			$("#photoUid").val($("#photoUidTmp").val());
+			$("#addItemForm").attr('action', 'updateItem');
+			$("#addItemForm").submit();
+		}
+		
+		function selectProductOne(ref){
+			$.post( "selectDetail/itm/"+ref)
+		       .done(function( data ) {
+		    	    showProductModal();
+		         	var vo = JSON.parse(JSON.stringify(data));
+		         	
+		         	$("#addBtn").hide();
+					$("#updateBtn").hide();
+					$("#updateBtn").show();
+					
+					$("#nPrdCnt").val(vo[0].nPrdCnt);
+					$("#cPrdCode").val(vo[0].cPrdCode);
+					$("#cPrdName").val(vo[0].cPrdName);
+					$("#cPrdLocalName").val(vo[0].cPrdLocalName);
+					$("#cPrdCat").val(vo[0].cPrdCat);
+					CKEDITOR.instances['cPrdDesc'].setData(vo[0].cPrdDesc);
+					$("#pictureDom").empty();
+					for(var i = 0; i < vo.length; i++){
+						if(vo[i].cPhoName){
+							$("#pictureDom").append("<div class='row' id='Pho"+vo[i].nPhoCnt+"'><div><a downlaod='"+vo[i].nPhoCnt+"' href='https://www.kimgdb.com/image/"+vo[i].cPhoName+"'><img class='img-responsive' src='https://www.kimgdb.com/image/"+vo[i].cPhoName+"'></a></div><div><button type='button' class='btn btn-primary' onclick='deletePhoto("+vo[i].nPhoCnt+")' >삭제</button></div></div><br>")
+						}
+					}
+					
+		       });
+		}
+		
+		function deletePhoto(ref){
+			$.post( "deletePhoto/"+ref)
+				.done(function(data){
+					$("#Pho"+ref).fadeOut();
+					console.log(data+" deleted");
+				});
+		}
+		
+		function deleteProduct(ref){
+			confirm("삭제 하시겠습니까?");
+			location.href = "deleteItem?ref="+ref;
+			
+		}
 </script>
 </html>
