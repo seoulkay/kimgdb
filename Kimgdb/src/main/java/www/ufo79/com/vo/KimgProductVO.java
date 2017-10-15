@@ -2,7 +2,7 @@ package www.ufo79.com.vo;
 
 import java.util.Date;
 
-public class KimgProductVO {
+public class KimgProductVO extends KimgPhotoVO{
 	private int nPrdCnt;
 	private String cPrdCode;
 	private String cPrdName;
@@ -14,6 +14,10 @@ public class KimgProductVO {
 	private Date dPrdMod;
 	private String cPrdModUsr;
 	private int nPrdDel;
+	
+	//인풋
+	private String photoUid;
+		
 	public int getnPrdCnt() {
 		return nPrdCnt;
 	}
@@ -79,6 +83,12 @@ public class KimgProductVO {
 	}
 	public void setnPrdDel(int nPrdDel) {
 		this.nPrdDel = nPrdDel;
+	}
+	public String getPhotoUid() {
+		return photoUid;
+	}
+	public void setPhotoUid(String photoUid) {
+		this.photoUid = photoUid;
 	}
 	
 	

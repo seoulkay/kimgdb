@@ -138,6 +138,25 @@
   	<select id="selectAllProduct" resultType="KimgProduct">
   	SELECT * FROM KIMG.kimgProduct where nPrdDel = 0;
   	</select>
+  	<select id="selectAllProductSrcPar" resultType="KimgProduct" parameterType="KimgProduct">
+  	SELECT * FROM KIMG.kimgProduct 
+  	where nPrdDel = 0 and
+  	(
+  	1=1
+  	<if test="cPrdLocalName != null and cPrdLocalName != ''">
+	and cPrdLocalName like CONCAT('%',#{cPrdLocalName},'%') 
+	</if>
+	<if test="cPrdName != null and cPrdName != ''">
+	and cPrdName like CONCAT('%',#{cPrdName},'%') 
+	</if>
+	<if test="cPrdCode != null and cPrdCode != ''">
+	and cPrdCode like CONCAT('%',#{cPrdCode},'%') 
+	</if>
+	<if test="cPrdCat != null and cPrdCat != ''">
+	and cPrdCat like CONCAT('%',#{cPrdCat},'%') 
+	</if>
+  	)
+  	</select>
   	<select id="selectAllItem" resultType="KimgItem">
   	SELECT * FROM KIMG.kimgItem item
 	left join KIMG.kimgProduct prod on item.cItmProd = prod.cPrdCode
@@ -208,4 +227,71 @@
   	<select id="selectAllVenue" resultType="KimgVenue">
   	SELECT * FROM KIMG.kimgVenue
   	</select>
+  	<insert id="insertProduct" parameterType="KimgProduct" useGeneratedKeys="true" keyProperty="nPrdCnt">
+  	INSERT INTO `KIMG`.`kimgProduct`
+	(
+	`cPrdCode`,
+	`cPrdName`,
+	`cPrdLocalName`,
+	`cPrdCat`,
+	`cPrdDesc`,
+	`dPrdCrt`,
+	`cPrdCrtUsr`,
+	`dPrdMod`,
+	`cPrdModUsr`,
+	`nPrdDel`)
+	VALUES
+	(
+	#{cPrdCode},
+	#{cPrdName},
+	#{cPrdLocalName},
+	#{cPrdCat},
+	#{cPrdDesc},
+	now(),
+	#{cPrdCrtUsr},
+	now(),
+	#{cPrdModUsr},
+	0);
+  	</insert>
+  	<select id="selectProductOne" parameterType="Integer" resultType="KimgProduct">
+  	SELECT * FROM KIMG.kimgProduct pro
+	left join KIMG.kimgPhoto pho on pro.nPrdCnt = pho.nRefCode and pho.cPhoType = 'prd' and pho.nPhoDel = 0
+	WHERE nPrdCnt = #{param}
+  	</select>
+  	<select id="selectItemOne" parameterType="Integer" resultType="KimgItem">
+  	SELECT * FROM KIMG.kimgItem itm
+	left join KIMG.kimgPhoto pho on itm.nItmCnt = pho.nRefCode and pho.cPhoType = 'itm' and pho.nPhoDel = 0
+	WHERE nItmCnt = #{param}
+  	</select>
+  	<update id="updateProduct" parameterType="KimgProduct">
+  	UPDATE `KIMG`.`kimgProduct`
+	SET
+	<if test="cPrdCode != null and cPrdCode != ''">
+	`cPrdCode` = #{cPrdCode},
+	</if>
+	<if test="cPrdName != null and cPrdName != ''">
+	`cPrdName` = #{cPrdName},
+	</if>
+	<if test="cPrdLocalName != null and cPrdLocalName != ''">
+	`cPrdLocalName` = #{cPrdLocalName},
+	</if>
+	<if test="cPrdCat != null and cPrdCat != ''">
+	`cPrdCat` = #{cPrdCat},
+	</if>
+	<if test="cPrdDesc != null and cPrdDesc != ''">
+	`cPrdDesc` = #{cPrdDesc},
+	</if>
+	<if test="nPrdDel != null and nPrdDel != ''">
+	`nPrdDel` = #{nPrdDel},
+	</if>	
+	`dPrdMod` = now(),
+	`cPrdModUsr` = #{cPrdModUsr}
+	WHERE `nPrdCnt` = #{nPrdCnt};
+  	</update>
+  	<update id="deletePhoto" parameterType="Integer">
+  	Update
+  	`KIMG`.`kimgPhoto`
+  	SET nPhoDel = 1
+  	WHERE nPhoCnt = #{nPhoCnt}
+  	</update>
 </mapper>

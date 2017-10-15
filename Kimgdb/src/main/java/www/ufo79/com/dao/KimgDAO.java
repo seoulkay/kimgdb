@@ -96,4 +96,28 @@ public class KimgDAO extends SqlSessionDaoSupport{
 	public KimgItemVO selectAllItemDetail(int vo){
 		return getSqlSession().selectOne("mapper.selectAllItemDetail", vo);
 	}
+	
+	public int insertProduct(KimgProductVO vo){
+		return getSqlSession().insert("mapper.insertProduct", vo);
+	}
+	
+	public List<KimgProductVO> selectProductOne(int vo){
+		return getSqlSession().selectList("mapper.selectProductOne", vo);
+	}
+	
+	public int updateProduct(KimgProductVO vo){
+		return getSqlSession().update("mapper.updateProduct", vo);
+	}
+	
+	public int deletePhoto(Integer vo){
+		return getSqlSession().update("mapper.deletePhoto", vo);
+	}
+	
+	public List<KimgProductVO> selectAllProductSrcPar(KimgProductVO vo){
+		return getSqlSession().selectList("mapper.selectAllProductSrcPar", vo);
+	}
+	
+	public List<KimgItemVO> selectItemOne(int vo){
+		return getSqlSession().selectList("mapper.selectItemOne", vo);
+	}
 }
