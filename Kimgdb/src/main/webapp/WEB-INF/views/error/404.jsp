@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>KIMG DB</title>
+    <title>TRR</title>
 
     <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/resources/font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -26,8 +26,8 @@
         <h3 class="font-bold">Page Not Found</h3>
 
         <div class="error-desc">
-<!--             Sorry, but the page you are looking for has note been found. Try checking the URL for error, then hit the refresh button on your browser or try found something else in our app. -->
-			요청하신 페이지를 찾을수가 없습니다.
+            Sorry, but the page you are looking for has note been found. Try checking the URL for error, then hit the refresh button on your browser or try found something else in our app.
+<!-- 			요청하신 페이지를 찾을수가 없습니다. -->
 <!--             <form class="form-inline m-t" role="form"> -->
 <!--                 <div class="form-group"> -->
 <!--                     <input type="text" class="form-control" placeholder="Search for page"> -->

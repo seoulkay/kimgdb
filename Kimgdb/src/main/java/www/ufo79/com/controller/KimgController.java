@@ -62,7 +62,7 @@ public class KimgController {
 	}
 	
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/KIMG", method = RequestMethod.GET)
 	public String home(Model model) {
 		return "login";
 	}

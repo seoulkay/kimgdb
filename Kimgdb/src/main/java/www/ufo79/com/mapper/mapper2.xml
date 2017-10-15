@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper2">
+	<select id="selectUser" parameterType="TrrUser" resultType="TrrUser">
+	SELECT * FROM TRR.TrrUser where cUserId = #{cUserId} and cUserPass = #{cUserPass}
+	</select>
+	<insert id="insertEod" parameterType="TrrEod">
+	INSERT INTO `TRR`.`TrrEod`
+	(
+	`dEodDate`,
+	`cEodTroName`,
+	`cEodVenue`,
+	`cEodSports`,
+	`cEodGood`,
+	`cEodBad`,
+	`cEodOther`)
+	VALUES
+	(
+	#{dEodDate},
+	#{cEodTroName},
+	#{cEodVenue},
+	#{cEodSports},
+	#{cEodGood},
+	#{cEodBad},
+	#{cEodOther});
+	</insert>
+	<insert id="insertSurvey" parameterType="TrrSurvey">
+	INSERT INTO `TRR`.`TrrSurvey`
+	(
+	`cSurveyItsm`,
+	`cSurveyScenarioTri`,
+	`cSurveyScenarioSol`,
+	`cSurveySla`,
+	`cSurveyScenarioQual`,
+	`cSurveyScenarioSch`,
+	`cSurveyStaffRead`,
+	`cSurveyStaffReadText`,
+	`cSurveyRnR`,
+	`cSurveyRnRText`,
+	`cSurveyCommPro`,
+	`cSurveyCommProText`,
+	`cSurveyUnhappy`,
+	`cSurveyUnhappyText`,
+	`cSurveyRelFa`,
+	`cSurveyRelFaText`,
+	`cSurveyScenarioDoc`,
+	`cSurveyScenarioDocStep`,
+	`cSurveyScenarioTarget`,
+	`cSurveyScenarioReadiness`,
+	`cSurveyImpactedCustomer`,
+	`cSurveyUnderstandService`,
+	`cSurveyOverall`,
+	`cSurveyFeedbackVenue`,
+	`cSurveyGeneralComments`,
+	`cRawId`,
+	`cRawVen`,
+	`cRawDat`,
+	`cRawTim`,
+	`cRawSev`,
+	`cRawTroName`)
+	VALUES
+	(
+	#{cSurveyItsm},
+	#{cSurveyScenarioTri},
+	#{cSurveyScenarioSol},
+	#{cSurveySla},
+	#{cSurveyScenarioQual},
+	#{cSurveyScenarioSch},
+	#{cSurveyStaffRead},
+	#{cSurveyStaffReadText},
+	#{cSurveyRnR},
+	#{cSurveyRnRText},
+	#{cSurveyCommPro},
+	#{cSurveyCommProText},
+	#{cSurveyUnhappy},
+	#{cSurveyUnhappyText},
+	#{cSurveyRelFa},
+	#{cSurveyRelFaText},
+	#{cSurveyScenarioDoc},
+	#{cSurveyScenarioDocStep},
+	#{cSurveyScenarioTarget},
+	#{cSurveyScenarioReadiness},
+	#{cSurveyImpactedCustomer},
+	#{cSurveyUnderstandService},
+	#{cSurveyOverall},
+	#{cSurveyFeedbackVenue},
+	#{cSurveyGeneralComments},
+	#{cRawId},
+	#{cRawVen},
+	#{cRawDat},
+	#{cRawTim},
+	#{cRawSev},
+	#{cRawTroName});
+	</insert>
+	<select id="selectRaw" resultType="TrrRaw" parameterType="String">
+	SELECT * FROM TRR.TrrRaw WHERE cRawtro like CONCAT('%',#{param},'%') 
+	</select>
+	<select id="selectRawOne" resultType="TrrRaw" parameterType="Integer">
+	SELECT * FROM TRR.TrrRaw WHERE nRawCnt = #{param}
+	</select>
+</mapper>

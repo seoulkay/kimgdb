@@ -19,9 +19,14 @@
 		<typeAlias type="www.ufo79.com.vo.KimgDepartmentVO" alias="KimgDepartment"/>
 		<typeAlias type="www.ufo79.com.vo.KimgSportVO" alias="KimgSport"/>
 		<typeAlias type="www.ufo79.com.vo.KimgVenueVO" alias="KimgVenue"/>
+		<typeAlias type="www.ufo79.com.vo.TrrUser" alias="TrrUser"/>
+		<typeAlias type="www.ufo79.com.vo.TrrEod" alias="TrrEod"/>
+		<typeAlias type="www.ufo79.com.vo.TrrSurvey" alias="TrrSurvey"/>
+		<typeAlias type="www.ufo79.com.vo.TrrRaw" alias="TrrRaw"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="www/ufo79/com/mapper/mapper.xml" />
+		<mapper resource="www/ufo79/com/mapper/mapper2.xml" />
 	</mappers>
 </configuration>

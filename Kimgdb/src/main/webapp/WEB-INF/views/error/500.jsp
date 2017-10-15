@@ -26,9 +26,9 @@
         <h3 class="font-bold">Internal Server Error</h3>
 
         <div class="error-desc">
-<!--             The server encountered something unexpected that didn't allow it to complete the request. We apologize.<br/> -->
+            The server encountered something unexpected that didn't allow it to complete the request. We apologize.<br/>
 <!--             You can go back to main page: <br/><a href="index.html" class="btn btn-primary m-t">Dashboard</a> -->
-       		요청을 처리하는 도중 문제가 일어났습니다.
+<!--        		요청을 처리하는 도중 문제가 일어났습니다. -->
         </div>
     </div>
 
