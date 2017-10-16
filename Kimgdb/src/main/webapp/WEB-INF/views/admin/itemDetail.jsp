@@ -164,7 +164,6 @@
                                최종수정 : ${item.cItmModUsr }  <i class="fa fa-clock-o"></i> ${item.dItmMod }
                             </span>
                             최초 생성 : ${item.cItmCrtUsr } <i class="fa fa-clock-o"></i> ${item.dItmCrt }
-
                         </div>
                     </div>
                 </div>
