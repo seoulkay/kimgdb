@@ -26,6 +26,8 @@
 	
 	<link href="${pageContext.request.contextPath}/resources/css/plugins/slick/slick.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/resources/css/plugins/slick/slick-theme.css" rel="stylesheet">
-
+	
+	<!-- Data table -->
+	<link href="${pageContext.request.contextPath}/resources/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
 	
 </head>

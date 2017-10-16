@@ -257,6 +257,16 @@ public class KimgController {
 		return "admin/account";
 	}
 	
+	@RequestMapping(value = "/admin/report", method = RequestMethod.GET)
+	public String adminReport(Model model, HttpSession session) {
+		if(session.getAttribute("cPerId") == null){
+			return "redirect:../";
+		}
+		
+		model.addAttribute("selectedMenu", "report");
+		return "admin/report";
+	}
+	
 	@RequestMapping(value = "/admin/addAccount", method = RequestMethod.POST)
 	public String adminAddAccount(Model model, HttpSession session, @ModelAttribute("vo")KimgPersonVO vo) {
 		if(session.getAttribute("cPerId") == null){

@@ -35,6 +35,9 @@
                  <li <c:if test="${selectedMenu eq 'account' }">class="active"</c:if>>
                     <a href="account"><i class="fa fa-won"></i> <span class="nav-label">정산</span></a>
                 </li>
+                <li <c:if test="${selectedMenu eq 'report' }">class="active"</c:if>>
+                    <a href="report"><i class="fa fa-files-o"></i> <span class="nav-label">리포트</span></a>
+                </li>
                 
            </ul>
         </div>

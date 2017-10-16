@@ -20,7 +20,10 @@
     <!-- Custom and plugin javascript -->
     <script src="${pageContext.request.contextPath}/resources/js/inspinia.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/plugins/pace/pace.min.js"></script>
-
+	
+	<!-- Data table -->
+	<script src="${pageContext.request.contextPath}/resources/js/plugins/dataTables/datatables.min.js"></script>
+	
     <!-- Data picker -->
     <script src="${pageContext.request.contextPath}/resources/js/plugins/datapicker/bootstrap-datepicker.js"></script>
 
