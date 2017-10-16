@@ -19,6 +19,9 @@
 		<typeAlias type="www.ufo79.com.vo.KimgDepartmentVO" alias="KimgDepartment"/>
 		<typeAlias type="www.ufo79.com.vo.KimgSportVO" alias="KimgSport"/>
 		<typeAlias type="www.ufo79.com.vo.KimgVenueVO" alias="KimgVenue"/>
+		<typeAlias type="www.ufo79.com.vo.KimgTaskStatusVO" alias="KimgTaskStatus"/>
+		<typeAlias type="www.ufo79.com.vo.KimgTaskTypeVO" alias="KimgTaskType"/>
+		<typeAlias type="www.ufo79.com.vo.KimgTaskVO" alias="KimgTask"/>
 	</typeAliases>
 	
 	<mappers>

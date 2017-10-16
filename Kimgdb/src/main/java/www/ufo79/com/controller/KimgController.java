@@ -42,6 +42,9 @@ import www.ufo79.com.vo.KimgPersonVO;
 import www.ufo79.com.vo.KimgPhotoVO;
 import www.ufo79.com.vo.KimgProductVO;
 import www.ufo79.com.vo.KimgSportVO;
+import www.ufo79.com.vo.KimgTaskStatusVO;
+import www.ufo79.com.vo.KimgTaskTypeVO;
+import www.ufo79.com.vo.KimgTaskVO;
 import www.ufo79.com.vo.KimgVenueVO;
 
 @Controller
@@ -62,7 +65,7 @@ public class KimgController {
 	}
 	
 	
-	@RequestMapping(value = "/KIMG", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
 		return "login";
 	}
@@ -212,8 +215,24 @@ public class KimgController {
 		
 		KimgItemVO item = dao.selectAllItemDetail(nItmCnt);
 		
+		KimgPhotoVO vo = new KimgPhotoVO();
+		vo.setcPhoType("itm");
+		vo.setnRefCode(nItmCnt);
+	
+		List<KimgPhotoVO> photos = dao.selectPhotoByParam(vo);
+		item.setPhotos(photos);
+		
+		List<KimgTaskStatusVO> taskStatus = dao.selectTaskStatus();
+		List<KimgTaskTypeVO> taskType = dao.selectTaskType();
+		List<KimgCompanyVO> companyList = dao.selectAllCompany();
+		List<KimgTaskVO> taskList = dao.selectTask(nItmCnt);
+		
 		model.addAttribute("item", item);
 		
+		model.addAttribute("companyList", companyList);
+		model.addAttribute("taskStatus", taskStatus);
+		model.addAttribute("taskType", taskType);
+		model.addAttribute("taskList", taskList);
 		model.addAttribute("selectedMenu", "item");
 		return "admin/itemDetail";
 	}
@@ -301,6 +320,69 @@ public class KimgController {
 		return "redirect:product";
 	}
 	
+	@RequestMapping(value = "/admin/addItem", method = RequestMethod.POST)
+	public String addItem(Model model, HttpSession session, @ModelAttribute("vo")KimgItemVO vo) {
+		if(session.getAttribute("cPerId") == null){
+			return "redirect:../";
+		}
+		
+		String user = session.getAttribute("cPerId").toString();
+		vo.setcItmCrtUsr(user);
+		vo.setcItmModUsr(user);
+		
+		dao.insertItem(vo);
+		
+		if(!vo.getPhotoUid().isEmpty()){
+			String[] uids = vo.getPhotoUid().split(", ");
+			for(String ele : uids){
+				
+				KimgPhotoVO tmp = new KimgPhotoVO();
+				tmp.setcPhoType("itm");
+				tmp.setnRefCode(vo.getnItmCnt());
+				tmp.setcPhoName(ele);
+				tmp.setnPhoDel(0);
+				tmp.setcPhoCrtUsr(user);
+				tmp.setcPhoModUsr(user);
+				dao.insertPhoto(tmp);
+			}
+		}
+		
+		model.addAttribute("selectedMenu", "item");
+		return "redirect:item";
+	}
+	
+	@RequestMapping(value = "/admin/addTask", method = RequestMethod.POST)
+	public String addTask(Model model, HttpSession session, @ModelAttribute("vo")KimgTaskVO vo) {
+		if(session.getAttribute("cPerId") == null){
+			return "redirect:../";
+		}
+		
+		String user = session.getAttribute("cPerId").toString();
+		vo.setcTskCrtUsr(user);
+		vo.setcTskModUsr(user);
+		
+		dao.insertTask(vo);
+		
+		
+		if(!vo.getPhotoUid().isEmpty()){
+			String[] uids = vo.getPhotoUid().split(", ");
+			for(String ele : uids){
+				
+				KimgPhotoVO tmp = new KimgPhotoVO();
+				tmp.setcPhoType("tsk");
+				tmp.setnRefCode(vo.getnTskCnt());
+				tmp.setcPhoName(ele);
+				tmp.setnPhoDel(0);
+				tmp.setcPhoCrtUsr(user);
+				tmp.setcPhoModUsr(user);
+				dao.insertPhoto(tmp);
+			}
+		}
+		
+		model.addAttribute("selectedMenu", "item");
+		return "redirect:itemDetail?nItmCnt="+vo.getnRefItm();
+	}
+	
 	
 	 
 	  private JSONObject getSuccessMessage() {
@@ -383,6 +465,8 @@ public class KimgController {
 			  return dao.selectProductOne(ref);
 		  }else if(type.equals("itm")){
 			  return dao.selectItemOne(ref);
+		  }else if(type.equals("tsk")){
+			  return dao.selectTaskOne(ref);
 		  }else{
 			  return "null";  
 		  }
@@ -418,6 +502,66 @@ public class KimgController {
 			return "redirect:product";
 		}
 	  
+	  @RequestMapping(value = "/admin/updateItem", method = RequestMethod.POST)
+		public String updateItem(Model model, HttpSession session, @ModelAttribute("vo")KimgItemVO vo) {
+			if(session.getAttribute("cPerId") == null){
+				return "redirect:../";
+			}
+			
+			String user = session.getAttribute("cPerId").toString();
+			vo.setcItmModUsr(user);
+			
+			dao.updateItem(vo);
+			
+			if(!vo.getPhotoUid().isEmpty()){
+				String[] uids = vo.getPhotoUid().split(", ");
+				for(String ele : uids){
+					
+					KimgPhotoVO tmp = new KimgPhotoVO();
+					tmp.setcPhoType("itm");
+					tmp.setnRefCode(vo.getnItmCnt());
+					tmp.setcPhoName(ele);
+					tmp.setnPhoDel(0);
+					tmp.setcPhoCrtUsr(user);
+					tmp.setcPhoModUsr(user);
+					dao.insertPhoto(tmp);
+				}
+			}
+			
+			model.addAttribute("selectedMenu", "item");
+			return "redirect:item";
+		}
+	  
+	  @RequestMapping(value = "/admin/updateTask", method = RequestMethod.POST)
+		public String updateTask(Model model, HttpSession session, @ModelAttribute("vo")KimgTaskVO vo) {
+			if(session.getAttribute("cPerId") == null){
+				return "redirect:../";
+			}
+			
+			String user = session.getAttribute("cPerId").toString();
+			vo.setcTskModUsr(user);
+			
+			dao.updateTask(vo);
+			
+			if(!vo.getPhotoUid().isEmpty()){
+				String[] uids = vo.getPhotoUid().split(", ");
+				for(String ele : uids){
+					
+					KimgPhotoVO tmp = new KimgPhotoVO();
+					tmp.setcPhoType("tsk");
+					tmp.setnRefCode(vo.getnTskCnt());
+					tmp.setcPhoName(ele);
+					tmp.setnPhoDel(0);
+					tmp.setcPhoCrtUsr(user);
+					tmp.setcPhoModUsr(user);
+					dao.insertPhoto(tmp);
+				}
+			}
+			
+			model.addAttribute("selectedMenu", "item");
+			return "redirect:itemDetail?nItmCnt="+vo.getnRefItm();
+		}
+	  
 	  @RequestMapping(value = "/admin/deleteProduct", method = RequestMethod.GET)
 		public String deleteProduct(Model model, HttpSession session, @ModelAttribute("ref")int ref) {
 			if(session.getAttribute("cPerId") == null){
@@ -435,6 +579,45 @@ public class KimgController {
 			
 			model.addAttribute("selectedMenu", "product");
 			return "redirect:product";
+		}
+	  
+	  @RequestMapping(value = "/admin/deleteItem", method = RequestMethod.GET)
+		public String deleteItem(Model model, HttpSession session, @ModelAttribute("ref")int ref) {
+			if(session.getAttribute("cPerId") == null){
+				return "redirect:../";
+			}
+			
+			KimgItemVO vo = new KimgItemVO();
+			vo.setnItmDel(1);
+			vo.setnItmCnt(ref);
+			
+			String user = session.getAttribute("cPerId").toString();
+			vo.setcItmModUsr(user);
+			dao.updateItem(vo);
+			
+			model.addAttribute("selectedMenu", "item");
+			return "redirect:item";
+		}
+	  
+	  @RequestMapping(value = "/admin/deleteTask", method = RequestMethod.GET)
+		public String deleteTask(Model model, HttpSession session, @ModelAttribute("ref")int ref) {
+			if(session.getAttribute("cPerId") == null){
+				return "redirect:../";
+			}
+			
+			KimgTaskVO vo = new KimgTaskVO();
+			vo.setnTskDel(1);
+			vo.setnTskCnt(ref);
+
+			List<KimgTaskVO> taskList = dao.selectTaskOne(ref);
+			
+			String user = session.getAttribute("cPerId").toString();
+			vo.setcTskModUsr(user);
+			
+			dao.updateTask(vo);
+			
+			model.addAttribute("selectedMenu", "item");
+			return "redirect:itemDetail?nItmCnt="+taskList.get(0).getnRefItm();
 		}
 	  @RequestMapping(value = "/admin/deletePhoto/{ref}", method = { RequestMethod.POST , RequestMethod.GET })
 		public @ResponseBody Object deletePhoto( @PathVariable("ref")int ref, HttpServletRequest session){

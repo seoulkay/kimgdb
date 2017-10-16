@@ -14,6 +14,9 @@ import www.ufo79.com.vo.KimgPersonVO;
 import www.ufo79.com.vo.KimgPhotoVO;
 import www.ufo79.com.vo.KimgProductVO;
 import www.ufo79.com.vo.KimgSportVO;
+import www.ufo79.com.vo.KimgTaskStatusVO;
+import www.ufo79.com.vo.KimgTaskTypeVO;
+import www.ufo79.com.vo.KimgTaskVO;
 import www.ufo79.com.vo.KimgVenueVO;
 
 @Repository
@@ -105,6 +108,10 @@ public class KimgDAO extends SqlSessionDaoSupport{
 		return getSqlSession().selectList("mapper.selectProductOne", vo);
 	}
 	
+	public List<KimgTaskVO> selectTaskOne(int vo){
+		return getSqlSession().selectList("mapper.selectTaskOne", vo);
+	}
+	
 	public int updateProduct(KimgProductVO vo){
 		return getSqlSession().update("mapper.updateProduct", vo);
 	}
@@ -119,5 +126,33 @@ public class KimgDAO extends SqlSessionDaoSupport{
 	
 	public List<KimgItemVO> selectItemOne(int vo){
 		return getSqlSession().selectList("mapper.selectItemOne", vo);
+	}
+	
+	public int insertItem(KimgItemVO vo){
+		return getSqlSession().insert("mapper.insertItem", vo);
+	}
+	
+	public int updateItem(KimgItemVO vo){
+		return getSqlSession().update("mapper.updateItem", vo);
+	}
+	
+	public List<KimgTaskStatusVO> selectTaskStatus(){
+		return getSqlSession().selectList("mapper.selectTaskStatus");
+	}
+	
+	public List<KimgTaskTypeVO> selectTaskType(){
+		return getSqlSession().selectList("mapper.selectTaskType");
+	}
+	
+	public int updateTask(KimgTaskVO vo){
+		return getSqlSession().update("mapper.updateTask", vo);
+	}
+	
+	public int insertTask(KimgTaskVO vo){
+		return getSqlSession().insert("mapper.insertTask", vo);
+	}
+	
+	public List<KimgTaskVO> selectTask(int vo){
+		return getSqlSession().selectList("mapper.selectTask", vo);
 	}
 }

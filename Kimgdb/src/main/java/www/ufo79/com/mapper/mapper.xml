@@ -263,6 +263,11 @@
 	left join KIMG.kimgPhoto pho on itm.nItmCnt = pho.nRefCode and pho.cPhoType = 'itm' and pho.nPhoDel = 0
 	WHERE nItmCnt = #{param}
   	</select>
+  	<select id="selectTaskOne" parameterType="Integer" resultType="KimgTask">
+  	SELECT * FROM KIMG.kimgTask itm
+	left join KIMG.kimgPhoto pho on itm.nTskCnt = pho.nRefCode and pho.cPhoType = 'tsk' and pho.nPhoDel = 0
+	WHERE nTskCnt = #{param}
+  	</select>
   	<update id="updateProduct" parameterType="KimgProduct">
   	UPDATE `KIMG`.`kimgProduct`
 	SET
@@ -294,4 +299,267 @@
   	SET nPhoDel = 1
   	WHERE nPhoCnt = #{nPhoCnt}
   	</update>
+  	<insert id="insertItem" parameterType="KimgItem" useGeneratedKeys="true" keyProperty="nItmCnt">
+  	INSERT INTO `KIMG`.`kimgItem`
+	(
+	`cItmCode`,
+	`cItmCom`,
+	`cItmVenue`,
+	`cItmSport`,
+	`cItmDept`,
+	`cItmEvent`,
+	`cItmCate`,
+	`cItmProd`,
+	`cItmMate`,
+	`cItmFloor`,
+	`cItmLocation`,
+	`cItmWidth`,
+	`cItmHeight`,
+	`cItmDimen`,
+	`cItmQty1`,
+	`cItemUnit1`,
+	`cItmQty2`,
+	`cItmUnit2`,
+	`cItmDesc`,
+	`cItmUnitPrice1`,
+	`cItmPrice1`,
+	`cItmMateUnitPrice1`,
+	`cItmMatePrice1`,
+	`cImtLaborUnitPrice1`,
+	`cItmLaborPrice1`,
+	`cItmUnitPrice2`,
+	`cItmPrice2`,
+	`cItmMateUnitPrice2`,
+	`cItmMatePrice2`,
+	`cImtLaborUnitPrice2`,
+	`cItmLaborPrice2`,
+	`dItmCrt`,
+	`cItmCrtUsr`,
+	`dItmMod`,
+	`cItmModUsr`,
+	`nItmDel`)
+	VALUES
+	(
+	#{cItmCode},
+	#{cItmCom},
+	#{cItmVenue},
+	#{cItmSport},
+	#{cItmDept},
+	#{cItmEvent},
+	#{cItmCate},
+	#{cItmProd},
+	#{cItmMate},
+	#{cItmFloor},
+	#{cItmLocation},
+	#{cItmWidth},
+	#{cItmHeight},
+	#{cItmDimen},
+	#{cItmQty1},
+	#{cItemUnit1},
+	#{cItmQty2},
+	#{cItmUnit2},
+	#{cItmDesc},
+	#{cItmUnitPrice1},
+	#{cItmPrice1},
+	#{cItmMateUnitPrice1},
+	#{cItmMatePrice1},
+	#{cImtLaborUnitPrice1},
+	#{cItmLaborPrice1},
+	#{cItmUnitPrice2},
+	#{cItmPrice2},
+	#{cItmMateUnitPrice2},
+	#{cItmMatePrice2},
+	#{cImtLaborUnitPrice2},
+	#{cItmLaborPrice2},
+	now(),
+	#{cItmCrtUsr},
+	now(),
+	#{cItmModUsr},
+	0
+	);
+  	</insert>
+  	<update id="updateItem" parameterType="KimgItem">
+  	UPDATE `KIMG`.`kimgItem`
+	SET
+	<if test="cItmCode != null and cItmCode != ''">
+	`cItmCode` = #{cItmCode},
+	</if>
+	<if test="cItmCom != null and cItmCom != ''">
+	`cItmCom` = #{cItmCom},
+	</if>
+	<if test="cItmVenue != null and cItmVenue != ''">
+	`cItmVenue` = #{cItmVenue},
+	</if>
+	<if test="cItmSport != null and cItmSport != ''">
+	`cItmSport` = #{cItmSport},
+	</if>
+	<if test="cItmDept != null and cItmDept != ''">
+	`cItmDept` = #{cItmDept},
+	</if>
+	<if test="cItmEvent != null and cItmEvent != ''">
+	`cItmEvent` = #{cItmEvent},
+	</if>
+	<if test="cItmCate != null and cItmCate != ''">
+	`cItmCate` = #{cItmCate},
+	</if>
+	<if test="cItmProd != null and cItmProd != ''">
+	`cItmProd` = #{cItmProd},
+	</if>
+	<if test="cItmMate != null and cItmMate != ''">
+	`cItmMate` = #{cItmMate},
+	</if>
+	<if test="cItmFloor != null and cItmFloor != ''">
+	`cItmFloor` = #{cItmFloor},
+	</if>
+	<if test="cItmLocation != null and cItmLocation != ''">
+	`cItmLocation` = #{cItmLocation},
+	</if>
+	<if test="cItmWidth != null and cItmWidth != ''">
+	`cItmWidth` = #{cItmWidth},
+	</if>
+	<if test="cItmHeight != null and cItmHeight != ''">
+	`cItmHeight` = #{cItmHeight},
+	</if>
+	<if test="cItmDimen != null and cItmDimen != ''">
+	`cItmDimen` = #{cItmDimen},
+	</if>
+	<if test="cItmQty1 != null and cItmQty1 != ''">
+	`cItmQty1` = #{cItmQty1},
+	</if>
+	<if test="cItemUnit1 != null and cItemUnit1 != ''">
+	`cItemUnit1` = #{cItemUnit1},
+	</if>
+	<if test="cItmQty2 != null and cItmQty2 != ''">
+	`cItmQty2` = #{cItmQty2},
+	</if>
+	<if test="cItmUnit2 != null and cItmUnit2 != ''">
+	`cItmUnit2` = #{cItmUnit2},
+	</if>
+	<if test="cItmDesc != null and cItmDesc != ''">
+	`cItmDesc` = #{cItmDesc},
+	</if>
+	<if test="cItmUnitPrice1 != null and cItmUnitPrice1 != ''">
+	`cItmUnitPrice1` = #{cItmUnitPrice1},
+	</if>
+	<if test="cItmPrice1 != null and cItmPrice1 != ''">
+	`cItmPrice1` = #{cItmPrice1},
+	</if>
+	<if test="cItmMateUnitPrice1 != null and cItmMateUnitPrice1 != ''">
+	`cItmMateUnitPrice1` = #{cItmMateUnitPrice1},
+	</if>
+	<if test="cItmMatePrice1 != null and cItmMatePrice1 != ''">
+	`cItmMatePrice1` = #{cItmMatePrice1},
+	</if>
+	<if test="cImtLaborUnitPrice1 != null and cImtLaborUnitPrice1 != ''">
+	`cImtLaborUnitPrice1` = #{cImtLaborUnitPrice1},
+	</if>
+	<if test="cItmLaborPrice1 != null and cItmLaborPrice1 != ''">
+	`cItmLaborPrice1` = #{cItmLaborPrice1},
+	</if>
+	<if test="cItmUnitPrice2 != null and cItmUnitPrice2 != ''">
+	`cItmUnitPrice2` = #{cItmUnitPrice2},
+	</if>
+	<if test="cItmPrice2 != null and cItmPrice2 != ''">
+	`cItmPrice2` = #{cItmPrice2},
+	</if>
+	<if test="cItmMateUnitPrice2 != null and cItmMateUnitPrice2 != ''">
+	`cItmMateUnitPrice2` = #{cItmMateUnitPrice2},
+	</if>
+	<if test="cItmMatePrice2 != null and cItmMatePrice2 != ''">
+	`cItmMatePrice2` = #{cItmMatePrice2},
+	</if>
+	<if test="cImtLaborUnitPrice2 != null and cImtLaborUnitPrice2 != ''">
+	`cImtLaborUnitPrice2` = #{cImtLaborUnitPrice2},
+	</if>
+	<if test="cItmLaborPrice2 != null and cItmLaborPrice2 != ''">
+	`cItmLaborPrice2` = #{cItmLaborPrice2},
+	</if>
+	<if test="nItmDel != null and nItmDel != ''">
+	`nItmDel` = #{nItmDel},
+	</if>
+	`dItmMod` = now(),
+	`cItmModUsr` = #{cItmModUsr}
+
+	WHERE `nItmCnt` = #{nItmCnt};
+	  	
+  	</update>
+  	<select id="selectTaskStatus" resultType="KimgTaskStatus">
+  	SELECT * FROM KIMG.kimgTaskStatus;
+  	</select>
+  	
+  	<select id="selectTaskType" resultType="KimgTaskType">
+  	SELECT * FROM KIMG.kimgTaskType;
+  	</select>
+  	
+  	<insert id="insertTask" parameterType="KimgTask" useGeneratedKeys="true" keyProperty="nTskCnt">
+  	INSERT INTO `KIMG`.`kimgTask`
+	(
+	`nRefItm`,
+	`cTskType`,
+	`cTskComp`,
+	`cTskNote`,
+	`cTskStatus`,
+	`cTskCheck`,
+	`dTskCrt`,
+	`cTskCrtUsr`,
+	`dTskMod`,
+	`cTskModUsr`,
+	`nTskDel`)
+	VALUES
+	(
+	#{nRefItm},
+	#{cTskType},
+	#{cTskComp},
+	#{cTskNote},
+	#{cTskStatus},
+	#{cTskCheck},
+	now(),
+	#{cTskCrtUsr},
+	now(),
+	#{cTskModUsr},
+	#{nTskDel});
+  	</insert>
+  	
+  	<update id="updateTask" parameterType="KimgTask">
+  	UPDATE `KIMG`.`kimgTask`
+	SET
+	<if test="nRefItm != null and nRefItm != ''">
+	`nRefItm` = #{nRefItm},
+	</if>
+	<if test="cTskType != null and cTskType != ''">
+	`cTskType` = #{cTskType},
+	</if>
+	<if test="cTskComp != null and cTskComp != ''">
+	`cTskComp` = #{cTskComp},
+	</if>
+	<if test="cTskNote != null and cTskNote != ''">
+	`cTskNote` = #{cTskNote},
+	</if>
+	<if test="cTskStatus != null and cTskStatus != ''">
+	`cTskStatus` = #{cTskStatus},
+	</if>
+	<if test="cTskCheck != null and cTskCheck != ''">
+	`cTskCheck` = #{cTskCheck},
+	</if>
+	<if test="dTskCrt != null and dTskCrt != ''">
+	`dTskCrt` = #{dTskCrt},
+	</if>
+	<if test="cTskCrtUsr != null and cTskCrtUsr != ''">
+	`cTskCrtUsr` = #{cTskCrtUsr},
+	</if>
+	<if test="nTskDel != null and nTskDel != ''">
+	`nTskDel` = #{nTskDel},
+	</if>
+	`dTskMod` = now(),
+	`cTskModUsr` = #{cTskModUsr}
+	WHERE `nTskCnt` = #{nTskCnt};
+  	</update>
+  	
+  	<select id="selectTask" parameterType="Integer" resultType="KimgTask">
+  	SELECT * FROM KIMG.kimgTask t
+	LEFT JOIN KIMG.kimgTaskStatus ts on t.cTskStatus = ts.cTstType
+	LEFT JOIN KIMG.kimgTaskType tt on t.cTskType = tt.cTtpType
+	where nRefItm = #{param} and nTskDel = 0
+	ORDER BY t.nTskCnt desc;
+  	</select>
 </mapper>

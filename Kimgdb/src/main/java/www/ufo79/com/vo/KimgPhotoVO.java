@@ -12,6 +12,16 @@ public class KimgPhotoVO {
 	private Date dPhoMod;
 	private String cPhoModUsr;
 	private int nPhoDel;
+	
+	//인풋
+	private String photoUid;
+	
+	public String getPhotoUid() {
+		return photoUid;
+	}
+	public void setPhotoUid(String photoUid) {
+		this.photoUid = photoUid;
+	}
 	public int getnPhoCnt() {
 		return nPhoCnt;
 	}

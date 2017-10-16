@@ -1,6 +1,7 @@
 package www.ufo79.com.vo;
 
 import java.util.Date;
+import java.util.List;
 
 public class KimgItemVO extends KimgProductVO{
 	private int nItmCnt;
@@ -41,6 +42,7 @@ public class KimgItemVO extends KimgProductVO{
 	private String cItmModUsr;
 	private int nItmDel;
 	
+	
 	//조인 밸류
 	private int nCatCnt;
 	private String cCatType;
@@ -63,6 +65,14 @@ public class KimgItemVO extends KimgProductVO{
 	private String cDptCode;
 	private String cDptName;
 	
+	List<KimgPhotoVO> photos;
+	
+	public List<KimgPhotoVO> getPhotos() {
+		return photos;
+	}
+	public void setPhotos(List<KimgPhotoVO> photos) {
+		this.photos = photos;
+	}
 	public int getnItmCnt() {
 		return nItmCnt;
 	}

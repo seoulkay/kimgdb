@@ -15,8 +15,6 @@ public class KimgProductVO extends KimgPhotoVO{
 	private String cPrdModUsr;
 	private int nPrdDel;
 	
-	//인풋
-	private String photoUid;
 		
 	public int getnPrdCnt() {
 		return nPrdCnt;
@@ -83,12 +81,6 @@ public class KimgProductVO extends KimgPhotoVO{
 	}
 	public void setnPrdDel(int nPrdDel) {
 		this.nPrdDel = nPrdDel;
-	}
-	public String getPhotoUid() {
-		return photoUid;
-	}
-	public void setPhotoUid(String photoUid) {
-		this.photoUid = photoUid;
 	}
 	
 	
