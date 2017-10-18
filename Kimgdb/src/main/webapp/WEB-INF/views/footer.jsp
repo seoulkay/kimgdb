@@ -24,6 +24,10 @@
 	<!-- Data table -->
 	<script src="${pageContext.request.contextPath}/resources/js/plugins/dataTables/datatables.min.js"></script>
 	
+	<!-- ChartJS-->
+    <script src="${pageContext.request.contextPath}/resources/js/plugins/chartJs/Chart.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/demo/chartjs-demo.js"></script>
+	
     <!-- Data picker -->
     <script src="${pageContext.request.contextPath}/resources/js/plugins/datapicker/bootstrap-datepicker.js"></script>
 

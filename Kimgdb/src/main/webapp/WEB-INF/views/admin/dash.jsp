@@ -39,16 +39,12 @@
             </div>
 
         <div class="wrapper wrapper-content animated fadeInRight ecommerce">
-
-
-            <div class="wrapper wrapper-content">
-            <div class="container">
             <div class="row">
                 <div class="col-md-2">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <span class="label label-success pull-right">Monthly</span>
-                            <h5>아이템</h5>
+                            <span class="label label-success pull-right">Products</span>
+                            <h5>품목</h5>
                         </div>
                         <div class="ibox-content">
                             <h1 class="no-margins">386,200</h1>
@@ -57,36 +53,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <span class="label label-info pull-right">Annual</span>
-                            <h5>제품</h5>
-                        </div>
-                        <div class="ibox-content">
-                                    <h1 class="no-margins">80,800</h1>
-                                    <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div>
-                                    <small>New orders</small>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="col-md-4">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <span class="label label-primary pull-right">Today</span>
-                            <h5>결산</h5>
+                            <span class="label label-primary pull-right">Item</span>
+                            <h5>아이템</h5>
                         </div>
                         <div class="ibox-content">
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h1 class="no-margins">$ 406,420</h1>
-                                    <div class="font-bold text-navy">44% <i class="fa fa-level-up"></i> <small>Rapid pace</small></div>
+                                    <h1 class="no-margins">28,152</h1>
+                                    <div class="font-bold text-navy">총 등록된 아이템</div>
                                 </div>
                                 <div class="col-md-6">
-                                    <h1 class="no-margins">206,120</h1>
-                                    <div class="font-bold text-navy">22% <i class="fa fa-level-up"></i> <small>Slow pace</small></div>
+                                    <h1 class="no-margins">42,252</h1>
+                                    <div class="font-bold text-navy">총 등록된 작업</div>
                                 </div>
                             </div>
 
@@ -97,19 +79,38 @@
                 <div class="col-md-4">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>작업 건수</h5>
-                            <div class="ibox-tools">
-                                <span class="label label-primary">Updated 12.2015</span>
-                            </div>
+                            <span class="label label-danger pull-right">Issue</span>
+                            <h5>이슈</h5>
                         </div>
-                        <div class="ibox-content no-padding">
-                            <div class="flot-chart m-t-lg" style="height: 55px;">
-                                <div class="flot-chart-content" id="flot-chart1"></div>
-                            </div>
-                        </div>
+                        <div class="ibox-content">
 
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h1 class="no-margins">28,152</h1>
+                                    <div class="font-bold text-danger">총 등록된 이슈</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h1 class="no-margins">42,252</h1>
+                                    <div class="font-bold text-danger">총 등록된 작업</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div class="col-md-2">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <span class="label label-warning pull-right">Profile</span>
+                            <h5>프로필</h5>
+                        </div>
+                        <div class="ibox-content">
+                        	<div class="row">
+                        		<h1 class="no-margins">386</h1>
+                        		<div class="font-bold text-warning">총 등록된 유저</div>                         
+                       		</div>
+                    	</div>                       	
+                    </div>
+                </div>                
             </div>
                 <div class="row">
                     <div class="col-lg-8">
@@ -121,10 +122,7 @@
                                             <br/>
                                             All sales: 162,862
                                         </span>
-                                    <h3 class="font-bold no-margins">
-                                        프로젝트 진행
-                                    </h3>
-                                    <small>Sales marketing.</small>
+                                    <h3 class="font-bold no-margins">아이템 분석</h3>
                                 </div>
 
                                 <div class="m-t-sm">
@@ -132,7 +130,7 @@
                                     <div class="row">
                                         <div class="col-md-8">
                                             <div>
-                                            <canvas id="lineChart" height="114"></canvas>
+                                            <canvas id="doughnutChart" height="140"></canvas>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -238,23 +236,6 @@
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
                                 <h5>이슈 트래커 </h5>
-                                <div class="ibox-tools">
-                                    <a class="collapse-link">
-                                        <i class="fa fa-chevron-up"></i>
-                                    </a>
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                        <i class="fa fa-wrench"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-user">
-                                        <li><a href="#">Config option 1</a>
-                                        </li>
-                                        <li><a href="#">Config option 2</a>
-                                        </li>
-                                    </ul>
-                                    <a class="close-link">
-                                        <i class="fa fa-times"></i>
-                                    </a>
-                                </div>
                             </div>
                             <div class="ibox-content">
                                 <div class="row">
@@ -274,173 +255,52 @@
                                     <table class="table table-striped">
                                         <thead>
                                         <tr>
-
-                                            <th>#</th>
-                                            <th>Project </th>
-                                            <th>Name </th>
-                                            <th>Phone </th>
-                                            <th>Company </th>
-                                            <th>Completed </th>
-                                            <th>Task</th>
-                                            <th>Date</th>
-                                            <th>Action</th>
+                                            <th>이슈번호</th>
+                                            <th>아이템코드</th>
+                                            <th>품목</th>
+                                            <th>베뉴</th>
+                                            <th>이슈 생성자</th>
+                                            <th>이슈 생성일</th>
+                                            <th>상태</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td>Project <small>This is example of project</small></td>
-                                            <td>Patrick Smith</td>
-                                            <td>0800 051213</td>
-                                            <td>Inceptos Hymenaeos Ltd</td>
-                                            <td><span class="pie">0.52/1.561</span></td>
-                                            <td>20%</td>
-                                            <td>Jul 14, 2013</td>
+                                            <td>GVL-None-윌링투-A-LWG-외부-0005</td>
+                                            <td>Look Wall Graphic</td>
+                                            <td>ALP</td>
+                                            <td>kay.lee</td>
+                                            <td>2017-09-29</td>                                           
                                             <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
                                         </tr>
                                         <tr>
                                             <td>2</td>
-                                            <td>Alpha project</td>
-                                            <td>Alice Jackson</td>
-                                            <td>0500 780909</td>
-                                            <td>Nec Euismod In Company</td>
-                                            <td><span class="pie">6,9</span></td>
-                                            <td>40%</td>
-                                            <td>Jul 16, 2013</td>
+                                            <td>BKV-OFR-DOP-A-LTS-1층-001-0001</td>
+                                            <td>Look Table Skirt</td>
+                                            <td>ACC</td>
+                                            <td>kay.lee</td>
+                                            <td>2017-09-26</td>
                                             <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
                                         </tr>
                                         <tr>
                                             <td>3</td>
-                                            <td>Betha project</td>
-                                            <td>John Smith</td>
-                                            <td>0800 1111</td>
-                                            <td>Erat Volutpat</td>
-                                            <td><span class="pie">3,1</span></td>
-                                            <td>75%</td>
-                                            <td>Jul 18, 2013</td>
+                                            <td>GVL-None-윌링투-A-LWG-외부-0005</td>
+                                            <td>Look Wall Graphic</td>
+                                            <td>ALP</td>
+                                            <td>kay.lee</td>
+                                            <td>2017-09-29</td>
                                             <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
                                         </tr>
                                         <tr>
                                             <td>4</td>
-                                            <td>Gamma project</td>
-                                            <td>Anna Jordan</td>
-                                            <td>(016977) 0648</td>
-                                            <td>Tellus Ltd</td>
-                                            <td><span class="pie">4,9</span></td>
-                                            <td>18%</td>
-                                            <td>Jul 22, 2013</td>
+                                            <td>BKV-OFR-DOP-A-LTS-1층-001-0001</td>
+                                            <td>Look Table Skirt</td>
+                                            <td>ACC</td>
+                                            <td>kay.lee</td>
+                                            <td>2017-09-26</td>
                                             <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Alpha project</td>
-                                            <td>Alice Jackson</td>
-                                            <td>0500 780909</td>
-                                            <td>Nec Euismod In Company</td>
-                                            <td><span class="pie">6,9</span></td>
-                                            <td>40%</td>
-                                            <td>Jul 16, 2013</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Project <small>This is example of project</small></td>
-                                            <td>Patrick Smith</td>
-                                            <td>0800 051213</td>
-                                            <td>Inceptos Hymenaeos Ltd</td>
-                                            <td><span class="pie">0.52/1.561</span></td>
-                                            <td>20%</td>
-                                            <td>Jul 14, 2013</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Gamma project</td>
-                                            <td>Anna Jordan</td>
-                                            <td>(016977) 0648</td>
-                                            <td>Tellus Ltd</td>
-                                            <td><span class="pie">4,9</span></td>
-                                            <td>18%</td>
-                                            <td>Jul 22, 2013</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Project <small>This is example of project</small></td>
-                                            <td>Patrick Smith</td>
-                                            <td>0800 051213</td>
-                                            <td>Inceptos Hymenaeos Ltd</td>
-                                            <td><span class="pie">0.52/1.561</span></td>
-                                            <td>20%</td>
-                                            <td>Jul 14, 2013</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Alpha project</td>
-                                            <td>Alice Jackson</td>
-                                            <td>0500 780909</td>
-                                            <td>Nec Euismod In Company</td>
-                                            <td><span class="pie">6,9</span></td>
-                                            <td>40%</td>
-                                            <td>Jul 16, 2013</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Betha project</td>
-                                            <td>John Smith</td>
-                                            <td>0800 1111</td>
-                                            <td>Erat Volutpat</td>
-                                            <td><span class="pie">3,1</span></td>
-                                            <td>75%</td>
-                                            <td>Jul 18, 2013</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Gamma project</td>
-                                            <td>Anna Jordan</td>
-                                            <td>(016977) 0648</td>
-                                            <td>Tellus Ltd</td>
-                                            <td><span class="pie">4,9</span></td>
-                                            <td>18%</td>
-                                            <td>Jul 22, 2013</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Alpha project</td>
-                                            <td>Alice Jackson</td>
-                                            <td>0500 780909</td>
-                                            <td>Nec Euismod In Company</td>
-                                            <td><span class="pie">6,9</span></td>
-                                            <td>40%</td>
-                                            <td>Jul 16, 2013</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Project <small>This is example of project</small></td>
-                                            <td>Patrick Smith</td>
-                                            <td>0800 051213</td>
-                                            <td>Inceptos Hymenaeos Ltd</td>
-                                            <td><span class="pie">0.52/1.561</span></td>
-                                            <td>20%</td>
-                                            <td>Jul 14, 2013</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Gamma project</td>
-                                            <td>Anna Jordan</td>
-                                            <td>(016977) 0648</td>
-                                            <td>Tellus Ltd</td>
-                                            <td><span class="pie">4,9</span></td>
-                                            <td>18%</td>
-                                            <td>Jul 22, 2013</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                        </tr>
+                                        </tr>                                        
                                         </tbody>
                                     </table>
                                 </div>
@@ -450,12 +310,6 @@
                     </div>
 
                 </div>
-
-            </div>
-
-        </div>
-
-
         </div>
         
       	<jsp:include page="../footer.jsp" flush="true">
