@@ -123,7 +123,7 @@ public class KimgController {
 			return "redirect:../";
 		}
 		
-		
+		model.addAttribute("dashInfo", dao.selectLateDash());
 		model.addAttribute("selectedMenu", "dash");
 		return "admin/dash";
 	}

@@ -123,7 +123,10 @@
                                        	${ele.cPrdLocalName}
                                     </td>
                                     <td>
-                                        ${ele.cPrdCat}
+                                        <c:if test="${ele.cPrdCat eq 'LK'}"><span class="label label-primary">룩</span></c:if>
+                                        <c:if test="${ele.cPrdCat eq 'SI'}"><span class="label label-success">사이니지</span></c:if>
+                                        <c:if test="${ele.cPrdCat eq 'SP'}"><span class="label label-danger">스펙타큘러</span></c:if>
+                                        <c:if test="${ele.cPrdCat eq 'SE'}"><span class="label label-warning">스포츠장비</span></c:if>
                                     </td>
                                     <td>
                                         ${ele.cPrdDesc}

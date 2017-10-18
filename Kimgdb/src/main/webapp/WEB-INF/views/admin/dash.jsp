@@ -33,6 +33,10 @@
                         </li>
                     </ol>
                 </div>
+                <p>
+                    <span class="text-muted small">업데이트 : ${dashInfo.dDasCrtDate }<br>
+                    </span>
+                    </p>
                 <div class="col-lg-2">
 
                 </div>
@@ -49,7 +53,7 @@
                         <div class="ibox-content">
                         	<div class="row">
                         		<div class="col-md-12">
-                        			<h1 class="no-margins">6,200</h1>
+                        			<h1 class="no-margins">${dashInfo.nDasProduct }</h1>
                             		<div class="font-bold text-success">총 등록된 품목</div>
                             	</div>                        	
                         	</div>                                                        
@@ -66,12 +70,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <!-- 총 등록되어 있는 아이템 수 -->
-                                    <h1 class="no-margins">28,152</h1>
+                                    <h1 class="no-margins">${dashInfo.nDasItem }</h1>
                                     <div class="font-bold text-navy">총 등록된 아이템</div>
                                 </div>
                                 <div class="col-md-6">
                                 	<!-- 총 등록되어 있는 작업 수 (아이템 하위 태스크 개수) -->
-                                    <h1 class="no-margins">42,252</h1>
+                                    <h1 class="no-margins">${dashInfo.nDasTask }</h1>
                                     <div class="font-bold text-navy">총 등록된 작업</div>
                                 </div>
                             </div>
@@ -89,12 +93,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <!-- 총 등록되어 있는 이슈 개수 -->
-                                    <h1 class="no-margins">28,152</h1>
+                                    <h1 class="no-margins">${dashInfo.nDasIssue }</h1>
                                     <div class="font-bold text-danger">총 등록된 이슈</div>
                                 </div>
                                 <div class="col-md-6">
                                     <!-- 이슈 완료 개수: 총 등록되어 있는 이슈 중 작업으로 보고된 개수 -->
-                                    <h1 class="no-margins">24,120</h1>
+                                    <h1 class="no-margins">${dashInfo.nDasIssueReq }</h1>
                                     <div class="font-bold text-danger">총 보고된 이슈</div>
                                 </div>
                             </div>
@@ -111,7 +115,7 @@
                         	<div class="row">
                         		<div class="col-md-12">
 	                        		<!-- 총 등록되어 있는 유저 수 -->
-	                        		<h1 class="no-margins">386</h1>
+	                        		<h1 class="no-margins">${dashInfo.nDasPerson }</h1>
 	                        		<div class="font-bold text-warning">총 등록된 유저</div>
                         		</div>                         
                        		</div>
@@ -326,7 +330,7 @@
         var doughnutData = {
                 labels: ["룩","사이니지","스펙타큘러","스포츠 장비"],
                 datasets: [{
-                    data: [300,250,100,20],
+                    data: ['${dashInfo.nDasItemLook }','${dashInfo.nDasItemSign }','${dashInfo.nDasItemSpec }','${dashInfo.nDasItemSport }'],
                     backgroundColor: ["#a3e1d4","#dedede","#b5b8cf","#efcda7"]
                 }]
             } ;
@@ -343,7 +347,7 @@
         var doughnutData2 = {
                 labels: ["제작 및 출력","설치","철거"],
                 datasets: [{
-                    data: [300,250,100],
+                    data: ['${dashInfo.nDasTaskMan }','${dashInfo.nDasTaskIns }','${dashInfo.nDasTaskDes }'],
                     backgroundColor: ["#a3e1d4","#dedede","#b5b8cf"]
                 }]
             } ;

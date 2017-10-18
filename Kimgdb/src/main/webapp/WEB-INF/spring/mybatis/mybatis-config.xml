@@ -22,6 +22,7 @@
 		<typeAlias type="www.ufo79.com.vo.KimgTaskStatusVO" alias="KimgTaskStatus"/>
 		<typeAlias type="www.ufo79.com.vo.KimgTaskTypeVO" alias="KimgTaskType"/>
 		<typeAlias type="www.ufo79.com.vo.KimgTaskVO" alias="KimgTask"/>
+		<typeAlias type="www.ufo79.com.vo.KimgDashVO" alias="KimgDash"/>
 	</typeAliases>
 	
 	<mappers>

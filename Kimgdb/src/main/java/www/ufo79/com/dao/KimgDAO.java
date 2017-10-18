@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import www.ufo79.com.vo.KimgCategoryVO;
 import www.ufo79.com.vo.KimgCompanyVO;
+import www.ufo79.com.vo.KimgDashVO;
 import www.ufo79.com.vo.KimgDepartmentVO;
 import www.ufo79.com.vo.KimgEventVO;
 import www.ufo79.com.vo.KimgItemVO;
@@ -160,5 +161,7 @@ public class KimgDAO extends SqlSessionDaoSupport{
 		return getSqlSession().selectList("mapper.selectAllTask");
 	}
 	
-	
+	public KimgDashVO selectLateDash(){
+		return getSqlSession().selectOne("mapper.selectLateDash");
+	}
 }

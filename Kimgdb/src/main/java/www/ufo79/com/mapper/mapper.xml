@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper">
+<!-- 스케줄에 집어넣을 대시보드 리포트것 -->
+<!-- INSERT INTO `KIMG`.`kimgDash` -->
+<!-- ( -->
+<!-- `nDasProduct`, -->
+<!-- `nDasItem`, -->
+<!-- `nDasTask`, -->
+<!-- `nDasIssue`, -->
+<!-- `nDasIssueReq`, -->
+<!-- `nDasPerson`, -->
+<!-- `nDasItemLook`, -->
+<!-- `nDasItemSign`, -->
+<!-- `nDasItemSpec`, -->
+<!-- `nDasItemSport`, -->
+<!-- `nDasTaskMan`, -->
+<!-- `nDasTaskIns`, -->
+<!-- `nDasTaskDes`, -->
+<!-- `dDasCrtDate`) -->
+<!-- VALUES -->
+<!-- ( -->
+<!-- (select count(0) from KIMG.kimgProduct), -->
+<!-- (select count(0) from KIMG.kimgItem), -->
+<!-- (select count(0) from KIMG.kimgTask where cTskType <> 'INC'), -->
+<!-- (select count(0) from KIMG.kimgTask where cTskType = 'INC'), -->
+<!-- (select count(0) FROM KIMG.kimgTask where nTskDel = 0 and cTskType = 'INC' and cTskStatus in ('TRQ', 'ERQ')), -->
+<!-- (select count(0) from KIMG.kimgPerson), -->
+<!-- (select count(0) from KIMG.kimgItem where nItmDel = 0 and cItmCate = 'LK'), -->
+<!-- (select count(0) from KIMG.kimgItem where nItmDel = 0 and cItmCate = 'SI'), -->
+<!-- (select count(0) from KIMG.kimgItem where nItmDel = 0 and cItmCate = 'SP'), -->
+<!-- (select count(0) from KIMG.kimgItem where nItmDel = 0 and cItmCate = 'SE'), -->
+<!-- (select count(0) FROM KIMG.kimgTask where nTskDel = 0 and cTskType = 'MAN'), -->
+<!-- (select count(0) FROM KIMG.kimgTask where nTskDel = 0 and cTskType = 'INS'), -->
+<!-- (select count(0) FROM KIMG.kimgTask where nTskDel = 0 and cTskType = 'DES'), -->
+<!-- now()); -->
+
 	<select id="selectAllCompany" resultType="KimgCompany">
 	SELECT * FROM KIMG.kimgCompany
 	</select>
@@ -614,5 +648,9 @@
     left Join KIMG.kimgItem it on t.nRefItm = it.nItmCnt
 	where nTskDel = 0
 	ORDER BY t.nTskCnt desc;
+  	</select>
+  	
+  	<select id="selectLateDash" resultType="kimgDash">
+  	select * from KIMG.kimgDash order by nDasCnt desc limit 1
   	</select>
 </mapper>
