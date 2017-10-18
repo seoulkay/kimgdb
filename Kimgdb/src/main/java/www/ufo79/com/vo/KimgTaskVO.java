@@ -16,7 +16,7 @@ public class KimgTaskVO extends KimgPhotoVO{
 	private String cTskModUsr;
 	private int nTskDel;
 	
-	
+	private String redirect;
 	//조인 벨류
 	private String cTstName;
 	private String cTtpName;
@@ -365,6 +365,12 @@ public class KimgTaskVO extends KimgPhotoVO{
 	}
 	public void setnItmDel(int nItmDel) {
 		this.nItmDel = nItmDel;
+	}
+	public String getRedirect() {
+		return redirect;
+	}
+	public void setRedirect(String redirect) {
+		this.redirect = redirect;
 	}
 	
 

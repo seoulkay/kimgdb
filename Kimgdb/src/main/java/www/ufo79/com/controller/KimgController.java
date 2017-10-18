@@ -20,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -56,6 +57,32 @@ public class KimgController {
 	
 	@Autowired
 	KimgDAO dao;
+	static List<KimgCategoryVO> catList = new ArrayList<KimgCategoryVO>();
+	static List<KimgEventVO> eventList = new ArrayList<KimgEventVO>();
+	static List<KimgSportVO> sportList = new ArrayList<KimgSportVO>();
+	static List<KimgDepartmentVO> departmentList = new ArrayList<KimgDepartmentVO>();
+	static List<KimgVenueVO> venueList = new ArrayList<KimgVenueVO>();
+	static List<KimgCompanyVO> companyList = new ArrayList<KimgCompanyVO>();
+	static List<String> cItmMateList = new ArrayList<String>();
+	static List<KimgTaskStatusVO> taskStatus = new ArrayList<KimgTaskStatusVO>();
+	static List<KimgTaskTypeVO> taskType = new ArrayList<KimgTaskTypeVO>();
+	static List<KimgItemVO> defItemList = new ArrayList<KimgItemVO>();
+	//드랍박스 세팅
+	@Scheduled(fixedRate=1800000)
+	public void initSelect(){
+		catList = dao.selectAllCategory();
+		eventList = dao.selectAllEvent();
+		sportList = dao.selectAllSport();
+		departmentList = dao.selectAllDepartment();
+		venueList = dao.selectAllVenue();
+		companyList = dao.selectAllCompany();
+		cItmMateList = dao.selectAllcItmMate();
+		taskStatus = dao.selectTaskStatus();
+		taskType = dao.selectTaskType();
+		defItemList = dao.selectAllItem();
+		System.out.println("init setting done.");
+	}
+
 	
 	@Bean(name = "multipartResolver")
 	public CommonsMultipartResolver multipartResolver() {
@@ -117,12 +144,19 @@ public class KimgController {
 		//return "home";
 	}
 	
-	@RequestMapping(value = "/admin/dash", method = RequestMethod.GET)
-	public String adminDash(Model model, HttpSession session) {
+	@RequestMapping(value = "/admin/dash", method = {RequestMethod.GET, RequestMethod.POST})
+	public String adminDash(Model model, HttpSession session, @RequestParam(value = "srcPar", required=false) String srcPar) {
 		if(session.getAttribute("cPerId") == null){
 			return "redirect:../";
 		}
 		
+		KimgTaskVO srcVo = new KimgTaskVO();
+		srcVo.setcTskNote(srcPar);
+		srcVo.setcTskStatus("TRQ");
+		List<KimgTaskVO> issueList = dao.selectIssueSrcPar(srcVo);
+		
+		model.addAttribute("issueList", issueList);
+		model.addAttribute("srcPar", srcPar);
 		model.addAttribute("dashInfo", dao.selectLateDash());
 		model.addAttribute("selectedMenu", "dash");
 		return "admin/dash";
@@ -136,7 +170,7 @@ public class KimgController {
 		
 			
 		List<KimgPersonVO> personList;
-		List<KimgCompanyVO> companyList = dao.selectAllCompany();
+		//List<KimgCompanyVO> companyList = dao.selectAllCompany();
 		
 		if(srcPar == null){
 			personList = dao.selectAllPerson();
@@ -160,7 +194,7 @@ public class KimgController {
 		}
 		
 		List<KimgProductVO> productList = dao.selectAllProductSrcPar(srcPar);
-		List<KimgCategoryVO> catList = dao.selectAllCategory();
+		//List<KimgCategoryVO> catList = dao.selectAllCategory();
 		
 		model.addAttribute("srcPar", srcPar);	
 		
@@ -182,14 +216,9 @@ public class KimgController {
 			
 			itemList = dao.selectAllItemSrcPar(srcPar);
 		
-		List<KimgCategoryVO> catList = dao.selectAllCategory();
-		List<KimgEventVO> eventList = dao.selectAllEvent();
-		List<KimgSportVO> sportList = dao.selectAllSport();
-		List<KimgDepartmentVO> departmentList = dao.selectAllDepartment();
-		List<KimgVenueVO> venueList = dao.selectAllVenue();
-		List<KimgCompanyVO> companyList = dao.selectAllCompany();
+		
 		List<KimgProductVO> productList = dao.selectAllProduct();
-		List<String> cItmMateList = dao.selectAllcItmMate();
+		
 		
 		model.addAttribute("itemList", itemList);
 		model.addAttribute("catList", catList);
@@ -222,9 +251,9 @@ public class KimgController {
 		List<KimgPhotoVO> photos = dao.selectPhotoByParam(vo);
 		item.setPhotos(photos);
 		
-		List<KimgTaskStatusVO> taskStatus = dao.selectTaskStatus();
-		List<KimgTaskTypeVO> taskType = dao.selectTaskType();
-		List<KimgCompanyVO> companyList = dao.selectAllCompany();
+		//List<KimgTaskStatusVO> taskStatus = dao.selectTaskStatus();
+		//List<KimgTaskTypeVO> taskType = dao.selectTaskType();
+		//List<KimgCompanyVO> companyList = dao.selectAllCompany();
 		List<KimgTaskVO> taskList = dao.selectTask(nItmCnt);
 		
 		model.addAttribute("item", item);
@@ -237,12 +266,24 @@ public class KimgController {
 		return "admin/itemDetail";
 	}
 	
-	@RequestMapping(value = "/admin/issue", method = RequestMethod.GET)
-	public String adminIssue(Model model, HttpSession session) {
+	@RequestMapping(value = "/admin/issue", method = {RequestMethod.GET, RequestMethod.POST})
+	public String adminIssue(Model model, HttpSession session, @ModelAttribute("srcPar")KimgTaskVO srcPar, @RequestParam(value = "ref", required=false) String ref) {
 		if(session.getAttribute("cPerId") == null){
 			return "redirect:../";
 		}
 		
+		List<KimgTaskVO> issueList = dao.selectIssueSrcPar(srcPar);
+		
+		
+		model.addAttribute("venueList", venueList);
+		model.addAttribute("taskStatus", taskStatus);
+		model.addAttribute("companyList", companyList);
+		model.addAttribute("taskType", taskType);
+		model.addAttribute("issueList", issueList);
+		//아이템 리스트는 늘 주기별로 업데이트 한
+		model.addAttribute("defItemList", defItemList);
+		model.addAttribute("srcPar", srcPar);
+		model.addAttribute("ref", ref);
 		model.addAttribute("selectedMenu", "issue");
 		return "admin/issue";
 	}
@@ -253,7 +294,6 @@ public class KimgController {
 			return "redirect:../";
 		}
 	
-		
 		model.addAttribute("itemList", dao.selectAllItem());
 		model.addAttribute("selectedMenu", "account");
 		return "admin/account";
@@ -393,6 +433,9 @@ public class KimgController {
 		}
 		
 		model.addAttribute("selectedMenu", "item");
+		if(vo.getRedirect().equals("issue")){
+			return "redirect:/admin/issue";
+		}
 		return "redirect:itemDetail?nItmCnt="+vo.getnRefItm();
 	}
 	
@@ -572,6 +615,10 @@ public class KimgController {
 			}
 			
 			model.addAttribute("selectedMenu", "item");
+			
+			if(vo.getRedirect().equals("issue")){
+				return "redirect:/admin/issue";
+			}
 			return "redirect:itemDetail?nItmCnt="+vo.getnRefItm();
 		}
 	  
@@ -613,7 +660,7 @@ public class KimgController {
 		}
 	  
 	  @RequestMapping(value = "/admin/deleteTask", method = RequestMethod.GET)
-		public String deleteTask(Model model, HttpSession session, @ModelAttribute("ref")int ref) {
+		public String deleteTask(Model model, HttpSession session, @ModelAttribute("ref")int ref, @RequestParam(value = "redirect", required=false) String redirect) {
 			if(session.getAttribute("cPerId") == null){
 				return "redirect:../";
 			}
@@ -626,10 +673,14 @@ public class KimgController {
 			
 			String user = session.getAttribute("cPerId").toString();
 			vo.setcTskModUsr(user);
+			vo.setRedirect(redirect);
 			
 			dao.updateTask(vo);
 			
 			model.addAttribute("selectedMenu", "item");
+			if(vo.getRedirect().equals("issue")){
+				return "redirect:/admin/issue";
+			}
 			return "redirect:itemDetail?nItmCnt="+taskList.get(0).getnRefItm();
 		}
 	  @RequestMapping(value = "/admin/deletePhoto/{ref}", method = { RequestMethod.POST , RequestMethod.GET })

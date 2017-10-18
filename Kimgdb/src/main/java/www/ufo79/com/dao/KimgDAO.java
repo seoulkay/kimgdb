@@ -164,4 +164,13 @@ public class KimgDAO extends SqlSessionDaoSupport{
 	public KimgDashVO selectLateDash(){
 		return getSqlSession().selectOne("mapper.selectLateDash");
 	}
+	
+	public List<KimgTaskVO> selectIssue(){
+		return getSqlSession().selectList("mapper.selectIssue");
+	}
+	
+	public List<KimgTaskVO> selectIssueSrcPar(KimgTaskVO vo){
+		return getSqlSession().selectList("mapper.selectIssueSrcPar", vo);
+	}
+	
 }

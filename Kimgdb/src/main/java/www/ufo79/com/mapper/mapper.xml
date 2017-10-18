@@ -653,4 +653,43 @@
   	<select id="selectLateDash" resultType="kimgDash">
   	select * from KIMG.kimgDash order by nDasCnt desc limit 1
   	</select>
+  	
+  	<select id="selectIssue" resultType="kimgTask">
+  	select * from KIMG.kimgTask t
+	LEFT JOIN KIMG.kimgTaskStatus s on t.cTskType = s.cTstType
+	left Join KIMG.kimgItem it on t.nRefItm = it.nItmCnt
+	where cTskType = 'INC' and nTskDel = 0
+	order by t.nTskCnt desc
+  	</select>
+<!--   	<if test="cItmCode != null and cItmCode != ''"> -->
+<!-- 	and item.cItmCode like CONCAT('%',#{cItmCode},'%')  -->
+<!-- 	</if> -->
+	<select id="selectIssueSrcPar" resultType="kimgTask" parameterType="kimgTask">
+  	select * from KIMG.kimgTask t
+	LEFT JOIN KIMG.kimgTaskStatus s on t.cTskType = s.cTstType
+	left Join KIMG.kimgItem it on t.nRefItm = it.nItmCnt
+	where
+    1=1
+    <if test="nTskCnt != null and nTskCnt != ''"> 
+    and t.nTskCnt like CONCAT('%',#{nTskCnt},'%')
+    </if>
+	<if test="cItmCode != null and cItmCode != ''"> 
+    and it.cItmCode like CONCAT('%',#{cItmCode},'%')
+    </if>
+	<if test="cTskStatus != null and cTskStatus != ''"> 
+    and t.cTskStatus like CONCAT('%',#{cTskStatus},'%')
+    </if>
+	<if test="cItmVenue != null and cItmVenue != ''"> 
+    and it.cItmVenue like CONCAT('%',#{cItmVenue},'%')
+    </if>
+	<if test="cTskCrtUsr != null and cTskCrtUsr != ''"> 
+    and t.cTskCrtUsr like CONCAT('%',#{cTskCrtUsr},'%')
+    </if>
+    <if test="cTskNote != null and cTskNote != ''"> 
+    and t.cTskNote like CONCAT('%',#{cTskNote},'%')
+    </if>
+	and cTskType = 'INC' 
+    and nTskDel = 0
+	order by t.nTskCnt desc
+  	</select>
 </mapper>

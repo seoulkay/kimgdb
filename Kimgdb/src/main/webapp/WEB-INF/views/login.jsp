@@ -43,7 +43,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b">로그인</button>
 
-                <a href="#"><small>비밀번호를 잊으셨나요?</small></a>
+<!--                 <a href="#"><small>비밀번호를 잊으셨나요?</small></a> -->
             </form>
         </div>
     </div>

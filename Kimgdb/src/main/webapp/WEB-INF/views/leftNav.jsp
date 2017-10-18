@@ -20,24 +20,32 @@
                 <li <c:if test="${selectedMenu eq 'dash' }">class="active"</c:if>>
                     <a href="dash"><i class="fa fa-th-large"></i> <span class="nav-label">대시보드</span></a>
                 </li>
+                <c:if test="${sessionScope.cred.cPerCom eq 'adm' }">
                 <li <c:if test="${selectedMenu eq 'profile' }">class="active"</c:if>>
                     <a href="profile"><i class="fa fa-address-book-o"></i> <span class="nav-label">프로필 </span></a>
                 </li>
+                </c:if>
+                <c:if test="${sessionScope.cred.cPerCom eq 'adm' }">
                 <li <c:if test="${selectedMenu eq 'product' }">class="active"</c:if>>
                     <a href="product"><i class="fa fa-cubes"></i> <span class="nav-label">품목</span></a>
                 </li>
+                </c:if>
                 <li <c:if test="${selectedMenu eq 'item' }">class="active"</c:if>>
                     <a href="item"><i class="fa fa-table"></i> <span class="nav-label">아이템</span></a>
                 </li>
                 <li <c:if test="${selectedMenu eq 'issue' }">class="active"</c:if>>
                     <a href="issue"><i class="fa fa-edit"></i> <span class="nav-label">이슈</span></a>
                 </li>
+                <c:if test="${sessionScope.cred.cPerCom eq 'adm' }">
                  <li <c:if test="${selectedMenu eq 'account' }">class="active"</c:if>>
                     <a href="account"><i class="fa fa-won"></i> <span class="nav-label">정산</span></a>
                 </li>
+                </c:if>
+                <c:if test="${sessionScope.cred.cPerCom eq 'adm' }">
                 <li <c:if test="${selectedMenu eq 'report' }">class="active"</c:if>>
                     <a href="report"><i class="fa fa-files-o"></i> <span class="nav-label">리포트</span></a>
                 </li>
+                </c:if>
                 
            </ul>
         </div>

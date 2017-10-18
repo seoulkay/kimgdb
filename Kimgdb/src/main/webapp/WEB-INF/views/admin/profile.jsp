@@ -97,7 +97,9 @@
                                                     <td><a data-toggle="tab" href="#company-1" class="client-link">${ele.nComCnt }</a></td>
                                                     <td>${ele.cComCode }</td>
                                                     <td><i class="fa fa-flag"></i> ${ele.cComName }</td>
-                                                    <td class="client-status"><span class="label label-primary">Active</span></td>
+<!--                                                     <td class="client-status"> -->
+<!--                                                     <span class="label label-primary">Active</span> -->
+<!--                                                     </td> -->
                                                 </tr>
                                                 </c:forEach>
                                                 </tbody>

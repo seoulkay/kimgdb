@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 		<jsp:include page="../header.jsp" flush="true">
@@ -175,69 +177,51 @@
                             <div class="ibox-content">
                                 <div class="row">
                                     <div class="col-sm-9 m-b-xs">
-                                        <div data-toggle="buttons" class="btn-group">
-                                            <label class="btn btn-sm btn-white"> <input type="radio" id="option1" name="options"> Day </label>
-                                            <label class="btn btn-sm btn-white active"> <input type="radio" id="option2" name="options"> Week </label>
-                                            <label class="btn btn-sm btn-white"> <input type="radio" id="option3" name="options"> Month </label>
-                                        </div>
                                     </div>
+                                    <form action="dash" method="post" id="searchForm">
                                     <div class="col-sm-3">
-                                        <div class="input-group"><input type="text" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">
-                                        <button type="button" class="btn btn-sm btn-primary"> Go!</button> </span></div>
+                                        <div class="input-group"><input type="text" placeholder="Search" class="input-sm form-control" id="srcPar" name="srcPar"> <span class="input-group-btn">
+                                        <button type="button" class="btn btn-sm btn-primary" onclick="searchForm()"> Go!</button> </span></div>
                                     </div>
+                                    </form>
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table table-striped">
-                                        <thead>
-                                        <tr>
-                                            <th>이슈번호</th>
-                                            <th>아이템코드</th>
-                                            <th>품목</th>
-                                            <th>베뉴</th>
-                                            <th>이슈 생성자</th>
-                                            <th>이슈 생성일</th>
-                                            <th>상태</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>GVL-None-윌링투-A-LWG-외부-0005</td>
-                                            <td>Look Wall Graphic</td>
-                                            <td>ALP</td>
-                                            <td>kay.lee</td>
-                                            <td>2017-09-29</td>                                           
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>BKV-OFR-DOP-A-LTS-1층-001-0001</td>
-                                            <td>Look Table Skirt</td>
-                                            <td>ACC</td>
-                                            <td>kay.lee</td>
-                                            <td>2017-09-26</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>GVL-None-윌링투-A-LWG-외부-0005</td>
-                                            <td>Look Wall Graphic</td>
-                                            <td>ALP</td>
-                                            <td>kay.lee</td>
-                                            <td>2017-09-29</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>BKV-OFR-DOP-A-LTS-1층-001-0001</td>
-                                            <td>Look Table Skirt</td>
-                                            <td>ACC</td>
-                                            <td>kay.lee</td>
-                                            <td>2017-09-26</td>
-                                            <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                        </tr>                                        
-                                        </tbody>
-                                    </table>
+                                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                                <thead>
+                                <tr>
+                                    <th>이슈번호</th>
+                                    <th data-hide="phone">설명</th>
+                                    <th data-hide="phone">아이템코드</th>
+                                    <th data-hide="phone">베뉴</th>
+                                    <th data-hide="phone">이슈 생성자</th>
+                                    <th data-hide="phone">이슈 생성일</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach items="${issueList }" var="ele">
+                                <tr>
+                                    <td>${ele.nTskCnt }</td>
+                                    <td>${ele.cTskNote }</td>
+                                    <td>${ele.cItmCode }</td>
+                                    <td>${ele.cItmVenue }</td>
+                                    <td>${ele.cTskCrtUsr }</td>
+                                    <td><fmt:formatDate pattern = "yyyy-MM-dd HH:mm"  value = "${ele.dTskMod }" /></td>
+                                    <td class="text-right">
+                                        <div class="btn-group">
+                                            <a href="issue?ref=${ele.nTskCnt }"><button class="btn-white btn btn-xs">보기</button></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </c:forEach>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="7">
+                                        <ul class="pagination pull-right"></ul>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
                                 </div>
 
                             </div>
@@ -255,6 +239,11 @@
     </div>
 </body>
 <script>
+function searchForm(){
+	$("#searchForm").submit();
+}
+$("#srcPar").val("${srcPar}");
+
         $(document).ready(function() {
 
 
