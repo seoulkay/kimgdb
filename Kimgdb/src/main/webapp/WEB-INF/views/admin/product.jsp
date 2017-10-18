@@ -350,8 +350,13 @@
 							}
 							
 							function deleteProduct(ref){
-								confirm("삭제 하시겠습니까?");
-								location.href = "deleteProduct?ref="+ref;
+								
+								var r = confirm("삭제 하시겠습니까?");
+								if(r == true){
+									location.href = "deleteProduct?ref="+ref;
+								} else{
+									
+								}
 								
 							}
 							</script>

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 		<jsp:include page="../header.jsp" flush="true">
@@ -67,87 +70,23 @@
 			                    </thead>
 			                    <tbody>
 			                    <c:forEach items="${itemList }" var="ele" varStatus="status">
-				                    <tr <c:if test="${status.count mod 2 eq 0}">class="gradeA"</c:if> <c:if test="${status.count mod 2 eq 1}">class="gradeC"</c:if>>
-				                        <td>YAL-ALP-CER-B-LK-LBD-A1-1F-006</td>
-				                        <td class="center">YAL</td>
-				                        <td class="center">ALP</td>
-				                        <td class="center">CER</td>
-				                        <td class="center">B</td>
-				                        <td class="center">룩</td>
-				                        <td>Look Drop Banner</td>
-				                        <td class="center">A1</td>
-				                        <td class="center">1F</td>
-				                        <td class="center">006</td>
-				                        <td class="center">UFO</td>
-				                        <td>제작 및 출력</td>
-				                        <td>검수완료</td>
-				                        <td>2017-10-02</td>
+				                    <tr>
+				                        <td>${ele.cItmCode }</td>
+				                        <td class="center">${ele.cItmVenue }</td>
+				                        <td class="center">${ele.cItmSport }</td>
+				                        <td class="center">${ele.cItmDept }</td>
+				                        <td class="center">${ele.cItmEvent }</td>
+				                        <td class="center">${ele.cItmCate }</td>
+				                        <td>${ele.cItmProd }</td>
+				                        <td class="center">${ele.cItmDesc }</td>
+				                        <td class="center">${ele.cItmFloor }</td>
+				                        <td class="center">${ele.cItmLocation }</td>
+				                        <td class="center">${ele.cItmCom }</td>
+				                        <td>${ele.cTtpName }</td>
+				                        <td>${ele.cTstName }</td>
+				                        <td><fmt:formatDate pattern = "yyyy-MM-dd"  value = "${ele.dTskCrt }" /></td>
 				                    </tr>
 				               </c:forEach>
-				                    <tr class="gradeA">
-				                        <td>YAL-ALP-CER-B-LK-LBD-A1-1F-006</td>
-				                        <td class="center">YAL</td>
-				                        <td class="center">ALP</td>
-				                        <td class="center">CER</td>
-				                        <td class="center">B</td>
-				                        <td class="center">룩</td>
-				                        <td>Look Drop Banner</td>
-				                        <td class="center">A1</td>
-				                        <td class="center">1F</td>
-				                        <td class="center">006</td>
-				                        <td class="center">UFO</td>
-				                        <td>설치</td>
-				                        <td>검수완료</td>
-				                        <td>2017-10-07</td>
-				                    </tr>
-				                    <tr class="gradeA">
-				                        <td>YAL-ALP-CER-B-LK-LBD-A1-1F-006</td>
-				                        <td class="center">YAL</td>
-				                        <td class="center">ALP</td>
-				                        <td class="center">CER</td>
-				                        <td class="center">B</td>
-				                        <td class="center">룩</td>
-				                        <td>Look Drop Banner</td>
-				                        <td class="center">A1</td>
-				                        <td class="center">1F</td>
-				                        <td class="center">006</td>
-				                        <td class="center">UFO</td>
-				                        <td>철거</td>
-				                        <td>검수완료</td>
-				                        <td>2017-11-12</td>
-				                    </tr>
-				                    <tr class="gradeA">
-				                        <td>YAL-ALP-DOP-A-SI-RIS-A1-B1-001</td>
-				                        <td class="center">YAL</td>
-				                        <td class="center">ALP</td>
-				                        <td class="center">DOP</td>
-				                        <td class="center">A</td>
-				                        <td class="center">사이니지</td>
-				                        <td>Room ID Sign small</td>
-				                        <td class="center">A1</td>
-				                        <td class="center">B1</td>
-				                        <td class="center">001</td>
-				                        <td class="center">HAN</td>
-				                        <td>제작 및 출력</td>
-				                        <td>검수완료</td>
-				                        <td>2017-11-23</td>
-				                    </tr>
-				                    <tr class="gradeA">
-				                        <td>YAL-ALP-DOP-A-SI-RIS-A1-B1-001</td>
-				                        <td class="center">YAL</td>
-				                        <td class="center">ALP</td>
-				                        <td class="center">DOP</td>
-				                        <td class="center">A</td>
-				                        <td class="center">사이니지</td>
-				                        <td>Room ID Sign small</td>
-				                        <td class="center">A1</td>
-				                        <td class="center">B1</td>
-				                        <td class="center">001</td>
-				                        <td class="center">HAN</td>
-				                        <td>철거</td>
-				                        <td>검수요청</td>
-				                        <td>2017-11-28</td>
-				                    </tr>				                                 
 			                    </tbody>
 			                    <tfoot>
 				                    <tr>

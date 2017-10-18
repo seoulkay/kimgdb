@@ -73,8 +73,7 @@
 			                    </thead>
 			                    <tbody>
 			                    <c:forEach items="${itemList }" var="ele" varStatus="status">
-			                    
-			                    <tr <c:if test="${status.count mod 2 eq 0}">class="gradeA"</c:if> <c:if test="${status.count mod 2 eq 1}">class="gradeC"</c:if>>
+			                    <tr>
 				                        <td>${ele.cItmCode }</td>
 				                        <td class="center">${ele.cItmCom }</td>
 				                        <td class="center">${ele.cItmQty1 }</td>

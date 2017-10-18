@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
  <div class="footer">
             <div class="pull-right">
-                10GB of <strong>250GB</strong> Free.
+                created by <strong>UFO79</strong>
             </div>
             <div>
                 <strong>Copyright</strong> KIMG  &copy;

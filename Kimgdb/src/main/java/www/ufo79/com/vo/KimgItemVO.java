@@ -42,7 +42,10 @@ public class KimgItemVO extends KimgProductVO{
 	private String cItmModUsr;
 	private int nItmDel;
 	
-	
+	private int nManStatus;
+	private int nInsStatus;
+	private int nDesStatus;
+	private int nIncStatus;
 	//조인 밸류
 	private int nCatCnt;
 	private String cCatType;
@@ -391,5 +394,30 @@ public class KimgItemVO extends KimgProductVO{
 	public void setcDptName(String cDptName) {
 		this.cDptName = cDptName;
 	}
+	public int getnManStatus() {
+		return nManStatus;
+	}
+	public void setnManStatus(int nManStatus) {
+		this.nManStatus = nManStatus;
+	}
+	public int getnInsStatus() {
+		return nInsStatus;
+	}
+	public void setnInsStatus(int nInsStatus) {
+		this.nInsStatus = nInsStatus;
+	}
+	public int getnDesStatus() {
+		return nDesStatus;
+	}
+	public void setnDesStatus(int nDesStatus) {
+		this.nDesStatus = nDesStatus;
+	}
+	public int getnIncStatus() {
+		return nIncStatus;
+	}
+	public void setnIncStatus(int nIncStatus) {
+		this.nIncStatus = nIncStatus;
+	}
+	
 	
 }

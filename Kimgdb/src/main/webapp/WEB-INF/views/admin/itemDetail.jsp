@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 		<jsp:include page="../header.jsp" flush="true">
@@ -135,8 +136,8 @@
                                      <td>${ele.cTtpName}</td>
                                      <td>${ele.cTskComp}</td>
                                      <td>${ele.cTstName}</td>
-                                     <td>${ele.dTskCrt}</td>
-                                     <td>${ele.dTskMod}</td>
+                                     <td><fmt:formatDate pattern = "yyyy-MM-dd"  value = "${ele.dTskCrt}" /></td>
+                                     <td><fmt:formatDate pattern = "yyyy-MM-dd"  value = "${ele.dTskMod}" /></td>
                                      <td class="text-right">                                    
                                         <div class="btn-group">
                                             <button class="btn-white btn btn-xs" onclick="selectItemOne(${ele.nTskCnt})">보기 / 수정</button>
@@ -161,9 +162,9 @@
                         </div>
                         <div class="ibox-footer">
                             <span class="pull-right">
-                               최종수정 : ${item.cItmModUsr }  <i class="fa fa-clock-o"></i> ${item.dItmMod }
+                               최종수정 : ${item.cItmModUsr }  <i class="fa fa-clock-o"></i> <fmt:formatDate pattern = "yyyy-MM-dd"  value = "${item.dItmMod }" />
                             </span>
-                            최초 생성 : ${item.cItmCrtUsr } <i class="fa fa-clock-o"></i> ${item.dItmCrt }
+                            최초 생성 : ${item.cItmCrtUsr } <i class="fa fa-clock-o"></i> <fmt:formatDate pattern = "yyyy-MM-dd"  value = "${item.dItmCrt }" />
                         </div>
                     </div>
                 </div>
@@ -381,8 +382,13 @@
 		
 	
 		function deleteItem(ref){
-			confirm("삭제 하시겠습니까?");
-			location.href = "deleteTask?ref="+ref;
+
+			var r = confirm("삭제 하시겠습니까?");
+			if(r == true){
+				location.href = "deleteTask?ref="+ref;
+			} else{
+				
+			}
 			
 		}
 		

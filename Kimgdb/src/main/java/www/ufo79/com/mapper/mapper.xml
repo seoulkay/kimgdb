@@ -163,7 +163,51 @@
 	where nItmDel = 0;
   	</select>
   	<select id="selectAllItemSrcPar" resultType="KimgItem" parameterType="KimgItem">
-  	SELECT * FROM KIMG.kimgItem item
+  	SELECT
+  	item.`nItmCnt`,
+    item.`cItmCode`,
+    item.`cItmCom`,
+    item.`cItmVenue`,
+    item.`cItmSport`,
+    item.`cItmDept`,
+    item.`cItmEvent`,
+    item.`cItmCate`,
+    item.`cItmProd`,
+    item.`cItmMate`,
+    item.`cItmFloor`,
+    item.`cItmLocation`,
+    item.`cItmWidth`,
+    item.`cItmHeight`,
+    item.`cItmDimen`,
+    item.`cItmQty1`,
+    item.`cItemUnit1`,
+    item.`cItmQty2`,
+    item.`cItmUnit2`,
+    item.`cItmDesc`,
+    item.`cItmUnitPrice1`,
+    item.`cItmPrice1`,
+    item.`cItmMateUnitPrice1`,
+    item.`cItmMatePrice1`,
+    item.`cImtLaborUnitPrice1`,
+    item.`cItmLaborPrice1`,
+    item.`cItmUnitPrice2`,
+    item.`cItmPrice2`,
+    item.`cItmMateUnitPrice2`,
+    item.`cItmMatePrice2`,
+    item.`cImtLaborUnitPrice2`,
+    item.`cItmLaborPrice2`,
+    item.`dItmCrt`,
+    item.`cItmCrtUsr`,
+    item.`dItmMod`,
+    item.`cItmModUsr`,
+    item.`nItmDel`,
+  	(SELECT count(0) FROM KIMG.kimgTask where nRefItm = nItmCnt and nTskDel = 0 and cTskType = 'MAN' and cTskStatus = 'CNF') as 'nManStatus',
+	(SELECT count(0) FROM KIMG.kimgTask where nRefItm = nItmCnt and nTskDel = 0 and cTskType = 'INS'and cTskStatus = 'CNF') as 'nInsStatus',
+	(SELECT count(0) FROM KIMG.kimgTask where nRefItm = nItmCnt and nTskDel = 0 and cTskType = 'DES' and cTskStatus = 'CNF') as 'nDesStatus',
+	(SELECT count(0) FROM KIMG.kimgTask where nRefItm = nItmCnt and nTskDel = 0 and cTskType = 'INC' and cTskStatus in ('TRQ', 'ERQ')) as 'nIncStatus',
+ 	prod.cPrdName,
+ 	cat.cCatName
+  	FROM KIMG.kimgItem item
 	left join KIMG.kimgProduct prod on item.cItmProd = prod.cPrdCode
     left join KIMG.kimgCategory cat on item.cItmCate = cat.cCatType
     left join KIMG.kimgEvent eve on item.cItmEvent = eve.cEvnCode
@@ -560,6 +604,15 @@
 	LEFT JOIN KIMG.kimgTaskStatus ts on t.cTskStatus = ts.cTstType
 	LEFT JOIN KIMG.kimgTaskType tt on t.cTskType = tt.cTtpType
 	where nRefItm = #{param} and nTskDel = 0
+	ORDER BY t.nTskCnt desc;
+  	</select>
+  	
+  	<select id="selectAllTask" resultType="KimgTask">
+  	SELECT * FROM KIMG.kimgTask t
+	LEFT JOIN KIMG.kimgTaskStatus ts on t.cTskStatus = ts.cTstType
+	LEFT JOIN KIMG.kimgTaskType tt on t.cTskType = tt.cTtpType
+    left Join KIMG.kimgItem it on t.nRefItm = it.nItmCnt
+	where nTskDel = 0
 	ORDER BY t.nTskCnt desc;
   	</select>
 </mapper>
