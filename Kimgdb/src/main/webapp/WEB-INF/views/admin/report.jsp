@@ -66,7 +66,8 @@
 				                    </tr>
 			                    </thead>
 			                    <tbody>
-				                    <tr class="gradeA">
+			                    <c:forEach items="${itemList }" var="ele" varStatus="status">
+				                    <tr <c:if test="${status.count mod 2 eq 0}">class="gradeA"</c:if> <c:if test="${status.count mod 2 eq 1}">class="gradeC"</c:if>>
 				                        <td>YAL-ALP-CER-B-LK-LBD-A1-1F-006</td>
 				                        <td class="center">YAL</td>
 				                        <td class="center">ALP</td>
@@ -82,6 +83,7 @@
 				                        <td>검수완료</td>
 				                        <td>2017-10-02</td>
 				                    </tr>
+				               </c:forEach>
 				                    <tr class="gradeA">
 				                        <td>YAL-ALP-CER-B-LK-LBD-A1-1F-006</td>
 				                        <td class="center">YAL</td>
@@ -176,43 +178,39 @@
       	<jsp:include page="../footer.jsp" flush="true">
 		<jsp:param name="param" value="value1" />
 		</jsp:include>
-
 		
 		</div>
     </div>    
-    
 </body>
 
 <!-- Page-Level Scripts -->
     <script>
-        $(document).ready(function(){
-            $('.dataTables-example').DataTable({
-                scrollX: true,
-            	pageLength: 25,
-                responsive: true,
-                dom: '<"html5buttons"B>lTfgitp',
-                buttons: [
-                    { extend: 'copy'},
-                    {extend: 'csv'},
-                    {extend: 'excel', title: 'ExampleFile'},
-                    {extend: 'pdf', title: 'ExampleFile'},
+    $(document).ready(function(){
+        $('.dataTables-example').DataTable({
+        	scrollX: true,
+        	pageLength: 25,
+            responsive: true,
+            dom: '<"html5buttons"B>lTfgitp',
+            buttons: [
+                { extend: 'copy'},
+//                 {extend: 'csv', bom:true},
+                {extend: 'excel', title: 'KIMG_Database_Report', bom:true},
+//                 {extend: 'pdf', title: 'KIMG_Database_Report', bom:true},
+                {extend: 'print',
+                 customize: function (win){
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
 
-                    {extend: 'print',
-                     customize: function (win){
-                            $(win.document.body).addClass('white-bg');
-                            $(win.document.body).css('font-size', '10px');
-
-                            $(win.document.body).find('table')
-                                    .addClass('compact')
-                                    .css('font-size', 'inherit');
-                    }
-                    }
-                ]
-
-            });
+                        $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                }
+                }
+            ]
 
         });
 
+    });
     </script>
 
 </html>

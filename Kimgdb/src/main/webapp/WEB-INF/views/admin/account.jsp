@@ -72,369 +72,31 @@
 				                    </tr>
 			                    </thead>
 			                    <tbody>
-			                    <c:forEach items="${itemList }" var="ele">
-			                    <tr class="gradeA">
-				                        <td>AVL-None-윌링투-A-LWG-외부-0005</td>
-				                        <td class="center">${ele }</td>
-				                        <td class="center">1.00</td>
-				                        <td>ea</td>
-				                        <td class="center">10.56</td>
-				                        <td>㎡</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
+			                    <c:forEach items="${itemList }" var="ele" varStatus="status">
+			                    
+			                    <tr <c:if test="${status.count mod 2 eq 0}">class="gradeA"</c:if> <c:if test="${status.count mod 2 eq 1}">class="gradeC"</c:if>>
+				                        <td>${ele.cItmCode }</td>
+				                        <td class="center">${ele.cItmCom }</td>
+				                        <td class="center">${ele.cItmQty1 }</td>
+				                        <td>${ele.cItemUnit1 }</td>
+				                        <td class="center">${ele.cItmQty2 }</td>
+				                        <td>${ele.cItmUnit2 }</td>
+				                        <td class="center">${ele.cItmUnitPrice1 }</td>
+				                        <td class="center">${ele.cItmPrice1 }</td>
+				                        <td class="center">${ele.cItmMateUnitPrice1 }</td>
+				                        <td class="center">${ele.cItmMatePrice1 }</td>
+				                        <td class="center">${ele.cImtLaborUnitPrice1 }</td>
+				                        <td class="center">${ele.cItmLaborPrice1 }</td>
+				                        <td class="center">${ele.cItmUnitPrice2 }</td>
+				                        <td class="center">${ele.cItmPrice2 }</td>
+				                        <td class="center">${ele.cItmMateUnitPrice2 }</td>
+				                        <td class="center">${ele.cItmMatePrice2 }</td>
+				                        <td class="center">${ele.cImtLaborUnitPrice2 }</td>
+				                        <td class="center">${ele.cItmLaborPrice2 }</td>
 				                    </tr>
 			                    </c:forEach>
 				                    
-				                    <tr class="gradeC">
-				                        <td>BKV-OFR-DOP-A-LTS-1층-001-0001</td>
-				                        <td class="center">UFO</td>
-				                        <td class="center">1.00</td>
-				                        <td>ea</td>
-				                        <td class="center">10.56</td>
-				                        <td>㎡</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                    </tr>
-				                    <tr class="gradeA">
-				                        <td>YAL-ALP-CER-A-LK-LTH-A1-1F-004</td>
-				                        <td class="center">UFO</td>
-				                        <td class="center">1.00</td>
-				                        <td>ea</td>
-				                        <td class="center">10.56</td>
-				                        <td>㎡</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                    </tr>
-				                    <tr class="gradeC">
-				                        <td>YAL-ALP-CER-A-LK-LCH-A1-1F-001</td>
-				                        <td class="center">HAN</td>
-				                        <td class="center">1.00</td>
-				                        <td>ea</td>
-				                        <td class="center">10.56</td>
-				                        <td>㎡</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                    </tr>
-				                    <tr class="gradeA">
-				                        <td>GVL-None-윌링투-A-LWG-외부-0005</td>
-				                        <td class="center">HAN</td>
-				                        <td class="center">1.00</td>
-				                        <td>ea</td>
-				                        <td class="center">10.56</td>
-				                        <td>㎡</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                    </tr>
-				                    <tr class="gradeC">
-				                        <td>GVL-None-윌링투-A-LWG-외부-0005</td>
-				                        <td class="center">UFO</td>
-				                        <td class="center">1.00</td>
-				                        <td>ea</td>
-				                        <td class="center">10.56</td>
-				                        <td>㎡</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                    </tr>
-				                    <tr class="gradeA">
-				                        <td>GVL-None-윌링투-A-LWG-외부-0005</td>
-				                        <td class="center">UFO</td>
-				                        <td class="center">1.00</td>
-				                        <td>ea</td>
-				                        <td class="center">10.56</td>
-				                        <td>㎡</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                    </tr>
-				                    <tr class="gradeC">
-				                        <td>GVL-None-윌링투-A-LWG-외부-0005</td>
-				                        <td class="center">UFO</td>
-				                        <td class="center">1.00</td>
-				                        <td>ea</td>
-				                        <td class="center">10.56</td>
-				                        <td>㎡</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                    </tr>
-				                    <tr class="gradeA">
-				                        <td>GVL-None-윌링투-A-LWG-외부-0005</td>
-				                        <td class="center">HAN</td>
-				                        <td class="center">1.00</td>
-				                        <td>ea</td>
-				                        <td class="center">10.56</td>
-				                        <td>㎡</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                    </tr>
-				                    <tr class="gradeC">
-				                        <td>GVL-None-윌링투-A-LWG-외부-0005</td>
-				                        <td class="center">HAN</td>
-				                        <td class="center">1.00</td>
-				                        <td>ea</td>
-				                        <td class="center">10.56</td>
-				                        <td>㎡</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                    </tr>
-				                    <tr class="gradeA">
-				                        <td>GVL-None-윌링투-A-LWG-외부-0005</td>
-				                        <td class="center">HAN</td>
-				                        <td class="center">1.00</td>
-				                        <td>ea</td>
-				                        <td class="center">10.56</td>
-				                        <td>㎡</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                    </tr>
-				                    <tr class="gradeC">
-				                        <td>GVL-None-윌링투-A-LWG-외부-0005</td>
-				                        <td class="center">HAN</td>
-				                        <td class="center">1.00</td>
-				                        <td>ea</td>
-				                        <td class="center">10.56</td>
-				                        <td>㎡</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                    </tr>
-				                    <tr class="gradeA">
-				                        <td>GVL-None-윌링투-A-LWG-외부-0005</td>
-				                        <td class="center">UFO</td>
-				                        <td class="center"></td>
-				                        <td>ea</td>
-				                        <td class="center">1.56</td>
-				                        <td>㎡</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                    </tr>
-				                    <tr class="gradeC">
-				                        <td>GVL-None-윌링투-A-LWG-외부-0005</td>
-				                        <td class="center">HAN</td>
-				                        <td class="center">1.00</td>
-				                        <td>ea</td>
-				                        <td class="center">10.56</td>
-				                        <td>㎡</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                    </tr>
-				                    <tr class="gradeA">
-				                        <td>GVL-None-윌링투-A-LWG-외부-0005</td>
-				                        <td class="center">HAN</td>
-				                        <td class="center">1.00</td>
-				                        <td>ea</td>
-				                        <td class="center">10.56</td>
-				                        <td>㎡</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                    </tr>
-				                    <tr class="gradeC">
-				                        <td>GVL-None-윌링투-A-LWG-외부-0005</td>
-				                        <td class="center">HAN</td>
-				                        <td class="center">1.00</td>
-				                        <td>ea</td>
-				                        <td class="center">10.56</td>
-				                        <td>㎡</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                    </tr>
-				                    <tr class="gradeA">
-				                        <td>GVL-None-윌링투-A-LWG-외부-0005</td>
-				                        <td class="center">HAN</td>
-				                        <td class="center">1.00</td>
-				                        <td>ea</td>
-				                        <td class="center">10.56</td>
-				                        <td>㎡</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                    </tr>
-				                    <tr class="gradeC">
-				                        <td>GVL-None-윌링투-A-LWG-외부-0005</td>
-				                        <td class="center">SAM</td>
-				                        <td class="center">2.00</td>
-				                        <td>ea</td>
-				                        <td class="center"></td>
-				                        <td>㎡</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">60,000</td>
-				                        <td class="center">50,000</td>
-				                    </tr>                    
+				               
 			                    </tbody>
 			                    <tfoot>
 				                    <tr>
@@ -486,10 +148,9 @@
                 dom: '<"html5buttons"B>lTfgitp',
                 buttons: [
                     { extend: 'copy'},
-                    {extend: 'csv'},
-                    {extend: 'excel', title: 'ExampleFile'},
-                    {extend: 'pdf', title: 'ExampleFile'},
-
+//                     {extend: 'csv', bom:true},
+                    {extend: 'excel', title: 'KIMG_Database_Report', bom:true},
+//                     {extend: 'pdf', title: 'KIMG_Database_Report', bom:true},
                     {extend: 'print',
                      customize: function (win){
                             $(win.document.body).addClass('white-bg');
