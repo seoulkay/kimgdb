@@ -47,9 +47,12 @@
                             <h5>품목</h5>
                         </div>
                         <div class="ibox-content">
-                            <h1 class="no-margins">386,200</h1>
-                            <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>
-                            <small>Total views</small>
+                        	<div class="row">
+                        		<div class="col-md-12">
+                        			<h1 class="no-margins">6,200</h1>
+                            		<div class="font-bold text-success">총 등록된 품목</div>
+                            	</div>                        	
+                        	</div>                                                        
                         </div>
                     </div>
                 </div>
@@ -60,19 +63,18 @@
                             <h5>아이템</h5>
                         </div>
                         <div class="ibox-content">
-
                             <div class="row">
                                 <div class="col-md-6">
+                                    <!-- 총 등록되어 있는 아이템 수 -->
                                     <h1 class="no-margins">28,152</h1>
                                     <div class="font-bold text-navy">총 등록된 아이템</div>
                                 </div>
                                 <div class="col-md-6">
+                                	<!-- 총 등록되어 있는 작업 수 (아이템 하위 태스크 개수) -->
                                     <h1 class="no-margins">42,252</h1>
                                     <div class="font-bold text-navy">총 등록된 작업</div>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -86,12 +88,14 @@
 
                             <div class="row">
                                 <div class="col-md-6">
+                                    <!-- 총 등록되어 있는 이슈 개수 -->
                                     <h1 class="no-margins">28,152</h1>
                                     <div class="font-bold text-danger">총 등록된 이슈</div>
                                 </div>
                                 <div class="col-md-6">
-                                    <h1 class="no-margins">42,252</h1>
-                                    <div class="font-bold text-danger">총 등록된 작업</div>
+                                    <!-- 이슈 완료 개수: 총 등록되어 있는 이슈 중 작업으로 보고된 개수 -->
+                                    <h1 class="no-margins">24,120</h1>
+                                    <div class="font-bold text-danger">총 보고된 이슈</div>
                                 </div>
                             </div>
                         </div>
@@ -105,129 +109,56 @@
                         </div>
                         <div class="ibox-content">
                         	<div class="row">
-                        		<h1 class="no-margins">386</h1>
-                        		<div class="font-bold text-warning">총 등록된 유저</div>                         
+                        		<div class="col-md-12">
+	                        		<!-- 총 등록되어 있는 유저 수 -->
+	                        		<h1 class="no-margins">386</h1>
+	                        		<div class="font-bold text-warning">총 등록된 유저</div>
+                        		</div>                         
                        		</div>
                     	</div>                       	
                     </div>
                 </div>                
             </div>
                 <div class="row">
-                    <div class="col-lg-8">
+                    <div class="col-lg-6">
                         <div class="ibox float-e-margins">
                             <div class="ibox-content">
                                 <div>
-                                        <span class="pull-right text-right">
-                                        <small>Average value of sales in the past month in: <strong>United states</strong></small>
-                                            <br/>
-                                            All sales: 162,862
-                                        </span>
-                                    <h3 class="font-bold no-margins">아이템 분석</h3>
+                                    <h4>아이템 비율</h4>
                                 </div>
-
+                                <!-- 아이템에서 카테고리 비율 -->
                                 <div class="m-t-sm">
-
                                     <div class="row">
-                                        <div class="col-md-8">
+                                        <div class="col-md-12">
                                             <div>
-                                            <canvas id="doughnutChart" height="140"></canvas>
+                                            <canvas id="doughnutChart1" height="120"></canvas>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
-                                            <ul class="stat-list m-t-lg">
-                                                <li>
-                                                    <h2 class="no-margins">2,346</h2>
-                                                    <small>Total orders in period</small>
-                                                    <div class="progress progress-mini">
-                                                        <div class="progress-bar" style="width: 30%;"></div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <h2 class="no-margins ">4,422</h2>
-                                                    <small>Orders in last month</small>
-                                                    <div class="progress progress-mini">
-                                                        <div class="progress-bar" style="width: 60%;"></div>
-                                                    </div>
-                                                </li>
-                                            </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-content">
+                                <div>
+                                    <h4>작업 비율</h4>
+                                </div>
+								<!-- 아이템에서 작업구분 비율 -->
+                                <div class="m-t-sm">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div>
+                                            <canvas id="doughnutChart2" height="120"></canvas>
+                                            </div>
                                         </div>
                                     </div>
-
-                                </div>
-
-                                <div class="m-t-md">
-                                    <small class="pull-right">
-                                        <i class="fa fa-clock-o"> </i>
-                                        Update on 16.07.2015
-                                    </small>
-                                    <small>
-                                        <strong>Analysis of sales:</strong> The value has been changed over time, and last month reached a level over $50,000.
-                                    </small>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <span class="label label-warning pull-right">Data has changed</span>
-                                <h5>작업량 추이</h5>
-                            </div>
-                            <div class="ibox-content">
-                                <div class="row">
-                                    <div class="col-xs-4">
-                                        <small class="stats-label">Pages / Visit</small>
-                                        <h4>236 321.80</h4>
-                                    </div>
-
-                                    <div class="col-xs-4">
-                                        <small class="stats-label">% New Visits</small>
-                                        <h4>46.11%</h4>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <small class="stats-label">Last week</small>
-                                        <h4>432.021</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ibox-content">
-                                <div class="row">
-                                    <div class="col-xs-4">
-                                        <small class="stats-label">Pages / Visit</small>
-                                        <h4>643 321.10</h4>
-                                    </div>
-
-                                    <div class="col-xs-4">
-                                        <small class="stats-label">% New Visits</small>
-                                        <h4>92.43%</h4>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <small class="stats-label">Last week</small>
-                                        <h4>564.554</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ibox-content">
-                                <div class="row">
-                                    <div class="col-xs-4">
-                                        <small class="stats-label">Pages / Visit</small>
-                                        <h4>436 547.20</h4>
-                                    </div>
-
-                                    <div class="col-xs-4">
-                                        <small class="stats-label">% New Visits</small>
-                                        <h4>150.23%</h4>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <small class="stats-label">Last week</small>
-                                        <h4>124.990</h4>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="row">
@@ -393,10 +324,10 @@
         });
         
         var doughnutData = {
-                labels: ["App","Software","Laptop" ],
+                labels: ["룩","사이니지","스펙타큘러","스포츠 장비"],
                 datasets: [{
-                    data: [300,50,100],
-                    backgroundColor: ["#a3e1d4","#dedede","#b5b8cf"]
+                    data: [300,250,100,20],
+                    backgroundColor: ["#a3e1d4","#dedede","#b5b8cf","#efcda7"]
                 }]
             } ;
 
@@ -406,7 +337,24 @@
             };
 
 
-            var ctx4 = document.getElementById("doughnutChart").getContext("2d");
+            var ctx4 = document.getElementById("doughnutChart1").getContext("2d");            
             new Chart(ctx4, {type: 'doughnut', data: doughnutData, options:doughnutOptions});
+            
+        var doughnutData2 = {
+                labels: ["제작 및 출력","설치","철거"],
+                datasets: [{
+                    data: [300,250,100],
+                    backgroundColor: ["#a3e1d4","#dedede","#b5b8cf"]
+                }]
+            } ;
+
+
+            var doughnutOptions2 = {
+                responsive: true
+            };
+        
+        
+            var ctx5 = document.getElementById("doughnutChart2").getContext("2d");
+            new Chart(ctx5, {type: 'doughnut', data: doughnutData2, options:doughnutOptions2});
     </script>
 </html>
