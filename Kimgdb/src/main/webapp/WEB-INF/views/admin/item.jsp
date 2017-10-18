@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 		<jsp:include page="../header.jsp" flush="true">
@@ -238,7 +239,7 @@
                                         ${ele.cItmDesc}
                                     </td>
                                     <td class="text-center">
-	                                    <span class="pie">1,0
+                                        <span class="pie"><c:if test="${ele.nManStatus gt 0 }">1,0</c:if><c:if test="${ele.nManStatus le 0 }">0,1</c:if>
 		                                    <svg class="peity" height="16" width="16">
 		                                    	<path d="M 8 8 L 8 0 A 8 8 0 0 1 14.933563796318165 11.990700825968545 Z" fill="#1ab394"></path>
 		                                    	<path d="M 8 8 L 14.933563796318165 11.990700825968545 A 8 8 0 1 1 7.999999999999998 0 Z" fill="#d7d7d7"></path>
@@ -246,7 +247,7 @@
 	                                    </span>
                                     </td>
                                     <td class="text-center">
-	                                    <span class="pie">0,1
+	                                    <span class="pie"><c:if test="${ele.nInsStatus gt 0 }">1,0</c:if><c:if test="${ele.nInsStatus le 0 }">0,1</c:if>
 		                                    <svg class="peity" height="16" width="16">
 		                                    	<path d="M 8 8 L 8 0 A 8 8 0 0 1 14.933563796318165 11.990700825968545 Z" fill="#1ab394"></path>
 		                                    	<path d="M 8 8 L 14.933563796318165 11.990700825968545 A 8 8 0 1 1 7.999999999999998 0 Z" fill="#d7d7d7"></path>
@@ -254,7 +255,7 @@
 	                                    </span>
                                     </td>
                                     <td class="text-center">
-	                                    <span class="pie">0,1
+	                                    <span class="pie"><c:if test="${ele.nDesStatus gt 0 }">1,0</c:if><c:if test="${ele.nDesStatus le 0 }">0,1</c:if>
 		                                    <svg class="peity" height="16" width="16">
 		                                    	<path d="M 8 8 L 8 0 A 8 8 0 0 1 14.933563796318165 11.990700825968545 Z" fill="#1ab394"></path>
 		                                    	<path d="M 8 8 L 14.933563796318165 11.990700825968545 A 8 8 0 1 1 7.999999999999998 0 Z" fill="#d7d7d7"></path>
@@ -262,7 +263,7 @@
 	                                    </span>
                                     </td>
                                     <td class="text-center">
-	                                    <span class="label label-danger">3</span>
+	                                    <c:if test="${ele.nIncStatus gt 0 }"><span class="label label-danger">${ele.nIncStatus}</span></c:if><c:if test="${ele.nIncStatus le 0 }"></c:if>
                                     </td>                                    
                                     <td class="text-right">                                    
                                         <div class="btn-group">
@@ -642,9 +643,12 @@ $('#cItmMateSrc').selectpicker('val', "${srcPar.cItmMate}");
 		}
 		
 		function deleteItem(ref){
-			confirm("삭제 하시겠습니까?");
-			location.href = "deleteItem?ref="+ref;
-			
+			var r = confirm("삭제 하시겠습니까?");
+			if(r == true){
+				location.href = "deleteItem?ref="+ref;
+			} else{
+				
+			}
 		}
 </script>
 </html>

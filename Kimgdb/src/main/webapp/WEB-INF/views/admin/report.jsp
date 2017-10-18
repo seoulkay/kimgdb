@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 		<jsp:include page="../header.jsp" flush="true">
@@ -66,86 +69,24 @@
 				                    </tr>
 			                    </thead>
 			                    <tbody>
-				                    <tr class="gradeA">
-				                        <td>YAL-ALP-CER-B-LK-LBD-A1-1F-006</td>
-				                        <td class="center">YAL</td>
-				                        <td class="center">ALP</td>
-				                        <td class="center">CER</td>
-				                        <td class="center">B</td>
-				                        <td class="center">룩</td>
-				                        <td>Look Drop Banner</td>
-				                        <td class="center">A1</td>
-				                        <td class="center">1F</td>
-				                        <td class="center">006</td>
-				                        <td class="center">UFO</td>
-				                        <td>제작 및 출력</td>
-				                        <td>검수완료</td>
-				                        <td>2017-10-02</td>
+			                    <c:forEach items="${itemList }" var="ele" varStatus="status">
+				                    <tr>
+				                        <td>${ele.cItmCode }</td>
+				                        <td class="center">${ele.cItmVenue }</td>
+				                        <td class="center">${ele.cItmSport }</td>
+				                        <td class="center">${ele.cItmDept }</td>
+				                        <td class="center">${ele.cItmEvent }</td>
+				                        <td class="center">${ele.cItmCate }</td>
+				                        <td>${ele.cItmProd }</td>
+				                        <td class="center">${ele.cItmDesc }</td>
+				                        <td class="center">${ele.cItmFloor }</td>
+				                        <td class="center">${ele.cItmLocation }</td>
+				                        <td class="center">${ele.cItmCom }</td>
+				                        <td>${ele.cTtpName }</td>
+				                        <td>${ele.cTstName }</td>
+				                        <td><fmt:formatDate pattern = "yyyy-MM-dd"  value = "${ele.dTskCrt }" /></td>
 				                    </tr>
-				                    <tr class="gradeA">
-				                        <td>YAL-ALP-CER-B-LK-LBD-A1-1F-006</td>
-				                        <td class="center">YAL</td>
-				                        <td class="center">ALP</td>
-				                        <td class="center">CER</td>
-				                        <td class="center">B</td>
-				                        <td class="center">룩</td>
-				                        <td>Look Drop Banner</td>
-				                        <td class="center">A1</td>
-				                        <td class="center">1F</td>
-				                        <td class="center">006</td>
-				                        <td class="center">UFO</td>
-				                        <td>설치</td>
-				                        <td>검수완료</td>
-				                        <td>2017-10-07</td>
-				                    </tr>
-				                    <tr class="gradeA">
-				                        <td>YAL-ALP-CER-B-LK-LBD-A1-1F-006</td>
-				                        <td class="center">YAL</td>
-				                        <td class="center">ALP</td>
-				                        <td class="center">CER</td>
-				                        <td class="center">B</td>
-				                        <td class="center">룩</td>
-				                        <td>Look Drop Banner</td>
-				                        <td class="center">A1</td>
-				                        <td class="center">1F</td>
-				                        <td class="center">006</td>
-				                        <td class="center">UFO</td>
-				                        <td>철거</td>
-				                        <td>검수완료</td>
-				                        <td>2017-11-12</td>
-				                    </tr>
-				                    <tr class="gradeA">
-				                        <td>YAL-ALP-DOP-A-SI-RIS-A1-B1-001</td>
-				                        <td class="center">YAL</td>
-				                        <td class="center">ALP</td>
-				                        <td class="center">DOP</td>
-				                        <td class="center">A</td>
-				                        <td class="center">사이니지</td>
-				                        <td>Room ID Sign small</td>
-				                        <td class="center">A1</td>
-				                        <td class="center">B1</td>
-				                        <td class="center">001</td>
-				                        <td class="center">HAN</td>
-				                        <td>제작 및 출력</td>
-				                        <td>검수완료</td>
-				                        <td>2017-11-23</td>
-				                    </tr>
-				                    <tr class="gradeA">
-				                        <td>YAL-ALP-DOP-A-SI-RIS-A1-B1-001</td>
-				                        <td class="center">YAL</td>
-				                        <td class="center">ALP</td>
-				                        <td class="center">DOP</td>
-				                        <td class="center">A</td>
-				                        <td class="center">사이니지</td>
-				                        <td>Room ID Sign small</td>
-				                        <td class="center">A1</td>
-				                        <td class="center">B1</td>
-				                        <td class="center">001</td>
-				                        <td class="center">HAN</td>
-				                        <td>철거</td>
-				                        <td>검수요청</td>
-				                        <td>2017-11-28</td>
-				                    </tr>				                                 
+				               </c:forEach>
 			                    </tbody>
 			                    <tfoot>
 				                    <tr>
@@ -176,43 +117,39 @@
       	<jsp:include page="../footer.jsp" flush="true">
 		<jsp:param name="param" value="value1" />
 		</jsp:include>
-
 		
 		</div>
     </div>    
-    
 </body>
 
 <!-- Page-Level Scripts -->
     <script>
-        $(document).ready(function(){
-            $('.dataTables-example').DataTable({
-                scrollX: true,
-            	pageLength: 25,
-                responsive: true,
-                dom: '<"html5buttons"B>lTfgitp',
-                buttons: [
-                    { extend: 'copy'},
-                    {extend: 'csv'},
-                    {extend: 'excel', title: 'ExampleFile'},
-                    {extend: 'pdf', title: 'ExampleFile'},
+    $(document).ready(function(){
+        $('.dataTables-example').DataTable({
+        	scrollX: true,
+        	pageLength: 25,
+            responsive: true,
+            dom: '<"html5buttons"B>lTfgitp',
+            buttons: [
+                { extend: 'copy'},
+//                 {extend: 'csv', bom:true},
+                {extend: 'excel', title: 'KIMG_Database_Report', bom:true},
+//                 {extend: 'pdf', title: 'KIMG_Database_Report', bom:true},
+                {extend: 'print',
+                 customize: function (win){
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
 
-                    {extend: 'print',
-                     customize: function (win){
-                            $(win.document.body).addClass('white-bg');
-                            $(win.document.body).css('font-size', '10px');
-
-                            $(win.document.body).find('table')
-                                    .addClass('compact')
-                                    .css('font-size', 'inherit');
-                    }
-                    }
-                ]
-
-            });
+                        $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                }
+                }
+            ]
 
         });
 
+    });
     </script>
 
 </html>

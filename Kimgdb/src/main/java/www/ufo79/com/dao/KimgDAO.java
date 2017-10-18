@@ -155,4 +155,10 @@ public class KimgDAO extends SqlSessionDaoSupport{
 	public List<KimgTaskVO> selectTask(int vo){
 		return getSqlSession().selectList("mapper.selectTask", vo);
 	}
+	
+	public List<KimgTaskVO> selectAllTask(){
+		return getSqlSession().selectList("mapper.selectAllTask");
+	}
+	
+	
 }

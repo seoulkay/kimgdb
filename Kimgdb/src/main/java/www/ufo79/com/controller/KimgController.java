@@ -265,6 +265,7 @@ public class KimgController {
 			return "redirect:../";
 		}
 		
+		model.addAttribute("itemList", dao.selectAllTask());
 		model.addAttribute("selectedMenu", "report");
 		return "admin/report";
 	}
