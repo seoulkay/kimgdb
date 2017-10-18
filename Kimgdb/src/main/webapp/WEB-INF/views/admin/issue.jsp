@@ -43,19 +43,19 @@
 
             <div class="ibox-content m-b-sm border-bottom">
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="form-group">
                             <label class="control-label" for="order_id">번호</label>
                             <input type="text" id="order_id" name="order_id" value="" placeholder="Issue ID" class="form-control">
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="form-group">
                             <label class="control-label" for="status">아이템코드</label>
                             <input type="text" id="status" name="status" value="" placeholder="Item Code" class="form-control">
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="form-group">
                             <label class="control-label" for="cItmProd">품목</label>
                            	<select class="selectpicker form-control m-b" data-live-search="true" id="cItmProd" name="cItmProd">
@@ -66,9 +66,7 @@
                             </select>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="form-group">
                             <label class="control-label" for="cItmVenue">베뉴</label>                       		
                            	<select class="selectpicker form-control m-b" data-live-search="true" name="cItmVenue" id="cItmVenue" >
@@ -76,6 +74,14 @@
                            		<option value="">ABT - 알펜시아 바이애슬론 센터</option> 
                            		<option value="">ACC - 알펜시아 크로스컨트리 센터</option>                            	
                             </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label" for="cItmCrtUsr">이슈 생성자</label>                       		
+                           	<input type="text" id="status" name="status" value="" placeholder="Reported by" class="form-control">
                         </div>
                     </div>
                     <div class="col-sm-4">
@@ -97,6 +103,17 @@
                         </div>
                     </div>
                 </div>
+                
+                <div class="row">
+                	<div class="col-sm-3"></div>
+                	<div class="col-sm-3"></div>
+                	<div class="col-sm-3">
+                		<button type="button" class="btn btn-primary btn-sm btn-block" type="button" id="">생성</button>
+                	</div>
+                	<div class="col-sm-3">
+                		<button type="button" class="btn btn-primary btn-sm btn-block" onclick="">검색</button>
+                	</div>
+                </div>
 
             </div>
 
@@ -112,6 +129,7 @@
                                     <th data-hide="phone">아이템코드</th>
                                     <th data-hide="phone">품목</th>
                                     <th data-hide="phone">베뉴</th>
+                                    <th data-hide="phone">이슈 생성자</th>
                                     <th data-hide="phone">이슈 생성일</th>
                                     <th data-hide="phone">상태</th>
                                 </tr>
@@ -122,14 +140,10 @@
                                     <td>GVL-None-윌링투-A-LWG-외부-0005</td>
                                     <td>Look Wall Graphic</td>
                                     <td>ALP</td>
+                                    <td>kay.lee</td>
                                     <td>2017-09-29</td>
                                     <td>
-                                        <span class="pie">1,1
-		                                    <svg class="peity" height="16" width="16">
-		                                    	<path d="M 8 8 L 8 0 A 8 8 0 0 1 14.933563796318165 11.990700825968545 Z" fill="#ed5565"></path>
-		                                    	<path d="M 8 8 L 14.933563796318165 11.990700825968545 A 8 8 0 1 1 7.999999999999998 0 Z" fill="#ed5565"></path>
-	                                    	</svg>
-	                                    </span>
+                                        <!-- <i class="fa fa-circle-o text-navy"></i> -->
                                     </td>
                                     <td class="text-right">
                                         <div class="btn-group">
@@ -144,6 +158,7 @@
                                     <td>BKV-OFR-DOP-A-LTS-1층-001-0001</td>
                                     <td>Look Table Skirt</td>
                                     <td>ACC</td>
+                                    <td>kay.lee</td>
                                     <td>2017-09-26</td>
                                     <td>
                                     	<i class="fa fa-check text-navy"></i>
@@ -161,6 +176,7 @@
                                     <td>GVL-None-윌링투-A-LWG-외부-0005</td>
                                     <td>Look Wall Graphic</td>
                                     <td>ALP</td>
+                                    <td>kay.lee</td>
                                     <td>2017-09-25</td>
                                     <td>
                                         <i class="fa fa-check text-navy"></i>
@@ -178,6 +194,7 @@
                                     <td>BKV-OFR-DOP-A-LTS-1층-001-0001</td>
                                     <td>Look Table Skirt</td>
                                     <td>ACC</td>
+                                    <td>kay.lee</td>
                                     <td>2017-09-25</td>
                                     <td>
                                         <i class="fa fa-check text-navy"></i>
