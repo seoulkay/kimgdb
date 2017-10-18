@@ -80,8 +80,8 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="control-label" for="cItmVenue">이슈 생성자</label>                       		
-                           	<input type="text" id="status" name="status" value="" placeholder="Item Code" class="form-control">
+                            <label class="control-label" for="cItmCrtUsr">이슈 생성자</label>                       		
+                           	<input type="text" id="status" name="status" value="" placeholder="Reported by" class="form-control">
                         </div>
                     </div>
                     <div class="col-sm-4">
