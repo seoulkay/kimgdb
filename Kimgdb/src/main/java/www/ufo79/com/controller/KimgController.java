@@ -252,7 +252,9 @@ public class KimgController {
 		if(session.getAttribute("cPerId") == null){
 			return "redirect:../";
 		}
+	
 		
+		model.addAttribute("itemList", dao.selectAllItem());
 		model.addAttribute("selectedMenu", "account");
 		return "admin/account";
 	}

@@ -139,7 +139,7 @@
                                                     <h2 class="no-margins">2,346</h2>
                                                     <small>Total orders in period</small>
                                                     <div class="progress progress-mini">
-                                                        <div class="progress-bar" style="width: 48%;"></div>
+                                                        <div class="progress-bar" style="width: 30%;"></div>
                                                     </div>
                                                 </li>
                                                 <li>
@@ -391,5 +391,22 @@
             new Chart(ctx, {type: 'line', data: lineData, options:lineOptions});
 
         });
+        
+        var doughnutData = {
+                labels: ["App","Software","Laptop" ],
+                datasets: [{
+                    data: [300,50,100],
+                    backgroundColor: ["#a3e1d4","#dedede","#b5b8cf"]
+                }]
+            } ;
+
+
+            var doughnutOptions = {
+                responsive: true
+            };
+
+
+            var ctx4 = document.getElementById("doughnutChart").getContext("2d");
+            new Chart(ctx4, {type: 'doughnut', data: doughnutData, options:doughnutOptions});
     </script>
 </html>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html>
 		<jsp:include page="../header.jsp" flush="true">
@@ -70,9 +72,10 @@
 				                    </tr>
 			                    </thead>
 			                    <tbody>
-				                    <tr class="gradeA">
+			                    <c:forEach items="${itemList }" var="ele">
+			                    <tr class="gradeA">
 				                        <td>AVL-None-윌링투-A-LWG-외부-0005</td>
-				                        <td class="center">HAN</td>
+				                        <td class="center">${ele }</td>
 				                        <td class="center">1.00</td>
 				                        <td>ea</td>
 				                        <td class="center">10.56</td>
@@ -90,6 +93,8 @@
 				                        <td class="center">60,000</td>
 				                        <td class="center">50,000</td>
 				                    </tr>
+			                    </c:forEach>
+				                    
 				                    <tr class="gradeC">
 				                        <td>BKV-OFR-DOP-A-LTS-1층-001-0001</td>
 				                        <td class="center">UFO</td>
