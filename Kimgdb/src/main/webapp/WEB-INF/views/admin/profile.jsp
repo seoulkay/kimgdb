@@ -121,7 +121,7 @@
                                         </div>
                                         <div class="modal-body">
                                          <form method="POST" class="form-horizontal"  id="addAccountForm">
-                                         <input type="hidden" class="form-control" name="nPerCnt" id="nPerCnt" maxlength="30">
+                                         <input type="hidden" class="form-control" name="nPerCnt" id="nPerCnt" maxlength="30" value="0">
                                             <div class="form-group"><label class="col-sm-2 control-label">아이디</label>
 			                                    <div class="col-sm-10"><input type="text" class="form-control" name="cPerId" id="cPerId" maxlength="30"></div>
 			                                </div>

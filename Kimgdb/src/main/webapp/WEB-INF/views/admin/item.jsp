@@ -136,7 +136,9 @@
                 	<div class="col-sm-3"></div>
                 	<div class="col-sm-3"></div>
                 	<div class="col-sm-3">
+                	<c:if test='${sessionScope.cred.cPerCom eq "adm"}'>
                 		<button type="button" class="btn btn-primary btn-sm btn-block" id="addItemBtn">생성</button>
+                	</c:if>
                 	</div>
                 	<div class="col-sm-3">
                 		<button type="button" class="btn btn-primary btn-sm btn-block" onclick="searchItem()">검색</button>
@@ -271,8 +273,8 @@
                                     <td class="text-right">                                    
                                         <div class="btn-group">
                                             <button class="btn-white btn btn-xs" onclick="location.href='itemDetail?nItmCnt= ${ele.nItmCnt}' ">보기</button>
-                                            <button class="btn-white btn btn-xs" onclick="selectItemOne(${ele.nItmCnt})">수정</button>
-                                            <button class="btn-white btn btn-xs" onclick="deleteItem(${ele.nItmCnt})">삭제</button>
+                                            <button class="btn-white btn btn-xs <c:if test='${sessionScope.cred.cPerCom ne "adm"}'>disabled</c:if>" onclick="<c:if test='${sessionScope.cred.cPerCom eq "adm"}'>selectItemOne(${ele.nItmCnt})</c:if>">수정</button>
+                                            <button class="btn-white btn btn-xs <c:if test='${sessionScope.cred.cPerCom ne "adm"}'>disabled</c:if>" onclick="<c:if test='${sessionScope.cred.cPerCom eq "adm"}'>deleteItem(${ele.nItmCnt})</c:if>">삭제</button>
                                         </div>
                                     </td>
                                 </tr>

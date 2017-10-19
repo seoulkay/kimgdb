@@ -19,7 +19,9 @@ public class KimgTaskVO extends KimgPhotoVO{
 	private String redirect;
 	//조인 벨류
 	private String cTstName;
+	private String cTstType;
 	private String cTtpName;
+	private String cTtpType;
 	
 	private int nItmCnt;
 	private String cItmCode;
@@ -79,6 +81,12 @@ public class KimgTaskVO extends KimgPhotoVO{
 	private String cPrdModUsr;
 	private int nPrdDel;
 	
+	public String getcTstType() {
+		return cTstType;
+	}
+	public void setcTstType(String cTstType) {
+		this.cTstType = cTstType;
+	}
 	public String getcTstName() {
 		return cTstName;
 	}
@@ -492,6 +500,12 @@ public class KimgTaskVO extends KimgPhotoVO{
 	}
 	public void setnPrdDel(int nPrdDel) {
 		this.nPrdDel = nPrdDel;
+	}
+	public String getcTtpType() {
+		return cTtpType;
+	}
+	public void setcTtpType(String cTtpType) {
+		this.cTtpType = cTtpType;
 	}
 	
 

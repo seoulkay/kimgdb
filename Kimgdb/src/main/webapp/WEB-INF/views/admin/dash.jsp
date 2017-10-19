@@ -36,7 +36,7 @@
                     </ol>
                 </div>
                 <p>
-                    <span class="text-muted small">업데이트 : ${dashInfo.dDasCrtDate }<br>
+                    <span class="text-muted small">업데이트 : <fmt:formatDate pattern = "yyyy-MM-dd HH:mm"  value = "${dashInfo.dDasCrtDate }" /><br>
                     </span>
                     </p>
                 <div class="col-lg-2">
@@ -208,7 +208,69 @@
                                     <td><fmt:formatDate pattern = "yyyy-MM-dd HH:mm"  value = "${ele.dTskMod }" /></td>
                                     <td class="text-right">
                                         <div class="btn-group">
-                                            <a href="issue?ref=${ele.nTskCnt }"><button class="btn-white btn btn-xs">보기</button></a>
+                                            <a href="itemDetail?nItmCnt=${ele.nItmCnt }"><button class="btn-white btn btn-xs">보기</button></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </c:forEach>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="7">
+                                        <ul class="pagination pull-right"></ul>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>작업 트래커 </h5>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="row">
+                                    <div class="col-sm-9 m-b-xs">
+                                    </div>
+                                    <form action="dash" method="post" id="searchForm">
+                                    <div class="col-sm-3">
+<!--                                         <div class="input-group"><input type="text" placeholder="Search" class="input-sm form-control" id="srcPar" name="srcPar"> <span class="input-group-btn"> -->
+<!--                                         <button type="button" class="btn btn-sm btn-primary" onclick="searchForm()"> Go!</button> </span></div> -->
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                                <thead>
+                                <tr>
+                                    <th>작업번호</th>
+                                    <th data-hide="phone">설명</th>
+                                    <th data-hide="phone">아이템코드</th>
+                                    <th data-hide="phone">베뉴</th>
+                                    <th data-hide="phone">작업 생성자</th>
+                                    <th data-hide="phone">작업 생성일</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach items="${taskList }" var="ele">
+                                <tr>
+                                    <td>${ele.nTskCnt }</td>
+                                    <td>${ele.cTskNote }</td>
+                                    <td>${ele.cItmCode }</td>
+                                    <td>${ele.cItmVenue }</td>
+                                    <td>${ele.cTskCrtUsr }</td>
+                                    <td><fmt:formatDate pattern = "yyyy-MM-dd HH:mm"  value = "${ele.dTskMod }" /></td>
+                                    <td class="text-right">
+                                        <div class="btn-group">
+                                            <a href="itemDetail?nItmCnt=${ele.nItmCnt }"><button class="btn-white btn btn-xs">보기</button></a>
                                         </div>
                                     </td>
                                 </tr>

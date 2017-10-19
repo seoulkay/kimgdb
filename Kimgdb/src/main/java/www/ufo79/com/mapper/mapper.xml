@@ -651,7 +651,7 @@
     left join KIMG.kimgEvent ev on it.cItmEvent = ev.cEvnCode
     left join KIMG.kimgCategory cat on it.cItmCate = cat.cCatType
     left join KIMG.kimgProduct pro on it.cItmProd = pro.cPrdCode
-	where nTskDel = 0
+	where nTskDel = 0 and it.nItmDel = 0
 	ORDER BY t.nTskCnt desc;
   	</select>
   	

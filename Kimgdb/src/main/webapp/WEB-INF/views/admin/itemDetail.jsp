@@ -105,8 +105,11 @@
 
                                     <div>
                                         <div class="btn-group">
-                                            <button class="btn btn-primary btn-sm" id="addItemBtn"><i class="fa fa-star"></i> 작업추가 </button>
+                                            <c:if test='${sessionScope.cred.cPerCom eq "adm"}'><button class="btn btn-primary btn-sm" id="addItemBtn"><i class="fa fa-star"></i> 작업추가 </button></c:if>
                                         </div>
+                                        <div class="btn-group">
+	                                        <c:if test='${sessionScope.cred.cPerCom eq "adm"}'><button class="btn btn-primary btn-sm" onclick="showPrice();"><i class="fa fa-star"></i> 단가보기 </button></c:if>
+	                                    </div>
                                     </div>
 
 
@@ -140,8 +143,14 @@
                                      <td><fmt:formatDate pattern = "yyyy-MM-dd"  value = "${ele.dTskMod}" /></td>
                                      <td class="text-right">                                    
                                         <div class="btn-group">
-                                            <button class="btn-white btn btn-xs" onclick="selectItemOne(${ele.nTskCnt})">보기 / 수정</button>
-                                            <button class="btn-white btn btn-xs" onclick="deleteItem(${ele.nTskCnt})">삭제</button>
+                                        	<c:if test='${sessionScope.cred.cPerCom ne "adm" && ele.cTstType ne "CNF"}'>
+                                        		<button class="btn-white btn btn-xs" onclick="selectItemOne(${ele.nTskCnt})">보기 / 수정</button>
+                                        	</c:if>
+                                        	<c:if test='${sessionScope.cred.cPerCom ne "adm" && ele.cTstType eq "CNF"}'>
+                                        		<button class="btn-white btn btn-xs" onclick="selectItemOneReadOnly(${ele.nTskCnt})">보기</button>
+                                        	</c:if>
+                                            <c:if test='${sessionScope.cred.cPerCom eq "adm"}'><button class="btn-white btn btn-xs" onclick="selectItemOne(${ele.nTskCnt})">보기 / 수정</button></c:if>
+                                            <button class="btn-white btn btn-xs <c:if test='${sessionScope.cred.cPerCom ne "adm"}'>disabled</c:if>" onclick="<c:if test='${sessionScope.cred.cPerCom eq "adm"}'>deleteItem(${ele.nTskCnt})</c:if>">삭제</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -180,7 +189,7 @@
 		
 		</div>
     </div>
-    <div class="modal inmodal" id="addItemModal" tabindex="-1" role="dialog"  aria-hidden="true">
+    						<div class="modal inmodal" id="addItemModal" tabindex="-1" role="dialog"  aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content animated fadeIn">
                                         <div class="modal-header">
@@ -241,6 +250,76 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                            <c:if test='${sessionScope.cred.cPerCom eq "adm"}'>
+                            <div class="modal inmodal" id="priceModal" tabindex="-1" role="dialog"  aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content animated fadeIn">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">닫기</span></button>
+                                            <i class="fa fa-clock-o modal-icon"></i>
+                                            <h4 class="modal-title">단가</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                         <form method="POST" class="form-horizontal">
+			                                <div class="form-group"><label class="col-sm-4 control-label">조직위 단가 합계</label>
+			                                    <div class="col-sm-8">${item.cItmUnitPrice1 }</div>
+			                                </div>
+			                                <div class="form-group"><label class="col-sm-4 control-label">조직위 금액 합계</label>
+			                                    <div class="col-sm-8">${item.cItmPrice1 }</div>
+			                                </div>
+			                                <div class="form-group"><label class="col-sm-4 control-label">조직위 재료비 단가</label>
+			                                    <div class="col-sm-8">${item.cItmMateUnitPrice1 }</div>
+			                                </div>
+			                                <div class="form-group"><label class="col-sm-4 control-label">조직위 재료비 금액</label>
+			                                    <div class="col-sm-8">${item.cItmMatePrice1 }</div>
+			                                </div>
+			                                <div class="form-group"><label class="col-sm-4 control-label">조직위 노무비 단가</label>
+			                                    <div class="col-sm-8">${item.cImtLaborUnitPrice1 }</div>
+			                                </div>
+			                                <div class="form-group"><label class="col-sm-4 control-label">조직위 노무비 금액</label>
+			                                    <div class="col-sm-8">${item.cItmLaborPrice1 }</div>
+			                                </div>
+			                                <div class="form-group"><label class="col-sm-4 control-label">하도급 단가 합계</label>
+			                                    <div class="col-sm-8">${item.cItmUnitPrice2 }</div>
+			                                </div>
+			                                <div class="form-group"><label class="col-sm-4 control-label">하도급 금액 합계</label>
+			                                    <div class="col-sm-8">${item.cItmPrice2 }</div>
+			                                </div>
+			                                <div class="form-group"><label class="col-sm-4 control-label">하도급 재료비 단가</label>
+			                                    <div class="col-sm-8">${item.cItmMateUnitPrice2 }</div>
+			                                </div>
+			                                <div class="form-group"><label class="col-sm-4 control-label">하도급 재료비 금액</label>
+			                                    <div class="col-sm-8">${item.cItmMatePrice2 }</div>
+			                                </div>
+			                                <div class="form-group"><label class="col-sm-4 control-label">하도급 노무비 단가</label>
+			                                    <div class="col-sm-8">${item.cImtLaborUnitPrice2 }</div>
+			                                </div>
+			                                <div class="form-group"><label class="col-sm-4 control-label">하도급 노무비 금액</label>
+			                                    <div class="col-sm-8">${item.cItmLaborPrice2 }</div>
+			                                </div>
+			                                <div class="form-group"><label class="col-sm-4 control-label">생성일</label>
+			                                    <div class="col-sm-8">${item.dItmCrt }</div>
+			                                </div>
+			                                <div class="form-group"><label class="col-sm-4 control-label">생성한 유저</label>
+			                                    <div class="col-sm-8">${item.cItmCrtUsr }</div>
+			                                </div>
+			                                <div class="form-group"><label class="col-sm-4 control-label">수정일</label>
+			                                    <div class="col-sm-8">${item.dItmMod }</div>
+			                                </div>
+			                                <div class="form-group"><label class="col-sm-4 control-label">수정한 유저</label>
+			                                    <div class="col-sm-8">${item.cItmModUsr }</div>
+			                                </div>
+			                                </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-white" data-dismiss="modal">닫기</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </c:if>
+                            
 </body>
 <script>
     $(document).ready(function(){
@@ -251,9 +330,12 @@
 </script>
 <script src="https://cdn.ckeditor.com/4.7.1/basic/ckeditor.js"></script>
 							<script>
-							            CKEDITOR.replace( 'cTskNote' );
-							</script>
-                            <script>
+							function showPrice(){
+								$("#priceModal").modal('show');
+							}
+							
+							CKEDITOR.replace( 'cTskNote' );
+							
 					        var uploader = new qq.FineUploader({
 					            debug: true,
 					            element: document.getElementById('fine-uploader'),
@@ -351,6 +433,36 @@
 		         	$("#addBtn").hide();
 					$("#updateBtn").hide();
 					$("#updateBtn").show();
+					
+					
+					CKEDITOR.instances['cTskNote'].setData(vo[0].cTskNote);
+					
+					$("#nTskCnt").val(vo[0].nTskCnt);
+					$("#nRefItm").val(vo[0].nRefItm);
+					$('#cTskType').selectpicker('val', vo[0].cTskType);
+					$('#cTskComp').selectpicker('val', vo[0].cTskComp);
+					$('#cTskStatus').selectpicker('val', vo[0].cTskStatus);
+					
+					
+					$("#pictureDom").empty();
+					for(var i = 0; i < vo.length; i++){
+						if(vo[i].cPhoName){
+							$("#pictureDom").append("<div class='row' id='Pho"+vo[i].nPhoCnt+"'><div><a downlaod='"+vo[i].nPhoCnt+"' href='https://www.kimgdb.com/image/"+vo[i].cPhoName+"'><img class='img-responsive' src='https://www.kimgdb.com/image/"+vo[i].cPhoName+"'></a></div><div><button type='button' class='btn btn-primary' onclick='deletePhoto("+vo[i].nPhoCnt+")' >삭제</button></div></div><br>")
+						}
+					}
+					
+		       });
+		}
+		
+		function selectItemOneReadOnly(ref){
+			$.post( "selectDetail/tsk/"+ref)
+		       .done(function( data ) {
+		    	    showItemModal();
+		         	var vo = JSON.parse(JSON.stringify(data));
+		         	
+		         	$("#addBtn").hide();
+					$("#updateBtn").hide();
+					//$("#updateBtn").show();
 					
 					
 					CKEDITOR.instances['cTskNote'].setData(vo[0].cTskNote);

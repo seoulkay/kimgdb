@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 		<jsp:include page="../header.jsp" flush="true">
@@ -58,15 +59,17 @@
                         </div>
                     </div>
                     <div class="col-sm-3">
-                        <div class="form-group">
-                            <label class="control-label" for="">이슈 상태</label>                       		
-                        	<select class="selectpicker form-control m-b" data-live-search="true" name="cTskStatus" id="cTskStatusSrc" >
-                          		<option value="">전체</option>
-                           	<c:forEach items="${taskStatus }" var="ele">
-                           	<option value="${ele.cTstType }">${ele.cTstName }</option> 
-                           	</c:forEach>
-                           	</select>
-                        </div>
+<!--                         <div class="form-group"> -->
+<!--                             <label class="control-label" for="">이슈 상태</label>                       		 -->
+<!--                         	<select class="selectpicker form-control m-b" data-live-search="true" name="cTskStatus" id="cTskStatusSrc" > -->
+<!--                           		<option value="">전체</option> -->
+<%--                            	<c:forEach items="${taskStatus }" var="ele"> --%>
+<%--                            	<option value="${ele.cTstType }">${ele.cTstName }</option>  --%>
+<%--                            	</c:forEach> --%>
+<!--                            	</select> -->
+<!--                         </div> -->
+						<label class="control-label" for="cTskNote">설명</label>                       		
+                       	<input type="text" id="cTskNoteSrc" name="cTskNote" placeholder="note" class="form-control">
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group">
@@ -80,31 +83,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label class="control-label" for="cItmCrtUsr">이슈 생성자</label>                       		
-                           	<input type="text" id="cTskCrtUsrSrc" name="cTskCrtUsr" placeholder="Reported by" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                    
-                    <div class="form-group">
-                        <label class="control-label" for="cTskNote">설명</label>                       		
-                       	<input type="text" id="cTskNoteSrc" name="cTskNote" placeholder="note" class="form-control">
-                    </div>
-<!--                         <div class="form-group"> -->
-<!--                             <label class="control-label" for="date_modified">이슈 생성일</label> -->
-<!--                             <div class="input-group date"> -->
-<!--                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="date_modified" type="datetime-local" class="form-control" pattern = 'yyyy-MM-ddTHH:mm'> -->
-<!--                                 <input type="datetime-local" class="form-control" name="arrive_stmp"  id="arrive_stmp" pattern = 'yyyy-MM-ddTHH:mm' style="width:auto;" required="required"> -->
-<!--                             </div> -->
-<!--                         </div> -->
-                    </div>
-                    <div class="col-sm-3">
-                    </div>
-                    <div class="col-sm-3"></div>
-                </div>
+
                 
                 <div class="row">
                 	<div class="col-sm-3"></div>
@@ -128,9 +107,9 @@
                                 <thead>
                                 <tr>
                                     <th>이슈번호</th>
-                                    <th data-hide="phone">설명</th>
                                     <th data-hide="phone">아이템코드</th>
                                     <th data-hide="phone">베뉴</th>
+                                    <th data-hide="phone">설명</th>
                                     <th data-hide="phone">이슈 생성자</th>
                                     <th data-hide="phone">이슈 생성일</th>
                                     <th data-hide="phone">상태</th>
@@ -140,18 +119,19 @@
                                 <c:forEach items="${issueList }" var="ele">
                                 <tr>
                                     <td>${ele.nTskCnt }</td>
-                                    <td>${ele.cTskNote }</td>
                                     <td>${ele.cItmCode }</td>
                                     <td>${ele.cItmVenue }</td>
+                                    <td style="white-space: nowrap;text-overflow: ellipsis;overflow: hidden;">${ele.cTskNote}</td>
                                     <td>${ele.cTskCrtUsr }</td>
                                     <td><fmt:formatDate pattern = "yyyy-MM-dd HH:mm"  value = "${ele.dTskMod }" /></td>
                                     <td>
-                                    <c:if test="${ele.cTskStatus ne 'TRQ' }"><i class="fa fa-check text-navy"></i></c:if>
+                                    <c:if test="${ele.cTskStatus ne 'TRQ' }"><span class="label label-success">처리완료</span></c:if>
                                     </td>
                                     <td class="text-right">
                                         <div class="btn-group">
-                                            <button class="btn-white btn btn-xs" onclick="selectItemOne(${ele.nTskCnt})">보기 / 수정</button>
-                                            <button class="btn-white btn btn-xs" onclick="deleteItem(${ele.nTskCnt})">삭제</button>
+                                            <c:if test='${sessionScope.cred.cPerCom eq "adm"}'><button class="btn-white btn btn-xs" onclick="selectItemOne(${ele.nTskCnt})">보기 / 수정</button></c:if>
+                                            <c:if test='${sessionScope.cred.cPerCom ne "adm"}'><button class="btn-white btn btn-xs" onclick="selectItemOneReadOnly(${ele.nTskCnt})">보기</button></c:if>
+                                            <button class="btn-white btn btn-xs <c:if test='${sessionScope.cred.cPerCom ne "adm"}'>disabled</c:if>" onclick="<c:if test='${sessionScope.cred.cPerCom eq "adm"}'>deleteItem(${ele.nTskCnt})</c:if>">삭제</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -248,7 +228,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-white" data-dismiss="modal">닫기</button>
                                             <button type="button" class="btn btn-primary" onclick="submitAddForm();" id="addBtn">제출</button>
-                                            <button type="button" class="btn btn-primary" onclick="submitUpdateForm();" id="updateBtn">수정</button>
+                                            <button type="button" class="btn btn-primary <c:if test='${sessionScope.cred.cPerCom ne "adm"}'>disabled</c:if>" onclick="<c:if test='${sessionScope.cred.cPerCom eq "adm"}'>submitUpdateForm();</c:if>" id="updateBtn">수정</button>
                                         </div>
                                     </div>
                                 </div>
@@ -376,6 +356,37 @@ $("#cTskNoteSrc").val("${srcPar.cTskNote}");
 		         	$("#addBtn").hide();
 					$("#updateBtn").hide();
 					$("#updateBtn").show();
+					
+					
+					CKEDITOR.instances['cTskNote'].setData(vo[0].cTskNote);
+					
+					$("#nTskCnt").val(vo[0].nTskCnt);
+					$("#nRefItm").val(vo[0].nRefItm);
+					$("#nRefItm").selectpicker('val', vo[0].nRefItm);
+					$('#cTskType').selectpicker('val', vo[0].cTskType);
+					$('#cTskComp').selectpicker('val', vo[0].cTskComp);
+					$('#cTskStatus').selectpicker('val', vo[0].cTskStatus);
+					
+					
+					$("#pictureDom").empty();
+					for(var i = 0; i < vo.length; i++){
+						if(vo[i].cPhoName){
+							$("#pictureDom").append("<div class='row' id='Pho"+vo[i].nPhoCnt+"'><div><a downlaod='"+vo[i].nPhoCnt+"' href='https://www.kimgdb.com/image/"+vo[i].cPhoName+"'><img class='img-responsive' src='https://www.kimgdb.com/image/"+vo[i].cPhoName+"'></a></div><div><button type='button' class='btn btn-primary' onclick='deletePhoto("+vo[i].nPhoCnt+")' >삭제</button></div></div><br>")
+						}
+					}
+					
+		       });
+		}
+		
+		function selectItemOneReadOnly(ref){
+			$.post( "selectDetail/tsk/"+ref)
+		       .done(function( data ) {
+		    	    showItemModal();
+		         	var vo = JSON.parse(JSON.stringify(data));
+		         	
+		         	$("#addBtn").hide();
+					$("#updateBtn").hide();
+					//readonly$("#updateBtn").show();
 					
 					
 					CKEDITOR.instances['cTskNote'].setData(vo[0].cTskNote);

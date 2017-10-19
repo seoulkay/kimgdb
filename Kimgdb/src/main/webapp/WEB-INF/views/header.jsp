@@ -29,5 +29,4 @@
 	
 	<!-- Data table -->
 	<link href="${pageContext.request.contextPath}/resources/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
-	
 </head>
