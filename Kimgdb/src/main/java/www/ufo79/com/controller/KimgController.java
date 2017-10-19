@@ -342,6 +342,40 @@ public class KimgController {
 		return "redirect:profile";
 	}
 	
+	@RequestMapping(value = "/admin/updateAccount", method = RequestMethod.POST)
+	public String updateAccount(Model model, HttpSession session, @ModelAttribute("vo")KimgPersonVO vo) {
+		if(session.getAttribute("cPerId") == null){
+			return "redirect:../";
+		}
+		
+		String user = session.getAttribute("cPerId").toString();
+		vo.setcPerCrtUsr(user);
+		vo.setcPerModUsr(user);
+		
+		dao.updatePerson(vo);
+		//dao.insertPerson(vo);
+		
+		if(!vo.getPhotoUid().isEmpty()){
+			String[] uids = vo.getPhotoUid().split(", ");
+			for(String ele : uids){
+				
+				KimgPhotoVO tmp = new KimgPhotoVO();
+				tmp.setcPhoType("per");
+				tmp.setnRefCode(vo.getnPerCnt());
+				//키가 정해지면 우선 전에 있던 사진을 지운다. 프로필은 하나의 사진만 필요.
+				dao.updatePhotoByRefCodeToZero(tmp);
+				tmp.setcPhoName(ele);
+				tmp.setnPhoDel(0);
+				tmp.setcPhoCrtUsr(user);
+				tmp.setcPhoModUsr(user);
+				dao.insertPhoto(tmp);
+			}
+		}
+		
+		model.addAttribute("selectedMenu", "profile");
+		return "redirect:profile";
+	}
+	
 	@RequestMapping(value = "/admin/addProduct", method = RequestMethod.POST)
 	public String adminAddProduct(Model model, HttpSession session, @ModelAttribute("vo")KimgProductVO vo) {
 		if(session.getAttribute("cPerId") == null){
@@ -523,6 +557,8 @@ public class KimgController {
 			  return dao.selectItemOne(ref);
 		  }else if(type.equals("tsk")){
 			  return dao.selectTaskOne(ref);
+		  }else if(type.equals("acc")){
+			  return dao.selectOnePerson(ref);
 		  }else{
 			  return "null";  
 		  }

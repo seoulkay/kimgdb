@@ -79,7 +79,7 @@
                                                     <td> ${ele.cPerCon }</td>
                                                     <td class="contact-type"><i class="fa fa-envelope"> </i></td>
                                                     <td> ${ele.cComName }</td>
-                                                    <td class="client-status"><span class="label label-primary">수정</span></td>
+                                                    <td class="client-status"><button class="btn btn-primary btn-sm" onclick="selectItemOne(${ele.nPerCnt })">수정</button></td>
                                                 </tr>
                                                 </c:forEach>
                                                 </tbody>
@@ -120,19 +120,20 @@
                                             <h4 class="modal-title">계정 추가</h4>
                                         </div>
                                         <div class="modal-body">
-                                         <form method="POST" class="form-horizontal" action="addAccount" id="addAccountForm">
+                                         <form method="POST" class="form-horizontal"  id="addAccountForm">
+                                         <input type="hidden" class="form-control" name="nPerCnt" id="nPerCnt" maxlength="30">
                                             <div class="form-group"><label class="col-sm-2 control-label">아이디</label>
-			                                    <div class="col-sm-10"><input type="text" class="form-control" name="cPerId" maxlength="30"></div>
+			                                    <div class="col-sm-10"><input type="text" class="form-control" name="cPerId" id="cPerId" maxlength="30"></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">비밀번호</label>
-			                                    <div class="col-sm-10"><input type="text" class="form-control" name="cPerPwd" maxlength="30"></div>
+			                                    <div class="col-sm-10"><input type="text" class="form-control" name="cPerPwd" id="cPerPwd" maxlength="30"></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">이름</label>
-			                                    <div class="col-sm-10"><input type="text" class="form-control" name="cPerName" maxlength="30"></div>
+			                                    <div class="col-sm-10"><input type="text" class="form-control" name="cPerName" id="cPerName" maxlength="30"></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">소속</label>
 			                                    <div class="col-sm-10">
-			                                   	<select class="form-control m-b" name="cPerCom">
+			                                   	<select class="form-control m-b" name="cPerCom" id="cPerCom">
 			                                   		<c:forEach items="${companyList }" var="ele">
 			                                   		<option value="${ele.cComCode }">${ele.cComName }</option>
 			                                   		</c:forEach>
@@ -140,23 +141,26 @@
 			                                    </div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">직급</label>
-			                                    <div class="col-sm-10"><input type="text" class="form-control" name="cPerPos" maxlength="100"></div>
+			                                    <div class="col-sm-10"><input type="text" class="form-control" name="cPerPos" id="cPerPos" maxlength="100"></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">연락처</label>
-			                                    <div class="col-sm-10"><input type="tel" class="form-control" name="cPerCon" maxlength="30"></div>
+			                                    <div class="col-sm-10"><input type="tel" class="form-control" name="cPerCon" id="cPerCon" maxlength="30"></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">이메일</label>
-			                                    <div class="col-sm-10"><input type="email" class="form-control" name="cPerEmail" maxlength="50"></div>
+			                                    <div class="col-sm-10"><input type="email" class="form-control" name="cPerEmail" id="cPerEmail" maxlength="50"></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">사진</label>
 			                                <div class="col-sm-10"><div id="fine-uploader"></div></div>
 			                                 </div>
 			                                 <input type="hidden" id="photoUid" name="photoUid">
+			                                 <div id="pictureDom"></div>
 			                             </form>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-white" data-dismiss="modal">닫기</button>
-                                            <button type="button" class="btn btn-primary" onclick="submitAddForm();">제출</button>
+                                            <button type="button" class="btn btn-primary" onclick="submitAddForm();" id="addBtn">제출</button>
+                                            <button type="button" class="btn btn-primary" onclick="submitUpdateForm();" id="updateBtn">수정</button>
+                                 
                                         </div>
                                     </div>
                                 </div>
@@ -303,15 +307,88 @@ $('#srcVal').keypress(function(event){
     $('#srcBtn').click();
   }
 });
+// $('#addAccountBtn').click(function(){
+// 	uploader.clearStoredFiles();
+// 	$('#addAccountModal').modal("show");
+// });
+
+// function submitAddForm(){
+// 	$("#photoUid").val($("#photoUidTmp").val());
+// 	$("#addAccountForm").submit();
+// }
+
 $('#addAccountBtn').click(function(){
-	uploader.clearStoredFiles();
-	$('#addAccountModal').modal("show");
+	$("#addBtn").hide();
+	$("#updateBtn").hide();
+	$("#addBtn").show();
+	
+// 	CKEDITOR.instances['cTskNote'].setData('');
+	
+	showItemModal();
 });
 
+function showItemModal(){
+	$("#addAccountForm")[0].reset();
+	uploader.clearStoredFiles();
+	$('#addAccountModal').modal("show");
+}
+
 function submitAddForm(){
+// 	$("#nRefItm").val(getParameterByName("nItmCnt" ,document.URL));
+	
+	$('.selectpicker').selectpicker('deselectAll');
 	$("#photoUid").val($("#photoUidTmp").val());
+	$("#addAccountForm").attr('action', 'addAccount');
 	$("#addAccountForm").submit();
 }
+
+function submitUpdateForm(){
+	$("#photoUid").val($("#photoUidTmp").val());
+	$("#addAccountForm").attr('action', 'updateAccount');
+	$("#addAccountForm").submit();
+}
+
+function selectItemOne(ref){
+	$.post( "selectDetail/acc/"+ref)
+       .done(function( data ) {
+    	    showItemModal();
+         	var vo = JSON.parse(JSON.stringify(data));
+         	
+         	$("#addBtn").hide();
+			$("#updateBtn").hide();
+			$("#updateBtn").show();
+			
+			
+// 			CKEDITOR.instances['cTskNote'].setData(vo[0].cTskNote);
+			$("#nPerCnt").val(vo[0].nPerCnt);
+			$("#cPerId").val(vo[0].cPerId);
+			$("#cPerPwd").val(vo[0].cPerPwd);
+			$("#cPerName").val(vo[0].cPerName);
+			$("#cPerPos").val(vo[0].cPerPos);
+			$("#cPerCon").val(vo[0].cPerCon);
+			$("#cPerEmail").val(vo[0].cPerEmail);
+			
+			$('#cPerCom').selectpicker('val', vo[0].cPerCom);
+			
+			
+			$("#pictureDom").empty();
+			for(var i = 0; i < vo.length; i++){
+				if(vo[i].cPhoName){
+					$("#pictureDom").append("<div class='row' id='Pho"+vo[i].nPhoCnt+"'><div><a downlaod='"+vo[i].nPhoCnt+"' href='https://www.kimgdb.com/image/"+vo[i].cPhoName+"'><img class='img-responsive' src='https://www.kimgdb.com/image/"+vo[i].cPhoName+"'></a></div><div><button type='button' class='btn btn-primary' onclick='deletePhoto("+vo[i].nPhoCnt+")' >삭제</button></div></div><br>")
+				}
+			}
+			
+       });
+}
+
+function deletePhoto(ref){
+	$.post( "deletePhoto/"+ref)
+		.done(function(data){
+			$("#Pho"+ref).fadeOut();
+			console.log(data+" deleted");
+		});
+}
+
 </script>
 
 </html>

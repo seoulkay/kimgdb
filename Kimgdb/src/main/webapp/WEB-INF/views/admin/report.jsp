@@ -75,9 +75,9 @@
 				                        <td class="center">${ele.cItmVenue }</td>
 				                        <td class="center">${ele.cItmSport }</td>
 				                        <td class="center">${ele.cItmDept }</td>
-				                        <td class="center">${ele.cItmEvent }</td>
-				                        <td class="center">${ele.cItmCate }</td>
-				                        <td>${ele.cItmProd }</td>
+				                        <td class="center">${ele.cEvnName }</td>
+				                        <td class="center">${ele.cCatName }</td>
+				                        <td>${ele.cPrdName }</td>
 				                        <td class="center">${ele.cItmDesc }</td>
 				                        <td class="center">${ele.cItmFloor }</td>
 				                        <td class="center">${ele.cItmLocation }</td>

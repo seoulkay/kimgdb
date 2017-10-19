@@ -34,8 +34,8 @@ public class KimgDAO extends SqlSessionDaoSupport{
 		return getSqlSession().selectList("mapper.selectAllPersonSrc", vo);
 	}
 	
-	public KimgPersonVO selectOnePerson(KimgPersonVO vo){
-		return getSqlSession().selectOne("mapper.selectOnePerson", vo);
+	public List<KimgPersonVO> selectOnePerson(int vo){
+		return getSqlSession().selectList("mapper.selectOnePerson", vo);
 	}
 	
 	public int insertPerson(KimgPersonVO vo){

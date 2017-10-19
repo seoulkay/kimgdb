@@ -24,7 +24,7 @@
 <!-- (select count(0) from KIMG.kimgItem), -->
 <!-- (select count(0) from KIMG.kimgTask where cTskType <> 'INC'), -->
 <!-- (select count(0) from KIMG.kimgTask where cTskType = 'INC'), -->
-<!-- (select count(0) FROM KIMG.kimgTask where nTskDel = 0 and cTskType = 'INC' and cTskStatus in ('TRQ', 'ERQ')), -->
+<!-- (select count(0) FROM KIMG.kimgTask where nTskDel = 0 and cTskType = 'INC' and cTskStatus = 'TRQ'), -->
 <!-- (select count(0) from KIMG.kimgPerson), -->
 <!-- (select count(0) from KIMG.kimgItem where nItmDel = 0 and cItmCate = 'LK'), -->
 <!-- (select count(0) from KIMG.kimgItem where nItmDel = 0 and cItmCate = 'SI'), -->
@@ -66,8 +66,10 @@
 		left join `KIMG`.`kimgCompany` c on per.cPerCom = c.cComCode 
 		WHERE per.nPerDel = 0 and (per.cPerName like CONCAT('%',#{vo},'%') or per.cPerId like CONCAT('%',#{vo},'%') or c.cComName like CONCAT('%',#{vo},'%'))
   	</select>
-  	<select id="selectOnePerson"  resultType="KimgPerson" parameterType="KimgPerson">
-  		select * from `KIMG`.`kimgPerson` where nPerDel = 0 and nPerCnt = #{nPerCnt}
+  	<select id="selectOnePerson"  resultType="KimgPerson" parameterType="Integer">
+  		select * from `KIMG`.`kimgPerson` itm
+  		left join KIMG.kimgPhoto pho on itm.nPerCnt = pho.nRefCode and pho.cPhoType = 'per' and pho.nPhoDel = 0
+  		where nPerDel = 0 and nPerCnt = #{nPerCnt}
   	</select>
   	<insert id="insertPerson" parameterType="KimgPerson" useGeneratedKeys="true" keyProperty="nPerCnt">
   		INSERT INTO `KIMG`.`kimgPerson`
@@ -646,6 +648,9 @@
 	LEFT JOIN KIMG.kimgTaskStatus ts on t.cTskStatus = ts.cTstType
 	LEFT JOIN KIMG.kimgTaskType tt on t.cTskType = tt.cTtpType
     left Join KIMG.kimgItem it on t.nRefItm = it.nItmCnt
+    left join KIMG.kimgEvent ev on it.cItmEvent = ev.cEvnCode
+    left join KIMG.kimgCategory cat on it.cItmCate = cat.cCatType
+    left join KIMG.kimgProduct pro on it.cItmProd = pro.cPrdCode
 	where nTskDel = 0
 	ORDER BY t.nTskCnt desc;
   	</select>
