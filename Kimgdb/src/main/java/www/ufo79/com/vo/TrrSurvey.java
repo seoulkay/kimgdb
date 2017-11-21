@@ -3,6 +3,13 @@ package www.ufo79.com.vo;
 public class TrrSurvey {
 	private int nSurveyCnt;
     private String cSurveyItsm;
+    public String getcSurveyItsmType() {
+		return cSurveyItsmType;
+	}
+	public void setcSurveyItsmType(String cSurveyItsmType) {
+		this.cSurveyItsmType = cSurveyItsmType;
+	}
+	private String cSurveyItsmType;
     private String cSurveyScenarioTri;
     private String cSurveyScenarioSol;
     private String cSurveySla;
@@ -33,6 +40,7 @@ public class TrrSurvey {
     private String cRawTim;
     private String cRawSev;
     private String cRawTroName;
+    private String cIfNotExecuted;
     
     
 	public int getnSurveyCnt() {
@@ -226,6 +234,12 @@ public class TrrSurvey {
 	}
 	public void setcRawTroName(String cRawTroName) {
 		this.cRawTroName = cRawTroName;
+	}
+	public String getcIfNotExecuted() {
+		return cIfNotExecuted;
+	}
+	public void setcIfNotExecuted(String cIfNotExecuted) {
+		this.cIfNotExecuted = cIfNotExecuted;
 	}
 	
 }

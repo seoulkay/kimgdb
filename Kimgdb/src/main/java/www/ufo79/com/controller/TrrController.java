@@ -57,6 +57,27 @@ public class TrrController {
 		model.addAttribute("selectedMenu", "surveyForm");
 		return "trr/admin/surveyForm";
 	}
+	
+	@RequestMapping(value = "/admin/surveyList", method = RequestMethod.GET)
+	public String surveyList(Model model, HttpSession session) {
+		if(session.getAttribute("cPerId") == null){
+			return "redirect:../";
+		}
+
+		String tro = session.getAttribute("cPerId").toString();
+		
+		//TRO2는 전체를 본다.
+		if(tro.equals("TRO25")){
+			tro = "";
+		}
+		
+		List<TrrSurvey> surveyList = dao.selectSurveyList(tro);
+		
+		model.addAttribute("surveyList", surveyList);
+		model.addAttribute("selectedMenu", "surveyList");
+		return "trr/admin/surveyList";
+	}
+	
 	@RequestMapping(value = "/admin/endOfDayReport", method = RequestMethod.GET)
 	public String endOfDayReport(Model model, HttpSession session) {
 		if(session.getAttribute("cPerId") == null){

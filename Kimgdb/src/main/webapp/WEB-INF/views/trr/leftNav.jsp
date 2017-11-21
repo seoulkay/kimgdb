@@ -23,6 +23,9 @@
                 <li <c:if test="${selectedMenu eq 'surveyForm' }">class="active"</c:if>>
                     <a href="surveyForm"><i class="fa fa-edit"></i> <span class="nav-label">Survey Form</span></a>
                 </li>
+                <li <c:if test="${selectedMenu eq 'surveyList' }">class="active"</c:if>>
+                    <a href="surveyList"><i class="fa fa-address-book-o"></i> <span class="nav-label">Survey List</span></a>
+                </li>
                 <li <c:if test="${selectedMenu eq 'endOfDayReport' }">class="active"</c:if>>
                     <a href="endOfDayReport"><i class="fa fa-cubes"></i> <span class="nav-label">End of day report</span></a>
                 </li>

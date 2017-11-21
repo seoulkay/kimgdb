@@ -29,4 +29,7 @@ public class TrrDAO extends SqlSessionDaoSupport{
 	public TrrRaw selectRawOne(int vo){
 		return getSqlSession().selectOne("mapper2.selectRawOne", vo);
 	}
+	public List<TrrSurvey> selectSurveyList(String vo){
+		return getSqlSession().selectList("mapper2.selectSurveyList", vo);
+	}
 }

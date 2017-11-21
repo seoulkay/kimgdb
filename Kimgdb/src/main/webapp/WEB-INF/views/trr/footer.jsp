@@ -49,6 +49,9 @@
 	<!-- slick carousel-->
 	<script src="${pageContext.request.contextPath}/resources/js/plugins/slick/slick.min.js"></script>
     <!-- Page-Level Scripts -->
+    <!-- Jquery Validate -->
+    <script src="${pageContext.request.contextPath}/resources/js/plugins/validate/jquery.validate.min.js"></script>
+    
     <script>
         $(document).ready(function() {
 
