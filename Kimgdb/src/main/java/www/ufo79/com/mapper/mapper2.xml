@@ -103,6 +103,6 @@
 	SELECT * FROM TRR.TrrRaw WHERE nRawCnt = #{param}
 	</select>
 	<select id="selectSurveyList" resultType="TrrSurvey" parameterType="String">
-	SELECT * FROM TRR.TrrSurvey WHERE cRawTroName like CONCAT('%',#{param},'%')
+	SELECT * FROM TRR.TrrSurvey WHERE cRawTroName like CONCAT('%',#{param},'%') order by nSurveyCnt desc
 	</select>
 </mapper>
