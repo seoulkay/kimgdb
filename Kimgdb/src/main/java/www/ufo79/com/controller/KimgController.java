@@ -183,12 +183,17 @@ public class KimgController {
 		}else{
 			
 			List<KimgTaskVO> taskListTemp = new ArrayList<KimgTaskVO>();
-			for(KimgTaskVO ele : taskList){
-					if(!ele.getcTtpType().equals("INC")){
-						if(ele.getcTskStatus().equals("ERQ")){
-							taskListTemp.add(ele);
+			try{
+				for(KimgTaskVO ele : taskList){
+						if(!ele.getcTtpType().equals("INC")){
+							if(ele.getcTskStatus().equals("ERQ")){
+								taskListTemp.add(ele);
+							}
 						}
-					}
+				}
+					
+			}catch(NullPointerException e){
+				System.out.println("Null pointer in taskList");
 			}
 			model.addAttribute("taskList", taskListTemp);
 		}
