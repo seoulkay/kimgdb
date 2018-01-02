@@ -148,7 +148,7 @@
 						             </div>
 						             <hr>
 						             <div class="col-xs-5">
-										<input required type="text" maxlength="300" class="form-control input-sm" name="cSurveyStaffReadText">
+										<input type="text" maxlength="300" class="form-control input-sm" name="cSurveyStaffReadText">
 									</div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">Roles & Responsibility clearly understood <br/>
@@ -163,7 +163,7 @@
 						             </div>
 						             <hr>
 						             <div class="col-xs-5">
-										<input required type="text" maxlength="300" class="form-control input-sm" name="cSurveyRnRText">
+										<input type="text" maxlength="300" class="form-control input-sm" name="cSurveyRnRText">
 									</div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">Communication Procedures (Venue-TOC-CTOC or between Venue team) <br/>
@@ -178,7 +178,7 @@
 						             </div>
 						             <hr>
 						             <div class="col-xs-5">
-										<input required type="text" maxlength="300" class="form-control input-sm" name="cSurveyCommProText">
+										<input type="text" maxlength="300" class="form-control input-sm" name="cSurveyCommProText">
 									</div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">Ability to handles in un-happy situation<br/>
@@ -193,7 +193,7 @@
 						             </div>
 						             <hr>
 						             <div class="col-xs-5">
-										<input required type="text" maxlength="300" class="form-control input-sm" name="cSurveyUnhappyText">
+										<input type="text" maxlength="300" class="form-control input-sm" name="cSurveyUnhappyText">
 									</div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">Relationship with other FA teams <br/>
@@ -208,7 +208,7 @@
 						             </div>
 						             <hr>
 						             <div class="col-xs-5">
-										<input required type="text" maxlength="300" class="form-control input-sm" name="cSurveyRelFaText">
+										<input type="text" maxlength="300" class="form-control input-sm" name="cSurveyRelFaText">
 									</div>
                                 </div>
                                 <div class="hr-line-dashed"></div>

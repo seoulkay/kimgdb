@@ -67,7 +67,7 @@ public class TrrController {
 		String tro = session.getAttribute("cPerId").toString();
 		
 		//TRO2는 전체를 본다.
-		if(tro.equals("TRO25")){
+		if(tro.equals("TRO99")){
 			tro = "";
 		}
 		

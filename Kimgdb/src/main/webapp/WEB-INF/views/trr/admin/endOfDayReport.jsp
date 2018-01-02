@@ -55,24 +55,26 @@
                                 <div class="form-group"><label class="col-sm-2 control-label">Venue</label>
                                     <div class="col-sm-10">
                                     <select class="selectpicker form-control m-b" data-live-search="true" id="cEodVenue" name="cEodVenue">
-                                    <option value="ACC">ACC</option>
-                                    <option value="ASJ">ASJ</option>
-                                    <option value="JAL">JAL</option>
-                                    <option value="GIA">GIA</option>
-                                    <option value="BSP">BSP</option>
-                                    <option value="ASL">ASL</option>
-                                    <option value="ABT">ABT</option>
-                                    <option value="GIA">GIA</option>
-                                    <option value="GHC">GHC</option>
-                                    <option value="KHC">KHC</option>
-                                    <option value="GCC">GCC</option>
-                                    <option value="GOV">GOV</option>
-                                    <option value="YAL">YAL</option>
-                                    <option value="ITL">ITL</option>
-                                    <option value="CTOC">CTOC</option>
-                                    <option value="TOC">TOC</option>
-                                    <option value="TSD">TSD</option>
-                                    <option value="MULTI">MULTI</option>
+                                     <option value="ABT">ABT</option>
+									 <option value="ACC">ACC</option>
+									 <option value="ASJ">ASJ</option>
+									 <option value="ASL">ASL</option>
+									 <option value="BSP">BSP</option>
+									 <option value="CTOC">CTOC</option>
+									 <option value="GCC">GCC</option>
+									 <option value="GHC">GHC</option>
+									 <option value="GIA">GIA</option>
+									 <option value="GMV">GMV</option>
+									 <option value="GOV">GOV</option>
+									 <option value="GVL">GVL</option>
+									 <option value="IBC">IBC</option>
+									 <option value="JAL">JAL</option>
+									 <option value="KHC">KHC</option>
+									 <option value="MPC">MPC</option>
+									 <option value="PVL">PVL</option>
+									 <option value="TOC">TOC</option>
+									 <option value="TSD">TSD</option>
+									 <option value="YAL">YAL</option>
                                     </select>
                                     </div>
                                 </div>
