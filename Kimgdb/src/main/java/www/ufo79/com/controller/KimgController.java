@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import www.ufo79.com.dao.KimgDAO;
 import www.ufo79.com.service.UploadReceiver;
@@ -248,7 +249,8 @@ public class KimgController {
 	}
 	
 	@RequestMapping(value = "/admin/item", method = {RequestMethod.GET, RequestMethod.POST})
-	public String adminItem(Model model, HttpSession session, @ModelAttribute("srcPar")KimgItemVO srcPar) throws UnsupportedEncodingException {
+	public String adminItem(Model model, HttpSession session, @ModelAttribute("srcPar")KimgItemVO srcPar
+			) throws UnsupportedEncodingException {
 		if(session.getAttribute("cPerId") == null){
 			return "redirect:../";
 		}
@@ -281,6 +283,9 @@ public class KimgController {
 		
 		List<KimgProductVO> productList = dao.selectAllProduct();
 		
+		
+		model.addAttribute("statusList", taskStatus);
+		model.addAttribute("taskList", taskType);
 		
 		model.addAttribute("itemList", itemList);
 		model.addAttribute("catList", catList);
@@ -668,6 +673,32 @@ public class KimgController {
 	    return getSuccessMessage().toString();
 	    
 	  }
+	  //기본적인 업로드 메소드 -  이걸 하는게 맞는가...
+	  @RequestMapping(value = "/admin/uploadgen",method = { RequestMethod.POST })
+	  public @ResponseBody Object uploadgen(@RequestParam("file") MultipartFile file, Locale locale) {
+	    System.out.println("uploadgen() called");
+	    
+	 
+	    try {
+	     
+	    String fileid = file.getOriginalFilename();
+	    Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT, locale);
+		String formattedDate = dateFormat.format(date);
+		fileid = fileid + formattedDate.replaceAll("/", " ");
+	      
+	    byte[] bytes = file.getBytes();
+	    Path path = Paths.get(UPLOADED_FOLDER + fileid);
+	    Files.write(path, bytes);
+	   
+	 
+	    } catch (IOException e) {
+	      e.printStackTrace();
+	    }
+	 
+	    return getSuccessMessage().toString();
+	    
+	  }
 	  
 	  @RequestMapping(value = "/admin/selectDetail/{type}/{ref}", method = { RequestMethod.POST , RequestMethod.GET })
 		public @ResponseBody Object selectDetail(@PathVariable("type")String type, @PathVariable("ref")int ref, HttpServletRequest session){
@@ -851,4 +882,88 @@ public class KimgController {
 		  
 		  return dao.deletePhoto(ref);
 		}
+	  
+	  @RequestMapping(value="/admin/itemBulkUpdate", method=RequestMethod.POST)
+	  public String updateBulk(Model model, HttpSession session, 
+			 @ModelAttribute("vo")KimgItemVO srcPar
+			  , Locale locale){
+		  if(session.getAttribute("cPerId") == null){
+				return "redirect:../";
+		  }
+		  
+		
+		  String user = session.getAttribute("cPerId").toString();
+		  Date date = new Date();
+		  DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT, locale);
+		  String formattedDate = dateFormat.format(date);
+		  
+		  try{
+		  String number = srcPar.getTd_numbers();
+	      System.out.println(number);
+	      String[] numbers = number.split(",");
+		  
+			  
+		  
+	      for(String ele : numbers){
+		      KimgTaskVO vo = new KimgTaskVO();
+				vo.setcTskCrtUsr(user);
+				vo.setcTskModUsr(user);
+				vo.setnRefItm(Integer.parseInt(ele));
+				vo.setcTskType(srcPar.getcTtpType());
+				vo.setcTskStatus(srcPar.getcTstType());
+				vo.setcTskNote(formattedDate+" 일괄 처리 되었습니다.");
+				dao.insertTask(vo);
+	      }
+		  }catch(Exception e){
+			  System.out.println("일관처리시 오류발생 아마 아무값도 선택하지 않음");
+		  }
+
+		  
+		  //아 몰라 아이템 뷰 로직 그대로 실행.
+		  List<KimgItemVO> itemList = new ArrayList<KimgItemVO>();
+		  itemList = dao.selectAllItemSrcPar(srcPar);
+			
+			//퍼미션 관련
+//			String cPerCom = session.getAttribute("cPerCom").toString();
+//			if(!cPerCom.equals("adm")){
+//				List<KimgItemVO> itemListTemp = new ArrayList<KimgItemVO>();
+//				for(KimgItemVO ele : itemList){
+//					if(ele.getcItmCom().equals(cPerCom)){
+//						itemListTemp.add(ele);
+//					}
+//				}
+//				itemList = itemListTemp;
+//				List<KimgCompanyVO> companyListTemp = new ArrayList<KimgCompanyVO>();
+//				for(KimgCompanyVO ele : companyList){
+//					if(ele.getcComCode().equals(cPerCom)){
+//						companyListTemp.add(ele);
+//					}
+//				}
+//				model.addAttribute("companyList", companyListTemp);
+//			}else{
+				model.addAttribute("companyList", companyList);
+//			}
+				
+				
+			
+			List<KimgProductVO> productList = dao.selectAllProduct();
+			
+			
+			model.addAttribute("statusList", taskStatus);
+			model.addAttribute("taskList", taskType);
+			
+			model.addAttribute("itemList", itemList);
+			model.addAttribute("catList", catList);
+			model.addAttribute("eventList", eventList);
+			model.addAttribute("sportList", sportList);
+			model.addAttribute("departmentList", departmentList);
+			model.addAttribute("venueList", venueList);
+			model.addAttribute("productList", productList);
+			model.addAttribute("cItmMateList", cItmMateList);
+			
+			model.addAttribute("srcPar", srcPar);		
+			
+			model.addAttribute("selectedMenu", "item");
+			return "admin/item";
+	  }
 }

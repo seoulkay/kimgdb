@@ -14,8 +14,16 @@ public class KimgProductVO extends KimgPhotoVO{
 	private Date dPrdMod;
 	private String cPrdModUsr;
 	private int nPrdDel;
+	private double nPrdPriceOcog;
+	private double nPrdPriceCont;
+	private double nPrdLaborOcog;
+	private double nPrdLaborCont;
 	
 		
+	
+	public void setnPrdLaborCont(int nPrdLaborCont) {
+		this.nPrdLaborCont = nPrdLaborCont;
+	}
 	public int getnPrdCnt() {
 		return nPrdCnt;
 	}
@@ -82,6 +90,31 @@ public class KimgProductVO extends KimgPhotoVO{
 	public void setnPrdDel(int nPrdDel) {
 		this.nPrdDel = nPrdDel;
 	}
+	public double getnPrdPriceOcog() {
+		return nPrdPriceOcog;
+	}
+	public void setnPrdPriceOcog(double nPrdPriceOcog) {
+		this.nPrdPriceOcog = nPrdPriceOcog;
+	}
+	public double getnPrdPriceCont() {
+		return nPrdPriceCont;
+	}
+	public void setnPrdPriceCont(double nPrdPriceCont) {
+		this.nPrdPriceCont = nPrdPriceCont;
+	}
+	public double getnPrdLaborOcog() {
+		return nPrdLaborOcog;
+	}
+	public void setnPrdLaborOcog(double nPrdLaborOcog) {
+		this.nPrdLaborOcog = nPrdLaborOcog;
+	}
+	public double getnPrdLaborCont() {
+		return nPrdLaborCont;
+	}
+	public void setnPrdLaborCont(double nPrdLaborCont) {
+		this.nPrdLaborCont = nPrdLaborCont;
+	}
+	
 	
 	
 

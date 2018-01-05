@@ -4,6 +4,7 @@ public class KimgTaskStatusVO {
 	private int nTstCnt;
 	private String cTstType;
 	private String cTstName;
+	private int cTstPercent;
 	public int getnTstCnt() {
 		return nTstCnt;
 	}
@@ -21,6 +22,12 @@ public class KimgTaskStatusVO {
 	}
 	public void setcTstName(String cTstName) {
 		this.cTstName = cTstName;
+	}
+	public int getcTstPercent() {
+		return cTstPercent;
+	}
+	public void setcTstPercent(int cTstPercent) {
+		this.cTstPercent = cTstPercent;
 	}
 	
 	

@@ -42,9 +42,15 @@ public class KimgItemVO extends KimgProductVO{
 	private String cItmModUsr;
 	private int nItmDel;
 	
+	private String cItmPrePho;
+	private String cItmImpPho;
+	private String cItmPosPho;
+	
+	
 	private int nManStatus;
 	private int nInsStatus;
 	private int nDesStatus;
+	private int nDelStatus;
 	private int nIncStatus;
 	//조인 밸류
 	private int nCatCnt;
@@ -70,6 +76,30 @@ public class KimgItemVO extends KimgProductVO{
 	
 	List<KimgPhotoVO> photos;
 	
+	//벌크 업로드, 
+	private String td_numbers;
+	private String cTstType;
+	private String cTtpType;
+	
+	
+	public String getTd_numbers() {
+		return td_numbers;
+	}
+	public void setTd_numbers(String td_numbers) {
+		this.td_numbers = td_numbers;
+	}
+	public String getcTstType() {
+		return cTstType;
+	}
+	public void setcTstType(String cTstType) {
+		this.cTstType = cTstType;
+	}
+	public String getcTtpType() {
+		return cTtpType;
+	}
+	public void setcTtpType(String cTtpType) {
+		this.cTtpType = cTtpType;
+	}
 	public List<KimgPhotoVO> getPhotos() {
 		return photos;
 	}
@@ -417,6 +447,30 @@ public class KimgItemVO extends KimgProductVO{
 	}
 	public void setnIncStatus(int nIncStatus) {
 		this.nIncStatus = nIncStatus;
+	}
+	public int getnDelStatus() {
+		return nDelStatus;
+	}
+	public void setnDelStatus(int nDelStatus) {
+		this.nDelStatus = nDelStatus;
+	}
+	public String getcItmPrePho() {
+		return cItmPrePho;
+	}
+	public void setcItmPrePho(String cItmPrePho) {
+		this.cItmPrePho = cItmPrePho;
+	}
+	public String getcItmImpPho() {
+		return cItmImpPho;
+	}
+	public void setcItmImpPho(String cItmImpPho) {
+		this.cItmImpPho = cItmImpPho;
+	}
+	public String getcItmPosPho() {
+		return cItmPosPho;
+	}
+	public void setcItmPosPho(String cItmPosPho) {
+		this.cItmPosPho = cItmPosPho;
 	}
 	
 	

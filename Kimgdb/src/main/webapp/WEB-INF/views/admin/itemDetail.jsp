@@ -107,9 +107,9 @@
                                         <div class="btn-group">
                                             <c:if test='${sessionScope.cred.cPerCom eq "adm"}'><button class="btn btn-primary btn-sm" id="addItemBtn"><i class="fa fa-star"></i> 작업추가 </button></c:if>
                                         </div>
-                                        <div class="btn-group">
-	                                        <c:if test='${sessionScope.cred.cPerCom eq "adm"}'><button class="btn btn-primary btn-sm" onclick="showPrice();"><i class="fa fa-star"></i> 단가보기 </button></c:if>
-	                                    </div>
+<!--                                         <div class="btn-group"> -->
+<%-- 	                                        <c:if test='${sessionScope.cred.cPerCom eq "adm"}'><button class="btn btn-primary btn-sm" onclick="showPrice();"><i class="fa fa-star"></i> 단가보기 </button></c:if> --%>
+<!-- 	                                    </div> -->
                                     </div>
 
 
@@ -124,22 +124,22 @@
 							<table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                                 <thead>
                                 <tr>
-                                    <th>번호</th>
+                                    <th>생성일</th>
                                     <th>작업구분</th>
                                     <th>업체</th>
                                     <th>작업상태</th>
-                                    <th>생성일</th>
+<!--                                     <th>생성일</th> -->
                                     <th>수정일</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <c:forEach items="${taskList}" var="ele">
                                 <tr>
-                                     <td>${ele.nTskCnt}</td>
+                                     <td><fmt:formatDate pattern = "yyyy-MM-dd"  value = "${ele.dTskCrt}" /></td>
+<%--                                      <td>${ele.nTskCnt}</td> --%>
                                      <td>${ele.cTtpName}</td>
                                      <td>${ele.cTskComp}</td>
                                      <td>${ele.cTstName}</td>
-                                     <td><fmt:formatDate pattern = "yyyy-MM-dd"  value = "${ele.dTskCrt}" /></td>
                                      <td><fmt:formatDate pattern = "yyyy-MM-dd"  value = "${ele.dTskMod}" /></td>
                                      <td class="text-right">                                    
                                         <div class="btn-group">

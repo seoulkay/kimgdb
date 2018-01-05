@@ -42,9 +42,8 @@
             </div>
 
         <div class="wrapper wrapper-content animated fadeInRight ecommerce">
-
-			<form action="item" id="searchItemForm" method="post">
             <div class="ibox-content m-b-sm border-bottom">
+            <form action="item" id="searchItemForm" method="post">
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="form-group">
@@ -52,28 +51,28 @@
                             <input type="text" id="cItmCodeSrc" name="cItmCode" value="" placeholder="Item Code" class="form-control">
                         </div>
                     </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label class="control-label" for="cItmProd">품목</label>
-                           	<select class="selectpicker form-control m-b" data-live-search="true" id="cItmProdSrc" name="cItmProd">
-                           		<option value="">전체</option>
-                            	<c:forEach items="${productList }" var="ele">
-                            	<option value="${ele.cPrdCode }">${ele.cPrdName } - ${ele.cPrdLocalName }</option> 
-                            	</c:forEach>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label class="control-label" for="cItmMate">재질</label>
-                            <select class="selectpicker form-control m-b" data-live-search="true" name="cItmMate" id="cItmMateSrc">
-                            	<option value="">전체</option>
-                            	<c:forEach items="${cItmMateList }" var="ele">
-                            	<option value="${ele }">${ele }</option> 
-                            	</c:forEach>
-                            </select>
-                        </div>
-                    </div>
+<!--                     <div class="col-sm-3"> -->
+<!--                         <div class="form-group"> -->
+<!--                             <label class="control-label" for="cItmProd">품목</label> -->
+<!--                            	<select class="selectpicker form-control m-b" data-live-search="true" id="cItmProdSrc" name="cItmProd"> -->
+<!--                            		<option value="">전체</option> -->
+<%--                             	<c:forEach items="${productList }" var="ele"> --%>
+<%--                             	<option value="${ele.cPrdCode }">${ele.cPrdName } - ${ele.cPrdLocalName }</option>  --%>
+<%--                             	</c:forEach> --%>
+<!--                             </select> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                     <div class="col-sm-3"> -->
+<!--                         <div class="form-group"> -->
+<!--                             <label class="control-label" for="cItmMate">재질</label> -->
+<!--                             <select class="selectpicker form-control m-b" data-live-search="true" name="cItmMate" id="cItmMateSrc"> -->
+<!--                             	<option value="">전체</option> -->
+<%--                             	<c:forEach items="${cItmMateList }" var="ele"> --%>
+<%--                             	<option value="${ele }">${ele }</option>  --%>
+<%--                             	</c:forEach> --%>
+<!--                             </select> -->
+<!--                         </div> -->
+<!--                     </div> -->
                     <div class="col-sm-3">
                         <div class="form-group">
                             <label class="control-label" for="cItmCom">업체</label>
@@ -85,8 +84,6 @@
                             </select>
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-sm-3">
                         <div class="form-group">
                             <label class="control-label" for="cItmVenue">베뉴</label>                       		
@@ -94,28 +91,6 @@
                            		<option value="">전체</option>
                             	<c:forEach items="${venueList }" var="ele">
                             	<option value="${ele.cVenCode }">${ele.cVenName }</option> 
-                            	</c:forEach>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label class="control-label" for="cItmSport">스포츠</label>
-                           	<select class="selectpicker form-control m-b" data-live-search="true" id="cItmSportSrc" name="cItmSport">
-                           		<option value="">전체</option>
-                            	<c:forEach items="${sportList }" var="ele">
-                            	<option value="${ele.cSptCode }">${ele.cSptName }</option> 
-                            	</c:forEach>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label class="control-label" for="cItmDept">FA</label>
-                           	<select class="selectpicker form-control m-b" data-live-search="true" id="cItmDeptSrc" name="cItmDept">
-                           		<option value="">전체</option>
-                            	<c:forEach items="${departmentList }" var="ele">
-                            	<option value="${ele.cDptCode }">${ele.cDptName }</option> 
                             	</c:forEach>
                             </select>
                         </div>
@@ -132,49 +107,130 @@
                         </div>
                     </div>
                 </div>
+<!--                 <div class="row"> -->
+<!--                     <div class="col-sm-3"> -->
+<!--                         <div class="form-group"> -->
+<!--                             <label class="control-label" for="cItmVenue">베뉴</label>                       		 -->
+<!--                            	<select class="selectpicker form-control m-b" data-live-search="true" name="cItmVenue" id="cItmVenueSrc" > -->
+<!--                            		<option value="">전체</option> -->
+<%--                             	<c:forEach items="${venueList }" var="ele"> --%>
+<%--                             	<option value="${ele.cVenCode }">${ele.cVenName }</option>  --%>
+<%--                             	</c:forEach> --%>
+<!--                             </select> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                     <div class="col-sm-3"> -->
+<!--                         <div class="form-group"> -->
+<!--                             <label class="control-label" for="cItmSport">스포츠</label> -->
+<!--                            	<select class="selectpicker form-control m-b" data-live-search="true" id="cItmSportSrc" name="cItmSport"> -->
+<!--                            		<option value="">전체</option> -->
+<%--                             	<c:forEach items="${sportList }" var="ele"> --%>
+<%--                             	<option value="${ele.cSptCode }">${ele.cSptName }</option>  --%>
+<%--                             	</c:forEach> --%>
+<!--                             </select> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                     <div class="col-sm-3"> -->
+<!--                         <div class="form-group"> -->
+<!--                             <label class="control-label" for="cItmDept">FA</label> -->
+<!--                            	<select class="selectpicker form-control m-b" data-live-search="true" id="cItmDeptSrc" name="cItmDept"> -->
+<!--                            		<option value="">전체</option> -->
+<%--                             	<c:forEach items="${departmentList }" var="ele"> --%>
+<%--                             	<option value="${ele.cDptCode }">${ele.cDptName }</option>  --%>
+<%--                             	</c:forEach> --%>
+<!--                             </select> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
                 <div class="row">
                 	<div class="col-sm-3"></div>
                 	<div class="col-sm-3"></div>
-                	<div class="col-sm-3">
+               		<div class="col-sm-3">
+               		<label class="control-label" for="cItmDept"></label>
                 	<c:if test='${sessionScope.cred.cPerCom eq "adm"}'>
                 		<button type="button" class="btn btn-primary btn-sm btn-block" id="addItemBtn">생성</button>
                 	</c:if>
                 	</div>
                 	<div class="col-sm-3">
+                		<label class="control-label" for="cItmDept"></label>
                 		<button type="button" class="btn btn-primary btn-sm btn-block" onclick="searchItem()">검색</button>
                 	</div>
                 </div>
+                </form>
+                <form action="itemBulkUpdate" method="post" name="itemBulkForm" id="itemBulkForm">
+                <div class="row">
+                	<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label" for="cItmDept">일괄변경 상태</label>
+                           	<select class="selectpicker form-control m-b" data-live-search="true" id="cTstType" name="cTstType" required="required">
+<!--                            		<option value="">전체</option> -->
+                            	<c:forEach items="${statusList }" var="ele">
+                            	<option value="${ele.cTstType }">${ele.cTstName }</option> 
+                            	</c:forEach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label" for="cItmEvent">일괄변경 작업</label>                            
+                           	<select class="selectpicker form-control m-b" data-live-search="true" id="cTtpType" name="cTtpType" required="required">
+<!--                             	<option value="">전체</option> -->
+                            	<c:forEach items="${taskList }" var="ele">
+                            	<option value="${ele.cTtpType }">${ele.cTtpName }</option> 
+                            	</c:forEach>
+                            </select>
+                        </div>
+                    </div>
+                	<div class="col-sm-3">
+                	<c:if test='${sessionScope.cred.cPerCom eq "adm"}'>
+                		<label class="control-label">	&nbsp; </label>     
+                		<button type="button" class="btn btn-warning btn-sm btn-block" onclick="submitBulk()">일괄변경</button>
+                	</c:if>
+                	</div>
+                	<div class="col-sm-3"></div>
+                </div>
+                <input type="hidden" id="td_numbers" name="td_numbers">
+                <input type="hidden" id="cItmCodeSrcBulk" name="cItmCode">
+                <input type="hidden" id="cItmProdSrcBulk" name="cItmProd">
+                <input type="hidden" id="cItmComSrcBulk" name="cItmCom">
+                <input type="hidden" id="cItmVenueSrcBulk" name="cItmVenue">
+                <input type="hidden" id="cItmSportSrcBulk" name="cItmSport">
+                <input type="hidden" id="cItmDeptSrcBulk" name="cItmDept">
+                <input type="hidden" id="cItmEventSrcBulk" name="cItmEvent">
+                <input type="hidden" id="cItmMateSrcBulk" name="cItmMate">
+	
+                </form>
             </div>
-            </form>
+          
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox">
                         <div class="ibox-content">
-
                             <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                                 <thead>
                                 <tr>
-
+									<th></th>
                                     <th>아이템코드</th>
-                                    <th>품목</th>
-                                    <th data-hide="phone">업체</th>
-                                    <th data-hide="phone">베뉴</th>
-                                    <th data-hide="phone">스포츠</th>                                    
-                                    <th data-hide="all" >FA</th>
-                                    <th data-hide="all" >게임</th>
-                                    <th data-hide="phone" >카테고리</th>
-                                    <th data-hide="all">재질</th>
-                                    <th data-hide="all">Floor</th>
-                                    <th data-hide="all">Location</th>
-                                    <th data-hide="all">W (가로)</th>
-                                    <th data-hide="all">H (세로)</th>
-                                    <th data-hide="all">D (폭)</th>
-                                    <th data-hide="all">개수</th>
-                                    <th data-hide="all">개수 단위</th>
-                                    <th data-hide="all">수량</th>
-                                    <th data-hide="all">수량 단위</th>
-                                    <th data-hide="all">비고</th>
+<!--                                     <th data-hide="all">품목</th> -->
+                                    <th>업체</th>
+                                    <th>베뉴</th>
+<!--                                     <th data-hide="all">스포츠</th>                                     -->
+<!--                                     <th data-hide="all" >FA</th> -->
+<!--                                     <th data-hide="all" >게임</th> -->
+                                    <th>카테고리</th>
+<!--                                     <th data-hide="all">재질</th> -->
+<!--                                     <th data-hide="all">Floor</th> -->
+<!--                                     <th data-hide="all">Location</th> -->
+<!--                                     <th data-hide="all">W (가로)</th> -->
+<!--                                     <th data-hide="all">H (세로)</th> -->
+<!--                                     <th data-hide="all">D (폭)</th> -->
+<!--                                     <th data-hide="all">개수</th> -->
+<!--                                     <th data-hide="all">개수 단위</th> -->
+<!--                                     <th data-hide="all">수량</th> -->
+<!--                                     <th data-hide="all">수량 단위</th> -->
+<!--                                     <th data-hide="all">비고</th> -->
                                     <th data-hide="phone">제작</th>
+                                    <th data-hide="phone">배송</th>
                                     <th data-hide="phone">설치</th>
                                     <th data-hide="phone">철거</th> 
                                     <th data-hide="phone">이슈</th>
@@ -183,89 +239,101 @@
                                 <tbody>
                                 <c:forEach items="${itemList}" var="ele">
                                 <tr>
+                                	 <td>
+                                	 	<input type="checkbox" class="form-check-input select_td" id="${ele.nItmCnt }">
+                                	 </td>
                                      <td>
                                         ${ele.cItmCode}
                                     </td>
-                                    <td>
-                                    	${ele.cPrdName }
-                                    </td>
+<!--                                     <td> -->
+<%--                                     	${ele.cPrdName } --%>
+<!--                                     </td> -->
                                     <td>
                                         ${ele.cItmCom}
                                     </td>
                                     <td>
                                         ${ele.cItmVenue}
                                     </td>
-                                    <td>
-                                        ${ele.cItmSport}
-                                    </td>
-                                    <td>
-                                        ${ele.cItmDept}
-                                    </td>
-                                    <td>
-                                        ${ele.cItmEvent}
-                                    </td>                                    
+<!--                                     <td> -->
+<%--                                         ${ele.cItmSport} --%>
+<!--                                     </td> -->
+<!--                                     <td> -->
+<%--                                         ${ele.cItmDept} --%>
+<!--                                     </td> -->
+<!--                                     <td> -->
+<%--                                         ${ele.cItmEvent} --%>
+<!--                                     </td>                                     -->
                                     <td>
                                         <c:if test="${ele.cItmCate eq 'LK'}"><span class="label label-primary">룩</span></c:if>
                                         <c:if test="${ele.cItmCate eq 'SI'}"><span class="label label-success">사이니지</span></c:if>
                                         <c:if test="${ele.cItmCate eq 'SP'}"><span class="label label-danger">스펙타큘러</span></c:if>
                                         <c:if test="${ele.cItmCate eq 'SE'}"><span class="label label-warning">스포츠장비</span></c:if>
                                     </td>
-                                    <td>
-                                        ${ele.cItmMate}
-                                    </td>
-                                    <td>
-                                        ${ele.cItmFloor}
-                                    </td>
-                                    <td>
-                                        ${ele.cItmLocation}
-                                    </td>
-                                    <td>
-                                        ${ele.cItmWidth}
-                                    </td>
-                                    <td>
-                                        ${ele.cItmHeight}
-                                    </td>
-                                    <td>
-                                        ${ele.cItmDimen}
-                                    </td>
-                                    <td>
-                                        ${ele.cItmQty1}
-                                    </td>
-                                    <td>
-                                        ${ele.cItemUnit1}
-                                    </td>
-                                    <td>
-                                        ${ele.cItmQty2}
-                                    </td>
-                                    <td>
-                                        ${ele.cItmUnit2}
-                                    </td>
-                                    <td>
-                                        ${ele.cItmDesc}
-                                    </td>
+<!--                                     <td> -->
+<%--                                         ${ele.cItmMate} --%>
+<!--                                     </td> -->
+<!--                                     <td> -->
+<%--                                         ${ele.cItmFloor} --%>
+<!--                                     </td> -->
+<!--                                     <td> -->
+<%--                                         ${ele.cItmLocation} --%>
+<!--                                     </td> -->
+<!--                                     <td> -->
+<%--                                         ${ele.cItmWidth} --%>
+<!--                                     </td> -->
+<!--                                     <td> -->
+<%--                                         ${ele.cItmHeight} --%>
+<!--                                     </td> -->
+<!--                                     <td> -->
+<%--                                         ${ele.cItmDimen} --%>
+<!--                                     </td> -->
+<!--                                     <td> -->
+<%--                                         ${ele.cItmQty1} --%>
+<!--                                     </td> -->
+<!--                                     <td> -->
+<%--                                         ${ele.cItemUnit1} --%>
+<!--                                     </td> -->
+<!--                                     <td> -->
+<%--                                         ${ele.cItmQty2} --%>
+<!--                                     </td> -->
+<!--                                     <td> -->
+<%--                                         ${ele.cItmUnit2} --%>
+<!--                                     </td> -->
+<!--                                     <td> -->
+<%--                                         ${ele.cItmDesc} --%>
+<!--                                     </td> -->
                                     <td class="text-center">
-                                        <span class="pie"><c:if test="${ele.nManStatus gt 0 }">1,0</c:if><c:if test="${ele.nManStatus le 0 }">0,1</c:if>
+                                        <c:if test="${ele.nManStatus gt 0 }"><span class="pie">${ele.nManStatus},${100 - ele.nManStatus}
 		                                    <svg class="peity" height="16" width="16">
 		                                    	<path d="M 8 8 L 8 0 A 8 8 0 0 1 14.933563796318165 11.990700825968545 Z" fill="#1ab394"></path>
 		                                    	<path d="M 8 8 L 14.933563796318165 11.990700825968545 A 8 8 0 1 1 7.999999999999998 0 Z" fill="#d7d7d7"></path>
 	                                    	</svg>
-	                                    </span>
+	                                    </span></c:if>
+	                                    <c:if test="${ele.nManStatus le 0 }"></c:if>
                                     </td>
                                     <td class="text-center">
-	                                    <span class="pie"><c:if test="${ele.nInsStatus gt 0 }">1,0</c:if><c:if test="${ele.nInsStatus le 0 }">0,1</c:if>
+                                        <c:if test="${ele.nDelStatus gt 0 }"><span class="pie">${ele.nDelStatus},${100 - ele.nDelStatus}
 		                                    <svg class="peity" height="16" width="16">
 		                                    	<path d="M 8 8 L 8 0 A 8 8 0 0 1 14.933563796318165 11.990700825968545 Z" fill="#1ab394"></path>
 		                                    	<path d="M 8 8 L 14.933563796318165 11.990700825968545 A 8 8 0 1 1 7.999999999999998 0 Z" fill="#d7d7d7"></path>
 	                                    	</svg>
-	                                    </span>
+	                                    </span></c:if><c:if test="${ele.nDelStatus le 0 }"></c:if>
                                     </td>
                                     <td class="text-center">
-	                                    <span class="pie"><c:if test="${ele.nDesStatus gt 0 }">1,0</c:if><c:if test="${ele.nDesStatus le 0 }">0,1</c:if>
+                                        <c:if test="${ele.nInsStatus gt 0 }"><span class="pie">${ele.nInsStatus},${100 - ele.nInsStatus}
 		                                    <svg class="peity" height="16" width="16">
 		                                    	<path d="M 8 8 L 8 0 A 8 8 0 0 1 14.933563796318165 11.990700825968545 Z" fill="#1ab394"></path>
 		                                    	<path d="M 8 8 L 14.933563796318165 11.990700825968545 A 8 8 0 1 1 7.999999999999998 0 Z" fill="#d7d7d7"></path>
 	                                    	</svg>
-	                                    </span>
+	                                    </span></c:if><c:if test="${ele.nInsStatus le 0 }"></c:if>
+                                    </td>
+                                    <td class="text-center">
+                                        <c:if test="${ele.nDesStatus gt 0 }"><span class="pie">${ele.nDesStatus},${100 - ele.nDesStatus}
+		                                    <svg class="peity" height="16" width="16">
+		                                    	<path d="M 8 8 L 8 0 A 8 8 0 0 1 14.933563796318165 11.990700825968545 Z" fill="#1ab394"></path>
+		                                    	<path d="M 8 8 L 14.933563796318165 11.990700825968545 A 8 8 0 1 1 7.999999999999998 0 Z" fill="#d7d7d7"></path>
+	                                    	</svg>
+	                                    </span></c:if><c:if test="${ele.nDesStatus le 0 }"></c:if>
                                     </td>
                                     <td class="text-center">
 	                                    <c:if test="${ele.nIncStatus gt 0 }"><span class="label label-danger">${ele.nIncStatus}</span></c:if><c:if test="${ele.nIncStatus le 0 }"></c:if>
@@ -277,12 +345,21 @@
                                             <button class="btn-white btn btn-xs <c:if test='${sessionScope.cred.cPerCom ne "adm"}'>disabled</c:if>" onclick="<c:if test='${sessionScope.cred.cPerCom eq "adm"}'>deleteItem(${ele.nItmCnt})</c:if>">삭제</button>
                                         </div>
                                     </td>
+                                    <td class="text-right">                                    
+                                        <div class="btn-group">
+                                            <button class="btn-white btn btn-xs" onclick="prePhoForm(${ele.nItmCnt})">설치전</button>
+                                            <button class="btn-white btn btn-xs" onclick="posPhoForm(${ele.nItmCnt})">설치후</button>
+                                            <button class="btn-white btn btn-xs" onclick="desPhoForm(${ele.nItmCnt})">철거후</button>
+                                        </div>
+                                    </td>
                                 </tr>
                                 </c:forEach>
                                 </tbody>
                                 <tfoot>
 	                                <tr>
-	                                    <td colspan="16" class="footable-visible">
+	                                    <td colspan="1"><input type="checkbox" class="form-check-input" id="selectAlltd"></td>
+	                                    <td>일괄선택</td>
+	                                    <td colspan="14" class="footable-visible">
 	                                        <ul class="pagination pull-right"></ul>
 	                                    </td>
 	                                </tr>
@@ -313,6 +390,7 @@
                                         </div>
                                         <div class="modal-body">
                                          <form method="POST" class="form-horizontal" id="addItemForm">
+                                         	<div id="mainItem">
                                          	<input type="hidden" class="form-control" name="nItmCnt" id="nItmCnt" maxlength="30" value=0>
                                             <div class="form-group"><label class="col-sm-2 control-label">아이템코드</label>
 			                                    <div class="col-sm-10"><input type="text" class="form-control" name="cItmCode" id="cItmCode" maxlength="60"></div>
@@ -420,43 +498,44 @@
 			                                    <div class="col-sm-10"><textarea class="form-control" name="cItmDesc" id="cItmDesc" maxlength="500"></textarea></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">조직위 단가 합계</label>
-			                                    <div class="col-sm-10"><input type="number" class="form-control" name="cItmUnitPrice1" id="cItmUnitPrice1" maxlength="20"></div>
+			                                    <div class="col-sm-10"><input type="number" class="form-control"  id="cItmUnitPrice1" maxlength="20" readonly="readonly" step=".01"></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">조직위 금액 합계</label>
-			                                    <div class="col-sm-10"><input type="number" class="form-control" name="cItmPrice1" id="cItmPrice1" maxlength="20"></div>
+			                                    <div class="col-sm-10"><input type="number" class="form-control" id="cItmPrice1" maxlength="20" readonly="readonly" step=".01"></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">조직위 재료비 단가</label>
-			                                    <div class="col-sm-10"><input type="number" class="form-control" name="cItmMateUnitPrice1" id="cItmMateUnitPrice1" maxlength="20"></div>
+			                                    <div class="col-sm-10"><input type="number" class="form-control" id="cItmMateUnitPrice1" maxlength="20" readonly="readonly" step="0.01"></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">조직위 재료비 금액</label>
-			                                    <div class="col-sm-10"><input type="number" class="form-control" name="cItmMatePrice1" id="cItmMatePrice1" maxlength="20"></div>
+			                                    <div class="col-sm-10"><input type="number" class="form-control"  id="cItmMatePrice1" maxlength="20" readonly="readonly" step="0.01"></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">조직위 노무비 단가</label>
-			                                    <div class="col-sm-10"><input type="number" class="form-control" name="cImtLaborUnitPrice1" id="cImtLaborUnitPrice1" maxlength="20"></div>
+			                                    <div class="col-sm-10"><input type="number" class="form-control" id="cImtLaborUnitPrice1" maxlength="20" readonly="readonly" step="0.01"></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">조직위 노무비 금액</label>
-			                                    <div class="col-sm-10"><input type="number" class="form-control" name="cItmLaborPrice1" id="cItmLaborPrice1" maxlength="20"></div>
+			                                    <div class="col-sm-10"><input type="number" class="form-control"  id="cItmLaborPrice1" maxlength="20" readonly="readonly" step="0.01"></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">하도급 단가 합계</label>
-			                                    <div class="col-sm-10"><input type="number" class="form-control" name="cItmUnitPrice2" id="cItmUnitPrice2" maxlength="20"></div>
+			                                    <div class="col-sm-10"><input type="number" class="form-control" id="cItmUnitPrice2" maxlength="20" readonly="readonly" step=".001"></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">하도급 금액 합계</label>
-			                                    <div class="col-sm-10"><input type="number" class="form-control" name="cItmPrice2" id="cItmPrice2" maxlength="20"></div>
+			                                    <div class="col-sm-10"><input type="number" class="form-control"  id="cItmPrice2" maxlength="20" readonly="readonly" step=".001"></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">하도급 재료비 단가</label>
-			                                    <div class="col-sm-10"><input type="number" class="form-control" name="cItmMateUnitPrice2" id="cItmMateUnitPrice2" maxlength="20"></div>
+			                                    <div class="col-sm-10"><input type="number" class="form-control" id="cItmMateUnitPrice2" maxlength="20" readonly="readonly" step=".001"></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">하도급 재료비 금액</label>
-			                                    <div class="col-sm-10"><input type="number" class="form-control" name="cItmMatePrice2" id="cItmMatePrice2" maxlength="20"></div>
+			                                    <div class="col-sm-10"><input type="number" class="form-control"  id="cItmMatePrice2" maxlength="20" readonly="readonly" step=".001"></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">하도급 노무비 단가</label>
-			                                    <div class="col-sm-10"><input type="number" class="form-control" name="cImtLaborUnitPrice2" id="cImtLaborUnitPrice2" maxlength="20"></div>
+			                                    <div class="col-sm-10"><input type="number" class="form-control"  id="cImtLaborUnitPrice2" maxlength="20" readonly="readonly" step="0.01"></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">하도급 노무비 금액</label>
-			                                    <div class="col-sm-10"><input type="number" class="form-control" name="cItmLaborPrice2" id="cItmLaborPrice2" maxlength="20"></div>
+			                                    <div class="col-sm-10"><input type="number" class="form-control" id="cItmLaborPrice2" maxlength="20" readonly="readonly" step="0.01"></div>
 			                                </div>
 			                                
 			                                
+			                                </div>
 			                                
 			                                <div class="form-group"><label class="col-sm-2 control-label">사진</label>
 			                                <div class="col-sm-10"><div id="fine-uploader"></div></div>
@@ -473,6 +552,31 @@
                                     </div>
                                 </div>
                             </div>
+                            
+<div class="modal inmodal" id="addPrePho" tabindex="-1" role="dialog"  aria-hidden="true">
+     <div class="modal-dialog">
+         <div class="modal-content animated fadeIn">
+             <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">닫기</span></button>
+                 <i class="fa fa-clock-o modal-icon"></i>
+                 <h4 class="modal-title">설치전 사진</h4>
+             </div>
+             <div class="modal-body">
+              <form method="POST" class="form-horizontal" id="addPrePhoForm">
+              <div id="pictureDom2"></div>
+              </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">닫기</button>
+                <button type="button" class="btn btn-primary" onclick="submitAddForm();" id="addBtn">제출</button>
+                <button type="button" class="btn btn-primary" onclick="submitUpdateForm();" id="updateBtn">수정</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 </body>
 <script>
 //검색
@@ -481,7 +585,7 @@ function searchItem(){
 }
 
 //검색값 세팅
-$("#cItmCodeSrc").val("${srcPar.cItmCode}")
+$("#cItmCodeSrc").val("${srcPar.cItmCode}");
 $('#cItmProdSrc').selectpicker('val', "${srcPar.cItmProd}");
 $('#cItmComSrc').selectpicker('val', "${srcPar.cItmCom}");
 $('#cItmVenueSrc').selectpicker('val', "${srcPar.cItmVenue}");
@@ -489,171 +593,237 @@ $('#cItmSportSrc').selectpicker('val', "${srcPar.cItmSport}");
 $('#cItmDeptSrc').selectpicker('val', "${srcPar.cItmDept}");
 $('#cItmEventSrc').selectpicker('val', "${srcPar.cItmEvent}");
 $('#cItmMateSrc').selectpicker('val', "${srcPar.cItmMate}");
+
+$("#cItmCodeSrcBulk").val("${srcPar.cItmCode}");
+$('#cItmProdSrcBulk').val("${srcPar.cItmProd}");
+$('#cItmComSrcBulk').val("${srcPar.cItmCom}");
+$('#cItmVenueSrcBulk').val("${srcPar.cItmVenue}");
+$('#cItmSportSrcBulk').val("${srcPar.cItmSport}");
+$('#cItmDeptSrcBulk').val("${srcPar.cItmDept}");
+$('#cItmEventSrcBulk').val("${srcPar.cItmEvent}");
+$('#cItmMateSrcBulk').val("${srcPar.cItmMate}");
 </script>
 <script src="https://cdn.ckeditor.com/4.7.1/basic/ckeditor.js"></script>
-							<script>
-							            CKEDITOR.replace( 'cItmDesc' );
-							</script>
-                            <script>
-					        var uploader = new qq.FineUploader({
-					            debug: true,
-					            element: document.getElementById('fine-uploader'),
-					            request: {
-					              inputName: 'file',
-					                endpoint: 'upload'
-					            },
-					//             deleteFile: {
-					//                 enabled: true,
-					//                 endpoint: 'admin/upload'
-					//             },
-					// 			validation: {
-					//                 allowedExtensions: ['jpeg', 'jpg', 'gif', 'png']
-					//             },
-					            scaling: {
-					                sendOriginal: false,
-					               // includeExif: true,
-					                sizes: [
-					                    {maxSize: 600}
-					                ]
-					            }
-					            ,autoUpload: true
-					//             retry: {
-					//                enableAuto: true
-					//             }
-					            ,callbacks: {
-					            	onAllComplete: function(succeeded) {
-					            		var uuid = "";
-					            		var tempUuid;
-					            		for(i = 0; i < succeeded.length; i++) {
-					            			if(i != 0){
-					            				uuid = uuid + ", " + uploader.getUuid(succeeded[i]);
-					            			}else{
-					            				uuid = uploader.getUuid(succeeded[i]);
-					            			}
-					            		}
-					                	
-					                	if($('#photoUidTmp').val() == ''){
-					                		$('#photoUidTmp').val(uuid);
-					                	}else{
-					                		$('#photoUidTmp').val($('#photoUidTmp').val() + ", " +uuid);
-					                	}
-					                	console.log($('#photoUid').val());
-					                	//uploader.clearStoredFiles();
-					            	}
-					            }
-					        });
-					        $('#trigger-upload').click(function() {
-					           // $('#fine-uploader').fineUploader('uploadStoredFiles');
-					           uploader.uploadStoredFiles();
-					        });
-					    </script>
 <script>
-         
-         function searchItem(){
-         	$("#searchItemForm").submit();
-         }
-		                     
-		
-		$('#addItemBtn').click(function(){
-			$("#addBtn").hide();
+CKEDITOR.replace( 'cItmDesc' );
+
+var uploader = new qq.FineUploader({
+    debug: true,
+    element: document.getElementById('fine-uploader'),
+    request: {
+      inputName: 'file',
+        endpoint: 'upload'
+    },
+//             deleteFile: {
+//                 enabled: true,
+//                 endpoint: 'admin/upload'
+//             },
+// 			validation: {
+//                 allowedExtensions: ['jpeg', 'jpg', 'gif', 'png']
+//             },
+    scaling: {
+        sendOriginal: false,
+       // includeExif: true,
+        sizes: [
+            {maxSize: 600}
+        ]
+    }
+    ,autoUpload: true
+//             retry: {
+//                enableAuto: true
+//             }
+    ,callbacks: {
+    	onAllComplete: function(succeeded) {
+    		var uuid = "";
+    		var tempUuid;
+    		for(i = 0; i < succeeded.length; i++) {
+    			if(i != 0){
+    				uuid = uuid + ", " + uploader.getUuid(succeeded[i]);
+    			}else{
+    				uuid = uploader.getUuid(succeeded[i]);
+    			}
+    		}
+        	
+        	if($('#photoUidTmp').val() == ''){
+        		$('#photoUidTmp').val(uuid);
+        	}else{
+        		$('#photoUidTmp').val($('#photoUidTmp').val() + ", " +uuid);
+        	}
+        	console.log($('#photoUid').val());
+        	//uploader.clearStoredFiles();
+    	}
+    }
+});
+
+$('#trigger-upload').click(function() {
+   // $('#fine-uploader').fineUploader('uploadStoredFiles');
+   uploader.uploadStoredFiles();
+});
+
+function prePhoForm(id){
+	showItemModal();
+	$("#mainItem").css("display", "none");
+}
+
+function posPhoForm(id){
+	showItemModal();
+	$("#mainItem").css("display", "none");
+}
+
+function desPhoForm(id){
+	showItemModal();
+	$("#mainItem").css("display", "none");
+}
+					       
+function searchItem(){
+	$("#searchItemForm").submit();
+}
+                     
+
+$('#addItemBtn').click(function(){
+	$("#addBtn").hide();
+	$("#updateBtn").hide();
+	$("#addBtn").show();
+	
+	CKEDITOR.instances['cItmDesc'].setData('');
+	
+	showItemModal();
+});
+
+function showItemModal(){
+	$("#mainItem").css("display", "block");
+	$("#addItemForm")[0].reset();
+	uploader.clearStoredFiles();
+	$('#addItemModal').modal("show");
+}
+
+function submitAddForm(){
+	$("#photoUid").val($("#photoUidTmp").val());
+	$("#addItemForm").attr('action', 'addItem');
+	$("#addItemForm").submit();
+}
+
+function submitUpdateForm(){
+	$("#photoUid").val($("#photoUidTmp").val());
+	$("#addItemForm").attr('action', 'updateItem');
+	$("#addItemForm").submit();
+}
+
+function selectItemOne(ref){
+	$.post( "selectDetail/itm/"+ref)
+       .done(function( data ) {
+    	    showItemModal();
+         	var vo = JSON.parse(JSON.stringify(data));
+         	
+         	$("#addBtn").hide();
 			$("#updateBtn").hide();
-			$("#addBtn").show();
+			$("#updateBtn").show();
 			
-			CKEDITOR.instances['cItmDesc'].setData('');
 			
-			showItemModal();
-		});
-		
-		function showItemModal(){
-			$("#addItemForm")[0].reset();
-			uploader.clearStoredFiles();
-			$('#addItemModal').modal("show");
-		}
-		
-		function submitAddForm(){
-			$("#photoUid").val($("#photoUidTmp").val());
-			$("#addItemForm").attr('action', 'addItem');
-			$("#addItemForm").submit();
-		}
-		
-		function submitUpdateForm(){
-			$("#photoUid").val($("#photoUidTmp").val());
-			$("#addItemForm").attr('action', 'updateItem');
-			$("#addItemForm").submit();
-		}
-		
-		function selectItemOne(ref){
-			$.post( "selectDetail/itm/"+ref)
-		       .done(function( data ) {
-		    	    showItemModal();
-		         	var vo = JSON.parse(JSON.stringify(data));
-		         	
-		         	$("#addBtn").hide();
-					$("#updateBtn").hide();
-					$("#updateBtn").show();
-					
-					
-					CKEDITOR.instances['cItmDesc'].setData(vo[0].cItmDesc);
-					
-					$("#nItmCnt").val(vo[0].nItmCnt);
-					$("#cItmCode").val(vo[0].cItmCode);
-					$('#cItmCom').selectpicker('val', vo[0].cItmCom);
-					$('#cItmVenue').selectpicker('val', vo[0].cItmVenue);
-					$('#cItmSport').selectpicker('val', vo[0].cItmSport);
-					$('#cItmDept').selectpicker('val', vo[0].cItmDept);
-					$('#cItmEvent').selectpicker('val', vo[0].cItmEvent);
-					$('#cItmCate').selectpicker('val', vo[0].cItmCate);
-					$('#cItmProd').selectpicker('val', vo[0].cItmProd);
-					$("#cItmMate").val(vo[0].cItmMate);
-					$("#cItmFloor").val(vo[0].cItmFloor);
-					$("#cItmLocation").val(vo[0].cItmLocation);
-					$("#cItmWidth").val(vo[0].cItmWidth);
-					$("#cItmHeight").val(vo[0].cItmHeight);
-					$("#cItmDimen").val(vo[0].cItmDimen);
-					$("#cItmQty1").val(vo[0].cItmQty1);
-					$("#cItemUnit1").val(vo[0].cItemUnit1);
-					$("#cItmQty2").val(vo[0].cItmQty2);
-					$("#cItmUnit2").val(vo[0].cItmUnit2);
-					$("#cItmUnitPrice1").val(vo[0].cItmUnitPrice1);
-					$("#cItmPrice1").val(vo[0].cItmPrice1);
-					$("#cItmMateUnitPrice1").val(vo[0].cItmMateUnitPrice1);
-					$("#cItmMatePrice1").val(vo[0].cItmMatePrice1);
-					$("#cImtLaborUnitPrice1").val(vo[0].cImtLaborUnitPrice1);
-					$("#cItmLaborPrice1").val(vo[0].cItmLaborPrice1);
-					$("#cItmUnitPrice2").val(vo[0].cItmUnitPrice2);
-					$("#cItmPrice2").val(vo[0].cItmPrice2);
-					$("#cItmMateUnitPrice2").val(vo[0].cItmMateUnitPrice2);
-					$("#cItmMatePrice2").val(vo[0].cItmMatePrice2);
-					$("#cImtLaborUnitPrice2").val(vo[0].cImtLaborUnitPrice2);
-					$("#cItmLaborPrice2").val(vo[0].cItmLaborPrice2);
-					
-				
-					
-					$("#pictureDom").empty();
-					for(var i = 0; i < vo.length; i++){
-						if(vo[i].cPhoName){
-							$("#pictureDom").append("<div class='row' id='Pho"+vo[i].nPhoCnt+"'><div><a downlaod='"+vo[i].nPhoCnt+"' href='https://www.kimgdb.com/image/"+vo[i].cPhoName+"'><img class='img-responsive' src='https://www.kimgdb.com/image/"+vo[i].cPhoName+"'></a></div><div><button type='button' class='btn btn-primary' onclick='deletePhoto("+vo[i].nPhoCnt+")' >삭제</button></div></div><br>")
-						}
-					}
-					
-		       });
-		}
-		
-		function deletePhoto(ref){
-			$.post( "deletePhoto/"+ref)
-				.done(function(data){
-					$("#Pho"+ref).fadeOut();
-					console.log(data+" deleted");
-				});
-		}
-		
-		function deleteItem(ref){
-			var r = confirm("삭제 하시겠습니까?");
-			if(r == true){
-				location.href = "deleteItem?ref="+ref;
-			} else{
-				
+			CKEDITOR.instances['cItmDesc'].setData(vo[0].cItmDesc);
+			
+			$("#nItmCnt").val(vo[0].nItmCnt);
+			$("#cItmCode").val(vo[0].cItmCode);
+			$('#cItmCom').selectpicker('val', vo[0].cItmCom);
+			$('#cItmVenue').selectpicker('val', vo[0].cItmVenue);
+			$('#cItmSport').selectpicker('val', vo[0].cItmSport);
+			$('#cItmDept').selectpicker('val', vo[0].cItmDept);
+			$('#cItmEvent').selectpicker('val', vo[0].cItmEvent);
+			$('#cItmCate').selectpicker('val', vo[0].cItmCate);
+			$('#cItmProd').selectpicker('val', vo[0].cItmProd);
+			$("#cItmMate").val(vo[0].cItmMate);
+			$("#cItmFloor").val(vo[0].cItmFloor);
+			$("#cItmLocation").val(vo[0].cItmLocation);
+			$("#cItmWidth").val(vo[0].cItmWidth);
+			$("#cItmHeight").val(vo[0].cItmHeight);
+			$("#cItmDimen").val(vo[0].cItmDimen);
+			$("#cItmQty1").val(vo[0].cItmQty1);
+			$("#cItemUnit1").val(vo[0].cItemUnit1);
+			$("#cItmQty2").val(vo[0].cItmQty2);
+			$("#cItmUnit2").val(vo[0].cItmUnit2);
+			
+// 			private double nPrdPriceOcog;
+// 			private double nPrdPriceCont;
+// 			private double nPrdLaborOcog;
+// 			private double nPrdLaborCont;
+			
+// 			cItmQty2
+			
+			$("#cItmUnitPrice1").val(Math.round(vo[0].nPrdPriceOcog+vo[0].nPrdLaborOcog * 1000) / 1000);
+			$("#cItmPrice1").val(Math.round((vo[0].nPrdPriceOcog+vo[0].nPrdLaborOcog)*parseFloat(vo[0].cItmQty2) * 1000) / 1000);
+			$("#cItmMateUnitPrice1").val(Math.round(vo[0].nPrdPriceOcog * 1000) / 1000);
+			$("#cItmMatePrice1").val(Math.round(vo[0].nPrdPriceOcog*parseFloat(vo[0].cItmQty2) * 1000) / 1000);
+			$("#cImtLaborUnitPrice1").val(Math.round(vo[0].nPrdLaborOcog * 1000) / 1000);
+			$("#cItmLaborPrice1").val(Math.round(vo[0].nPrdLaborOcog*parseFloat(vo[0].cItmQty2) * 1000) / 1000);
+			
+			$("#cItmUnitPrice2").val(Math.round(vo[0].nPrdPriceCont+vo[0].nPrdLaborCont * 1000) / 1000);
+			$("#cItmPrice2").val(Math.round((vo[0].nPrdPriceCont+vo[0].nPrdLaborCont)*parseFloat(vo[0].cItmQty2) * 1000) / 1000);
+			$("#cItmMateUnitPrice2").val(Math.round(vo[0].nPrdPriceCont * 1000) / 1000);
+			$("#cItmMatePrice2").val(Math.round(vo[0].nPrdPriceCont*parseFloat(vo[0].cItmQty2) * 1000) / 1000);
+			$("#cImtLaborUnitPrice2").val(Math.round(vo[0].nPrdPriceCont * 1000) / 1000);
+			$("#cItmLaborPrice2").val(Math.round(vo[0].nPrdPriceCont*parseFloat(vo[0].cItmQty2) * 1000) / 1000);
+			
+			$("#pictureDom").empty();
+			for(var i = 0; i < vo.length; i++){
+				if(vo[i].cPhoName){
+					$("#pictureDom").append("<div class='row' id='Pho"+vo[i].nPhoCnt+"'><div><a downlaod='"+vo[i].nPhoCnt+"' href='https://www.kimgdb.com/image/"+vo[i].cPhoName+"'><img class='img-responsive' src='https://www.kimgdb.com/image/"+vo[i].cPhoName+"'></a></div><div><button type='button' class='btn btn-primary' onclick='deletePhoto("+vo[i].nPhoCnt+")' >삭제</button></div></div><br>")
+				}
 			}
-		}
+			
+       });
+}
+
+function deletePhoto(ref){
+	$.post( "deletePhoto/"+ref)
+		.done(function(data){
+			$("#Pho"+ref).fadeOut();
+			console.log(data+" deleted");
+		});
+}
+
+function deleteItem(ref){
+	var r = confirm("삭제 하시겠습니까?");
+	if(r == true){
+		location.href = "deleteItem?ref="+ref;
+	} else{
+		
+	}
+}
+		
+$("#selectAlltd").change(function() {
+    if(this.checked) {
+    	$(".select_td").prop('checked', true);
+    }else{
+    	$(".select_td").prop('checked', false);
+    }
+});
+
+function selectAllTds(){
+	//select_td
+	var allVals = [];
+	$('.select_td:checkbox:checked').each(function() {
+      allVals.push($(this).attr("id"));
+    });
+
+	$('#td_numbers').val(allVals);
+}
+function submitBulk(){
+	selectAllTds();
+	//alert($('#td_numbers').val());
+// 	//검색값 찾아오기
+	$("#cItmCodeSrcBulk").val($("#cItmCodeSrc").val());
+	$('#cItmProdSrcBulk').val($('#cItmProdSrc').val());
+	$('#cItmComSrcBulk').val($('#cItmComSrc').val());
+	$('#cItmVenueSrcBulk').val($('#cItmVenueSrc').val());
+	$('#cItmSportSrcBulk').val($('#cItmSportSrc').val());
+	$('#cItmDeptSrcBulk').val($('#cItmDeptSrc').val());
+	$('#cItmEventSrcBulk').val($('#cItmEventSrc').val());
+	$('#cItmMateSrcBulk').val($('#cItmMateSrc').val());
+	
+	
+	$("#itemBulkForm").submit();
+}
+
+// 		addPrePhoForm
 </script>
 </html>

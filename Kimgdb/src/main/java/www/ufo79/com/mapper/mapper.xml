@@ -237,12 +237,16 @@
     item.`dItmMod`,
     item.`cItmModUsr`,
     item.`nItmDel`,
-  	(SELECT count(0) FROM KIMG.kimgTask where nRefItm = nItmCnt and nTskDel = 0 and cTskType = 'MAN' and cTskStatus = 'CNF') as 'nManStatus',
-	(SELECT count(0) FROM KIMG.kimgTask where nRefItm = nItmCnt and nTskDel = 0 and cTskType = 'INS'and cTskStatus = 'CNF') as 'nInsStatus',
-	(SELECT count(0) FROM KIMG.kimgTask where nRefItm = nItmCnt and nTskDel = 0 and cTskType = 'DES' and cTskStatus = 'CNF') as 'nDesStatus',
+  	(SELECT cTstPercent from KIMG.kimgTask kt left join KIMG.kimgTaskStatus ks on kt.cTskStatus = ks.cTstType where kt.cTskType = 'MAN' and nTskDel = 0 and nRefItm = nItmCnt order by kt.nTskCnt desc limit 1) as 'nManStatus', 
+  	(SELECT cTstPercent from KIMG.kimgTask kt left join KIMG.kimgTaskStatus ks on kt.cTskStatus = ks.cTstType where kt.cTskType = 'INS' and nTskDel = 0 and nRefItm = nItmCnt order by kt.nTskCnt desc limit 1) as 'nInsStatus', 
+  	(SELECT cTstPercent from KIMG.kimgTask kt left join KIMG.kimgTaskStatus ks on kt.cTskStatus = ks.cTstType where kt.cTskType = 'DES' and nTskDel = 0 and nRefItm = nItmCnt order by kt.nTskCnt desc limit 1) as 'nDesStatus', 
+  	(SELECT cTstPercent from KIMG.kimgTask kt left join KIMG.kimgTaskStatus ks on kt.cTskStatus = ks.cTstType where kt.cTskType = 'DEL' and nTskDel = 0 and nRefItm = nItmCnt order by kt.nTskCnt desc limit 1) as 'nDelStatus', 
 	(SELECT count(0) FROM KIMG.kimgTask where nRefItm = nItmCnt and nTskDel = 0 and cTskType = 'INC' and cTskStatus in ('TRQ', 'ERQ')) as 'nIncStatus',
  	prod.cPrdName,
- 	cat.cCatName
+ 	cat.cCatName,
+ 	item.cItmPrePho,
+ 	item.cItmImpPho,
+ 	item.cItmPosPho
   	FROM KIMG.kimgItem item
 	left join KIMG.kimgProduct prod on item.cItmProd = prod.cPrdCode
     left join KIMG.kimgCategory cat on item.cItmCate = cat.cCatType
@@ -319,7 +323,11 @@
 	`cPrdCrtUsr`,
 	`dPrdMod`,
 	`cPrdModUsr`,
-	`nPrdDel`)
+	`nPrdDel`,
+	`nPrdPriceOcog`,
+	`nPrdPriceCont`,
+	`nPrdLaborOcog`,
+	`nPrdLaborCont`)
 	VALUES
 	(
 	#{cPrdCode},
@@ -331,7 +339,11 @@
 	#{cPrdCrtUsr},
 	now(),
 	#{cPrdModUsr},
-	0);
+	0,
+	#{nPrdPriceOcog},
+	#{nPrdPriceCont},
+	#{nPrdLaborOcog},
+	#{nPrdLaborCont});
   	</insert>
   	<select id="selectProductOne" parameterType="Integer" resultType="KimgProduct">
   	SELECT * FROM KIMG.kimgProduct pro
@@ -341,6 +353,7 @@
   	<select id="selectItemOne" parameterType="Integer" resultType="KimgItem">
   	SELECT * FROM KIMG.kimgItem itm
 	left join KIMG.kimgPhoto pho on itm.nItmCnt = pho.nRefCode and pho.cPhoType = 'itm' and pho.nPhoDel = 0
+	left join KIMG.kimgProduct pro on itm.cItmProd = pro.cPrdCode
 	WHERE nItmCnt = #{param}
   	</select>
   	<select id="selectTaskOne" parameterType="Integer" resultType="KimgTask">
@@ -368,6 +381,18 @@
 	</if>
 	<if test="nPrdDel != null and nPrdDel != ''">
 	`nPrdDel` = #{nPrdDel},
+	</if>
+	<if test="nPrdPriceOcog != null and nPrdPriceOcog != ''">
+	`nPrdPriceOcog` = #{nPrdPriceOcog},
+	</if>
+	<if test="nPrdPriceCont != null and nPrdPriceCont != ''">
+	`nPrdPriceCont` = #{nPrdPriceCont},
+	</if>	
+	<if test="nPrdLaborOcog != null and nPrdLaborOcog != ''">
+	`nPrdLaborOcog` = #{nPrdLaborOcog},
+	</if>
+	<if test="nPrdLaborCont != null and nPrdLaborCont != ''">
+	`nPrdLaborCont` = #{nPrdLaborCont},
 	</if>	
 	`dPrdMod` = now(),
 	`cPrdModUsr` = #{cPrdModUsr}

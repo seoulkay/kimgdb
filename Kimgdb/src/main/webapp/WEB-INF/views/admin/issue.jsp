@@ -46,19 +46,20 @@
 			<form action="issue" method="post" id="searchForm">
             <div class="ibox-content m-b-sm border-bottom">
                 <div class="row">
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label class="control-label" for="order_id">번호</label>
-                            <input type="number" id="nTskCntSrc" name="nTskCnt" placeholder="Issue ID" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
+                	<div class="col-sm-6">
                         <div class="form-group">
                             <label class="control-label" for="status">아이템코드</label>
                             <input type="text" id="cItmCodeSrc" name="cItmCode" placeholder="Item Code" class="form-control">
                         </div>
                     </div>
                     <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label" for="order_id">번호</label>
+                            <input type="number" id="nTskCntSrc" name="nTskCnt" placeholder="Issue ID" class="form-control">
+                        </div>
+                    </div>
+                    
+<!--                     <div class="col-sm-3"> -->
 <!--                         <div class="form-group"> -->
 <!--                             <label class="control-label" for="">이슈 상태</label>                       		 -->
 <!--                         	<select class="selectpicker form-control m-b" data-live-search="true" name="cTskStatus" id="cTskStatusSrc" > -->
@@ -68,9 +69,9 @@
 <%--                            	</c:forEach> --%>
 <!--                            	</select> -->
 <!--                         </div> -->
-						<label class="control-label" for="cTskNote">설명</label>                       		
-                       	<input type="text" id="cTskNoteSrc" name="cTskNote" placeholder="note" class="form-control">
-                    </div>
+<!-- 						<label class="control-label" for="cTskNote">설명</label>                       		 -->
+<!--                        	<input type="text" id="cTskNoteSrc" name="cTskNote" placeholder="note" class="form-control"> -->
+<!--                     </div> -->
                     <div class="col-sm-3">
                         <div class="form-group">
                             <label class="control-label" for="cItmVenue">베뉴</label>                       		
@@ -109,7 +110,7 @@
                                     <th>이슈번호</th>
                                     <th data-hide="phone">아이템코드</th>
                                     <th data-hide="phone">베뉴</th>
-                                    <th data-hide="phone">설명</th>
+<!--                                     <th data-hide="phone">설명</th> -->
                                     <th data-hide="phone">이슈 생성자</th>
                                     <th data-hide="phone">이슈 생성일</th>
                                     <th data-hide="phone">상태</th>
@@ -121,7 +122,7 @@
                                     <td>${ele.nTskCnt }</td>
                                     <td>${ele.cItmCode }</td>
                                     <td>${ele.cItmVenue }</td>
-                                    <td style="white-space: nowrap;text-overflow: ellipsis;overflow: hidden;">${ele.cTskNote}</td>
+<%--                                     <td style="white-space: nowrap;text-overflow: ellipsis;overflow: hidden;">${ele.cTskNote}</td> --%>
                                     <td>${ele.cTskCrtUsr }</td>
                                     <td><fmt:formatDate pattern = "yyyy-MM-dd HH:mm"  value = "${ele.dTskMod }" /></td>
                                     <td>

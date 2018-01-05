@@ -102,7 +102,7 @@
                                     <th data-hide="phone">품목명(영문)</th>
                                     <th data-hide="phone">품목명(한글)</th>
                                     <th data-hide="phone" >카테고리</th>
-                                    <th data-hide="phone, tablet">설명</th>
+<!--                                     <th data-hide="phone, tablet">설명</th> -->
                                     <!-- <th class="text-right">행동</th> -->
                                 </tr>
                                 </thead>
@@ -127,9 +127,9 @@
                                         <c:if test="${ele.cPrdCat eq 'SP'}"><span class="label label-danger">스펙타큘러</span></c:if>
                                         <c:if test="${ele.cPrdCat eq 'SE'}"><span class="label label-warning">스포츠장비</span></c:if>
                                     </td>
-                                    <td>
-                                        ${ele.cPrdDesc}
-                                    </td>
+<!--                                     <td> -->
+<%--                                         ${ele.cPrdDesc} --%>
+<!--                                     </td> -->
                                     <td class="text-right">
                                         <div class="btn-group">
                                             <button class="btn-white btn btn-xs" onclick="selectProductOne('${ele.nPrdCnt}')">보기 / 수정</button>
@@ -182,6 +182,26 @@
 			                                <div class="form-group"><label class="col-sm-2 control-label">품목이름(한)</label>
 			                                    <div class="col-sm-10"><input type="text" class="form-control" name="cPrdLocalName" id="cPrdLocalName" maxlength="200"></div>
 			                                </div>
+			                                <div class="form-group"><label class="col-sm-2 control-label">조직위재료비</label>
+			                                    <div class="col-sm-10"><input type="number" class="form-control" name="nPrdPriceOcog" id="nPrdPriceOcog" step=any></div>
+			                                </div>
+			                                <div class="form-group"><label class="col-sm-2 control-label">조직위노무비</label>
+			                                    <div class="col-sm-10"><input type="number" class="form-control" name="nPrdLaborOcog" id="nPrdLaborOcog" step=any></div>
+			                                </div>
+			                                <div class="form-group"><label class="col-sm-2 control-label">조직위합계</label>
+			                                    <div class="col-sm-10" id="OcogTotal"></div>
+			                                </div>
+			                                <div class="form-group"><label class="col-sm-2 control-label">외주재료비</label>
+			                                    <div class="col-sm-10"><input type="number" class="form-control" name="nPrdPriceCont" id="nPrdPriceCont" step=any></div>
+			                                </div>
+			                                <div class="form-group"><label class="col-sm-2 control-label">외주노무비</label>
+			                                    <div class="col-sm-10"><input type="number" class="form-control" name="nPrdLaborCont" id="nPrdLaborCont" step=any></div>
+			                                </div>
+			                                <div class="form-group"><label class="col-sm-2 control-label">외주합계</label>
+			                                    <div class="col-sm-10" id="ContTotal"></div>
+			                                </div>
+			                                
+			                                
 			                                <div class="form-group"><label class="col-sm-2 control-label">카테고리</label>
 			                                    <div class="col-sm-10">
 			                                   	<select class="form-control m-b" name="cPrdCat" id="cPrdCat">
@@ -332,6 +352,12 @@
 										$("#cPrdName").val(vo[0].cPrdName);
 										$("#cPrdLocalName").val(vo[0].cPrdLocalName);
 										$("#cPrdCat").val(vo[0].cPrdCat);
+										$("#nPrdPriceOcog").val(vo[0].nPrdPriceOcog);
+										$("#nPrdPriceCont").val(vo[0].nPrdPriceCont);
+										$("#nPrdLaborOcog").val(vo[0].nPrdLaborOcog);
+										$("#nPrdLaborCont").val(vo[0].nPrdLaborCont);
+										$("#OcogTotal").text(vo[0].nPrdPriceOcog+vo[0].nPrdLaborOcog);
+										$("#ContTotal").text(vo[0].nPrdPriceCont+vo[0].nPrdLaborCont);
 										CKEDITOR.instances['cPrdDesc'].setData(vo[0].cPrdDesc);
 										$("#pictureDom").empty();
 										for(var i = 0; i < vo.length; i++){
@@ -356,7 +382,7 @@
 								var r = confirm("삭제 하시겠습니까?");
 								if(r == true){
 									location.href = "deleteProduct?ref="+ref;
-								} else{
+								}else{
 									
 								}
 								
