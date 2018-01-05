@@ -43,6 +43,7 @@ import www.ufo79.com.vo.KimgItemVO;
 import www.ufo79.com.vo.KimgPersonVO;
 import www.ufo79.com.vo.KimgPhotoVO;
 import www.ufo79.com.vo.KimgProductVO;
+import www.ufo79.com.vo.KimgProgressVO;
 import www.ufo79.com.vo.KimgSportVO;
 import www.ufo79.com.vo.KimgTaskStatusVO;
 import www.ufo79.com.vo.KimgTaskTypeVO;
@@ -68,6 +69,7 @@ public class KimgController {
 	static List<KimgTaskStatusVO> taskStatus = new ArrayList<KimgTaskStatusVO>();
 	static List<KimgTaskTypeVO> taskType = new ArrayList<KimgTaskTypeVO>();
 	static List<KimgItemVO> defItemList = new ArrayList<KimgItemVO>();
+	static List<KimgProgressVO> defProgressList = new ArrayList<KimgProgressVO>();
 	//드랍박스 세팅
 	@Scheduled(fixedRate=1800000)
 	public void initSelect(){
@@ -81,6 +83,8 @@ public class KimgController {
 		taskStatus = dao.selectTaskStatus();
 		taskType = dao.selectTaskType();
 		defItemList = dao.selectAllItem();
+		dao.insertDash();
+		defProgressList = dao.selectProgress();
 		System.out.println("init setting done.");
 	}
 
@@ -168,6 +172,7 @@ public class KimgController {
 			}
 			issueList = issueListTemp;
 			
+			try{
 			List<KimgTaskVO> taskListTemp = new ArrayList<KimgTaskVO>();
 			for(KimgTaskVO ele : taskList){
 				if(ele.getcTskComp().equals(cPerCom)){
@@ -178,9 +183,13 @@ public class KimgController {
 					}
 				}
 			}
+			model.addAttribute("taskList", taskListTemp);
+			}catch(Exception e){
+				System.out.println("테스크 없음");
+			}
 			//issueList = taskListTemp;
 			
-			model.addAttribute("taskList", taskListTemp);
+			
 		}else{
 			
 			List<KimgTaskVO> taskListTemp = new ArrayList<KimgTaskVO>();
@@ -202,6 +211,7 @@ public class KimgController {
 		model.addAttribute("issueList", issueList);
 		model.addAttribute("srcPar", srcPar);
 		model.addAttribute("dashInfo", dao.selectLateDash());
+		model.addAttribute("defProgressList", defProgressList);
 		model.addAttribute("selectedMenu", "dash");
 		return "admin/dash";
 	}
@@ -259,25 +269,25 @@ public class KimgController {
 		itemList = dao.selectAllItemSrcPar(srcPar);
 		
 		//퍼미션 관련
-//		String cPerCom = session.getAttribute("cPerCom").toString();
-//		if(!cPerCom.equals("adm")){
-//			List<KimgItemVO> itemListTemp = new ArrayList<KimgItemVO>();
-//			for(KimgItemVO ele : itemList){
-//				if(ele.getcItmCom().equals(cPerCom)){
-//					itemListTemp.add(ele);
-//				}
-//			}
-//			itemList = itemListTemp;
-//			List<KimgCompanyVO> companyListTemp = new ArrayList<KimgCompanyVO>();
-//			for(KimgCompanyVO ele : companyList){
-//				if(ele.getcComCode().equals(cPerCom)){
-//					companyListTemp.add(ele);
-//				}
-//			}
-//			model.addAttribute("companyList", companyListTemp);
-//		}else{
+		String cPerCom = session.getAttribute("cPerCom").toString();
+		if(!cPerCom.equals("adm")){
+			List<KimgItemVO> itemListTemp = new ArrayList<KimgItemVO>();
+			for(KimgItemVO ele : itemList){
+				if(ele.getcItmCom().equals(cPerCom)){
+					itemListTemp.add(ele);
+				}
+			}
+			itemList = itemListTemp;
+			List<KimgCompanyVO> companyListTemp = new ArrayList<KimgCompanyVO>();
+			for(KimgCompanyVO ele : companyList){
+				if(ele.getcComCode().equals(cPerCom)){
+					companyListTemp.add(ele);
+				}
+			}
+			model.addAttribute("companyList", companyListTemp);
+		}else{
 			model.addAttribute("companyList", companyList);
-//		}
+		}
 			
 			
 		
@@ -327,12 +337,12 @@ public class KimgController {
 		//퍼미션 관련
 		String cPerCom = session.getAttribute("cPerCom").toString();
 		if(!cPerCom.equals("adm")){
-//			List<KimgCompanyVO> companyListTemp = new ArrayList<KimgCompanyVO>();
-//			for(KimgCompanyVO ele : companyList){
-//				if(ele.getcComCode().equals(cPerCom)){
-//					companyListTemp.add(ele);
-//				}
-//			}
+			List<KimgCompanyVO> companyListTemp = new ArrayList<KimgCompanyVO>();
+			for(KimgCompanyVO ele : companyList){
+				if(ele.getcComCode().equals(cPerCom)){
+					companyListTemp.add(ele);
+				}
+			}
 			List<KimgTaskStatusVO> taskStatusTemp = new ArrayList<KimgTaskStatusVO>();
 			for(KimgTaskStatusVO ele : taskStatus){
 				if(!ele.getcTstType().equals("CNF")){
@@ -562,6 +572,8 @@ public class KimgController {
 		return "redirect:item";
 	}
 	
+	
+	
 	@RequestMapping(value = "/admin/addTask", method = RequestMethod.POST)
 	public String addTask(Model model, HttpSession session, @ModelAttribute("vo")KimgTaskVO vo) {
 		if(session.getAttribute("cPerId") == null){
@@ -705,7 +717,7 @@ public class KimgController {
 //		  if(session.getAttribute("cPerId") == null){
 //				return "redirect:../";
 //		  }
-		  
+		 // pre, pos, des
 		  if(type.equals("prd")){
 			  return dao.selectProductOne(ref);
 		  }else if(type.equals("itm")){
@@ -714,7 +726,9 @@ public class KimgController {
 			  return dao.selectTaskOne(ref);
 		  }else if(type.equals("acc")){
 			  return dao.selectOnePerson(ref);
-		  }else{
+		  }else if(type.equals("pre") || type.equals("pos") || type.equals("des")){
+			  return dao.selectItemOne(ref);
+	  	  }else{
 			  return "null";  
 		  }
 		}
@@ -924,25 +938,25 @@ public class KimgController {
 		  itemList = dao.selectAllItemSrcPar(srcPar);
 			
 			//퍼미션 관련
-//			String cPerCom = session.getAttribute("cPerCom").toString();
-//			if(!cPerCom.equals("adm")){
-//				List<KimgItemVO> itemListTemp = new ArrayList<KimgItemVO>();
-//				for(KimgItemVO ele : itemList){
-//					if(ele.getcItmCom().equals(cPerCom)){
-//						itemListTemp.add(ele);
-//					}
-//				}
-//				itemList = itemListTemp;
-//				List<KimgCompanyVO> companyListTemp = new ArrayList<KimgCompanyVO>();
-//				for(KimgCompanyVO ele : companyList){
-//					if(ele.getcComCode().equals(cPerCom)){
-//						companyListTemp.add(ele);
-//					}
-//				}
-//				model.addAttribute("companyList", companyListTemp);
-//			}else{
+			String cPerCom = session.getAttribute("cPerCom").toString();
+			if(!cPerCom.equals("adm")){
+				List<KimgItemVO> itemListTemp = new ArrayList<KimgItemVO>();
+				for(KimgItemVO ele : itemList){
+					if(ele.getcItmCom().equals(cPerCom)){
+						itemListTemp.add(ele);
+					}
+				}
+				itemList = itemListTemp;
+				List<KimgCompanyVO> companyListTemp = new ArrayList<KimgCompanyVO>();
+				for(KimgCompanyVO ele : companyList){
+					if(ele.getcComCode().equals(cPerCom)){
+						companyListTemp.add(ele);
+					}
+				}
+				model.addAttribute("companyList", companyListTemp);
+			}else{
 				model.addAttribute("companyList", companyList);
-//			}
+			}
 				
 				
 			
@@ -966,4 +980,79 @@ public class KimgController {
 			model.addAttribute("selectedMenu", "item");
 			return "admin/item";
 	  }
+	  
+	  
+	  @RequestMapping(value="/admin/photoFormAction", method=RequestMethod.POST)
+	  public String photoFormAction(Model model, HttpSession session, 
+			 @ModelAttribute("vo")KimgItemVO srcPar
+			  , Locale locale){
+		  if(session.getAttribute("cPerId") == null){
+				return "redirect:../";
+		  }
+		
+		  String[] pictures = srcPar.getPhotoUid2().split(",");
+		  int piclen = pictures.length-1;
+		  
+		  //System.out.println(pictures[piclen]);
+		  KimgItemVO vo = new KimgItemVO();
+		  if(srcPar.getPhoType().equals("pre")){
+			  vo.setcItmPrePho(pictures[piclen].trim());
+		  }else if(srcPar.getPhoType().equals("pos")){
+			  vo.setcItmPosPho(pictures[piclen].trim());
+		  }else if(srcPar.getPhoType().equals("des")){
+			  vo.setcItmDesPho(pictures[piclen].trim());
+		  }
+		  vo.setnItmCnt(srcPar.getnItmCnt());
+		  vo.setcItmModUsr(session.getAttribute("cPerId").toString());
+		  
+		  dao.updateItem(vo);
+		  //아 몰라 아이템 뷰 로직 그대로 실행.
+		  List<KimgItemVO> itemList = new ArrayList<KimgItemVO>();
+		  itemList = dao.selectAllItemSrcPar(srcPar);
+			
+			//퍼미션 관련
+			String cPerCom = session.getAttribute("cPerCom").toString();
+			if(!cPerCom.equals("adm")){
+				List<KimgItemVO> itemListTemp = new ArrayList<KimgItemVO>();
+				for(KimgItemVO ele : itemList){
+					if(ele.getcItmCom().equals(cPerCom)){
+						itemListTemp.add(ele);
+					}
+				}
+				itemList = itemListTemp;
+				List<KimgCompanyVO> companyListTemp = new ArrayList<KimgCompanyVO>();
+				for(KimgCompanyVO ele : companyList){
+					if(ele.getcComCode().equals(cPerCom)){
+						companyListTemp.add(ele);
+					}
+				}
+				model.addAttribute("companyList", companyListTemp);
+			}else{
+				model.addAttribute("companyList", companyList);
+			}
+				
+				
+			
+			List<KimgProductVO> productList = dao.selectAllProduct();
+			
+			
+			model.addAttribute("statusList", taskStatus);
+			model.addAttribute("taskList", taskType);
+			
+			model.addAttribute("itemList", itemList);
+			model.addAttribute("catList", catList);
+			model.addAttribute("eventList", eventList);
+			model.addAttribute("sportList", sportList);
+			model.addAttribute("departmentList", departmentList);
+			model.addAttribute("venueList", venueList);
+			model.addAttribute("productList", productList);
+			model.addAttribute("cItmMateList", cItmMateList);
+			
+			model.addAttribute("srcPar", srcPar);		
+			
+			model.addAttribute("selectedMenu", "item");
+			return "admin/item";
+	  }
+	  
+	  
 }

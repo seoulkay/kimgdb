@@ -2,38 +2,77 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper">
 <!-- 스케줄에 집어넣을 대시보드 리포트것 -->
-<!-- INSERT INTO `KIMG`.`kimgDash` -->
-<!-- ( -->
-<!-- `nDasProduct`, -->
-<!-- `nDasItem`, -->
-<!-- `nDasTask`, -->
-<!-- `nDasIssue`, -->
-<!-- `nDasIssueReq`, -->
-<!-- `nDasPerson`, -->
-<!-- `nDasItemLook`, -->
-<!-- `nDasItemSign`, -->
-<!-- `nDasItemSpec`, -->
-<!-- `nDasItemSport`, -->
-<!-- `nDasTaskMan`, -->
-<!-- `nDasTaskIns`, -->
-<!-- `nDasTaskDes`, -->
-<!-- `dDasCrtDate`) -->
-<!-- VALUES -->
-<!-- ( -->
-<!-- (select count(0) from KIMG.kimgProduct), -->
-<!-- (select count(0) from KIMG.kimgItem), -->
-<!-- (select count(0) from KIMG.kimgTask where cTskType <> 'INC'), -->
-<!-- (select count(0) from KIMG.kimgTask where cTskType = 'INC'), -->
-<!-- (select count(0) FROM KIMG.kimgTask where nTskDel = 0 and cTskType = 'INC' and cTskStatus = 'TRQ'), -->
-<!-- (select count(0) from KIMG.kimgPerson), -->
-<!-- (select count(0) from KIMG.kimgItem where nItmDel = 0 and cItmCate = 'LK'), -->
-<!-- (select count(0) from KIMG.kimgItem where nItmDel = 0 and cItmCate = 'SI'), -->
-<!-- (select count(0) from KIMG.kimgItem where nItmDel = 0 and cItmCate = 'SP'), -->
-<!-- (select count(0) from KIMG.kimgItem where nItmDel = 0 and cItmCate = 'SE'), -->
-<!-- (select count(0) FROM KIMG.kimgTask where nTskDel = 0 and cTskType = 'MAN'), -->
-<!-- (select count(0) FROM KIMG.kimgTask where nTskDel = 0 and cTskType = 'INS'), -->
-<!-- (select count(0) FROM KIMG.kimgTask where nTskDel = 0 and cTskType = 'DES'), -->
-<!-- now()); -->
+<insert id="insertDash">
+<![CDATA[
+INSERT INTO `KIMG`.`kimgDash`
+(
+`nDasProduct`,
+`nDasItem`,
+`nDasTask`,
+`nDasIssue`,
+`nDasIssueReq`,
+`nDasPerson`,
+`nDasItemLook`,
+`nDasItemSign`,
+`nDasItemSpec`,
+`nDasItemSport`,
+`nDasTaskMan`,
+`nDasTaskIns`,
+`nDasTaskDel`,
+`nDasTaskDes`,
+`dDasCrtDate`)
+VALUES
+(
+(select count(0) from KIMG.kimgProduct),
+(select count(0) from KIMG.kimgItem),
+(select count(0) from KIMG.kimgTask where cTskType <> 'INC'),
+(select count(0) from KIMG.kimgTask where cTskType = 'INC'),
+(select count(0) FROM KIMG.kimgTask where nTskDel = 0 and cTskType = 'INC' and cTskStatus = 'TRQ'),
+(select count(0) from KIMG.kimgPerson),
+(select count(0) from KIMG.kimgItem where nItmDel = 0 and cItmCate = 'lok'),
+(select count(0) from KIMG.kimgItem where nItmDel = 0 and cItmCate = 'sin'),
+(select count(0) from KIMG.kimgItem where nItmDel = 0 and cItmCate = 'spc'),
+(select count(0) from KIMG.kimgItem where nItmDel = 0 and cItmCate = 'eqi'),
+(select count(0) FROM KIMG.kimgTask where nTskDel = 0 and cTskType = 'MAN'),
+(select count(0) FROM KIMG.kimgTask where nTskDel = 0 and cTskType = 'INS'),
+(select count(0) FROM KIMG.kimgTask where nTskDel = 0 and cTskType = 'DEL'),
+(select count(0) FROM KIMG.kimgTask where nTskDel = 0 and cTskType = 'DES'),
+now());
+]]>
+</insert>
+<select id="selectProgress" resultType="KimgProgress">
+select 
+v.cVenName as Venue,
+b.ven as vCode, 
+ifnull(b.percent,0) as Progress,
+ifnull(b.manper,0) as manProgress,
+ifnull(b.delper,0) as delProgress,
+ifnull(b.insper,0) as insProgress,
+ifnull(b.desper,0) as desProgress
+from
+(select  a.cItmVenue ven, 
+(sum(pro)/4)/count(0)*100 as percent,
+sum(MAN)/count(0)*100 as manper,
+sum(DEL)/count(0)*100 as delper,
+sum(INS)/count(0)*100 as insper,
+sum(DES)/count(0)*100 as desper 
+from
+(Select
+it.nItmCnt,
+it.cItmVenue,
+ifnull((select Case cTskStatus when 'ERQ' then 1 when 'CNF' then 1 ELSE 0 END from KIMG.kimgTask where nRefItm = it.nItmCnt and cTskType = 'MAN' order by nTskCnt desc limit 1),0) as MAN,
+ifnull((select Case cTskStatus when 'ERQ' then 1 when 'CNF' then 1 ELSE 0 END from KIMG.kimgTask where nRefItm = it.nItmCnt and cTskType = 'DEL' order by nTskCnt desc limit 1),0) as DEL,
+ifnull((select Case cTskStatus when 'ERQ' then 1 when 'CNF' then 1 ELSE 0 END from KIMG.kimgTask where nRefItm = it.nItmCnt and cTskType = 'INS' order by nTskCnt desc limit 1),0) as INS,
+ifnull((select Case cTskStatus when 'ERQ' then 1 when 'CNF' then 1 ELSE 0 END from KIMG.kimgTask where nRefItm = it.nItmCnt and cTskType = 'DES' order by nTskCnt desc limit 1),0) as DES, 
+
+ifnull((select Case cTskStatus when 'ERQ' then 1 when 'CNF' then 1 ELSE 0 END from KIMG.kimgTask where nRefItm = it.nItmCnt and cTskType = 'MAN' order by nTskCnt desc limit 1),0) +
+ifnull((select Case cTskStatus when 'ERQ' then 1 when 'CNF' then 1 ELSE 0 END from KIMG.kimgTask where nRefItm = it.nItmCnt and cTskType = 'DEL' order by nTskCnt desc limit 1),0) +
+ifnull((select Case cTskStatus when 'ERQ' then 1 when 'CNF' then 1 ELSE 0 END from KIMG.kimgTask where nRefItm = it.nItmCnt and cTskType = 'INS' order by nTskCnt desc limit 1),0) +
+ifnull((select Case cTskStatus when 'ERQ' then 1 when 'CNF' then 1 ELSE 0 END from KIMG.kimgTask where nRefItm = it.nItmCnt and cTskType = 'DES' order by nTskCnt desc limit 1),0)  as pro
+from KIMG.kimgItem it) a
+group by a.cItmVenue) b left join KIMG.kimgVenue v on b.ven = v.cVenCode
+
+</select>
 
 	<select id="selectAllCompany" resultType="KimgCompany">
 	SELECT * FROM KIMG.kimgCompany
@@ -204,56 +243,19 @@
     item.`cItmCode`,
     item.`cItmCom`,
     item.`cItmVenue`,
-    item.`cItmSport`,
-    item.`cItmDept`,
     item.`cItmEvent`,
     item.`cItmCate`,
-    item.`cItmProd`,
-    item.`cItmMate`,
-    item.`cItmFloor`,
-    item.`cItmLocation`,
-    item.`cItmWidth`,
-    item.`cItmHeight`,
-    item.`cItmDimen`,
-    item.`cItmQty1`,
-    item.`cItemUnit1`,
-    item.`cItmQty2`,
-    item.`cItmUnit2`,
-    item.`cItmDesc`,
-    item.`cItmUnitPrice1`,
-    item.`cItmPrice1`,
-    item.`cItmMateUnitPrice1`,
-    item.`cItmMatePrice1`,
-    item.`cImtLaborUnitPrice1`,
-    item.`cItmLaborPrice1`,
-    item.`cItmUnitPrice2`,
-    item.`cItmPrice2`,
-    item.`cItmMateUnitPrice2`,
-    item.`cItmMatePrice2`,
-    item.`cImtLaborUnitPrice2`,
-    item.`cItmLaborPrice2`,
-    item.`dItmCrt`,
-    item.`cItmCrtUsr`,
-    item.`dItmMod`,
-    item.`cItmModUsr`,
-    item.`nItmDel`,
   	(SELECT cTstPercent from KIMG.kimgTask kt left join KIMG.kimgTaskStatus ks on kt.cTskStatus = ks.cTstType where kt.cTskType = 'MAN' and nTskDel = 0 and nRefItm = nItmCnt order by kt.nTskCnt desc limit 1) as 'nManStatus', 
   	(SELECT cTstPercent from KIMG.kimgTask kt left join KIMG.kimgTaskStatus ks on kt.cTskStatus = ks.cTstType where kt.cTskType = 'INS' and nTskDel = 0 and nRefItm = nItmCnt order by kt.nTskCnt desc limit 1) as 'nInsStatus', 
   	(SELECT cTstPercent from KIMG.kimgTask kt left join KIMG.kimgTaskStatus ks on kt.cTskStatus = ks.cTstType where kt.cTskType = 'DES' and nTskDel = 0 and nRefItm = nItmCnt order by kt.nTskCnt desc limit 1) as 'nDesStatus', 
   	(SELECT cTstPercent from KIMG.kimgTask kt left join KIMG.kimgTaskStatus ks on kt.cTskStatus = ks.cTstType where kt.cTskType = 'DEL' and nTskDel = 0 and nRefItm = nItmCnt order by kt.nTskCnt desc limit 1) as 'nDelStatus', 
 	(SELECT count(0) FROM KIMG.kimgTask where nRefItm = nItmCnt and nTskDel = 0 and cTskType = 'INC' and cTskStatus in ('TRQ', 'ERQ')) as 'nIncStatus',
- 	prod.cPrdName,
- 	cat.cCatName,
  	item.cItmPrePho,
- 	item.cItmImpPho,
+ 	item.cItmDesPho,
  	item.cItmPosPho
+ 	
   	FROM KIMG.kimgItem item
-	left join KIMG.kimgProduct prod on item.cItmProd = prod.cPrdCode
-    left join KIMG.kimgCategory cat on item.cItmCate = cat.cCatType
-    left join KIMG.kimgEvent eve on item.cItmEvent = eve.cEvnCode
-    left join KIMG.kimgVenue ven on item.cItmVenue = ven.cVenCode
-    left join KIMG.kimgSport spor on item.cItmSport = spor.cSptCode
-    left join KIMG.kimgDepartment dep on item.cItmDept = dep.cDptCode
+	
 	where nItmDel = 0 and 
 	(
 	1=1
@@ -282,6 +284,8 @@
     and item.cItmEvent like CONCAT('%',#{cItmEvent},'%') 
     </if>
     )
+    
+    order by nItmCnt desc
   	</select>
   	<select id="selectAllItemDetail" resultType="KimgItem" parameterType="Integer">
   	SELECT * FROM KIMG.kimgItem item
@@ -578,6 +582,15 @@
 	</if>
 	<if test="cItmLaborPrice2 != null and cItmLaborPrice2 != ''">
 	`cItmLaborPrice2` = #{cItmLaborPrice2},
+	</if>
+	<if test="cItmPrePho != null and cItmPrePho != ''">
+	`cItmPrePho` = #{cItmPrePho},
+	</if>
+	<if test="cItmPosPho != null and cItmPosPho != ''">
+	`cItmPosPho` = #{cItmPosPho},
+	</if>
+	<if test="cItmDesPho != null and cItmDesPho != ''">
+	`cItmDesPho` = #{cItmDesPho},
 	</if>
 	<if test="nItmDel != null and nItmDel != ''">
 	`nItmDel` = #{nItmDel},

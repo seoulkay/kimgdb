@@ -16,6 +16,7 @@ public class KimgDashVO {
     private int nDasItemSport;
     private int nDasTaskMan;
     private int nDasTaskIns;
+    private int nDasTaskDel;
     private int nDasTaskDes;
     private Date dDasCrtDate;
 	public int getnDasCnt() {
@@ -107,6 +108,12 @@ public class KimgDashVO {
 	}
 	public void setdDasCrtDate(Date dDasCrtDate) {
 		this.dDasCrtDate = dDasCrtDate;
+	}
+	public int getnDasTaskDel() {
+		return nDasTaskDel;
+	}
+	public void setnDasTaskDel(int nDasTaskDel) {
+		this.nDasTaskDel = nDasTaskDel;
 	}
     
     

@@ -14,6 +14,7 @@ import www.ufo79.com.vo.KimgItemVO;
 import www.ufo79.com.vo.KimgPersonVO;
 import www.ufo79.com.vo.KimgPhotoVO;
 import www.ufo79.com.vo.KimgProductVO;
+import www.ufo79.com.vo.KimgProgressVO;
 import www.ufo79.com.vo.KimgSportVO;
 import www.ufo79.com.vo.KimgTaskStatusVO;
 import www.ufo79.com.vo.KimgTaskTypeVO;
@@ -172,5 +173,10 @@ public class KimgDAO extends SqlSessionDaoSupport{
 	public List<KimgTaskVO> selectIssueSrcPar(KimgTaskVO vo){
 		return getSqlSession().selectList("mapper.selectIssueSrcPar", vo);
 	}
-	
+	public void insertDash(){
+		getSqlSession().insert("mapper.insertDash");
+	}
+	public List<KimgProgressVO> selectProgress(){
+		return getSqlSession().selectList("mapper.selectProgress");
+	}
 }

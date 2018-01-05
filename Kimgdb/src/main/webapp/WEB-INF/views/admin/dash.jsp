@@ -45,6 +45,63 @@
             </div>
 
         <div class="wrapper wrapper-content animated fadeInRight ecommerce">
+        	<div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>진척도</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="row">
+                                    <div class="col-sm-9 m-b-xs">
+                                    </div>
+<!--                                     <form action="dash" method="post" id="searchForm"> -->
+<!--                                     <div class="col-sm-3"> -->
+<!--                                         <div class="input-group"><input type="text" placeholder="Search" class="input-sm form-control" id="srcPar" name="srcPar"> <span class="input-group-btn"> -->
+<!--                                         <button type="button" class="btn btn-sm btn-primary" onclick="searchForm()"> Go!</button> </span></div> -->
+<!--                                     </div> -->
+<!--                                     </form> -->
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                                <thead>
+                                <tr>
+                                    <th>베뉴</th>
+                                    <th>제작진척도</th>
+                                    <th>배송진척도</th>
+                                    <th>설치진척도</th>
+                                    <th>철거진척도</th>
+                                    <th>전체진척도</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach items="${defProgressList }" var="ele">
+                                <tr>
+                                	<td>${ele.venue }</td>
+                                    <td>${ele.manProgress } %</td>
+                                    <td>${ele.delProgress } %</td>
+                                    <td>${ele.insProgress } %</td>
+                                    <td>${ele.desProgress } %</td>
+                                    <td>${ele.progress } %</td>
+                                </tr>
+                                </c:forEach>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="7">
+                                        <ul class="pagination pull-right"></ul>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             <div class="row">
                 <div class="col-md-2">
                     <div class="ibox float-e-margins">
@@ -396,9 +453,9 @@ $("#srcPar").val("${srcPar}");
             new Chart(ctx4, {type: 'doughnut', data: doughnutData, options:doughnutOptions});
             
         var doughnutData2 = {
-                labels: ["제작 및 출력","설치","철거"],
+                labels: ["제작 및 출력","배송","설치","철거"],
                 datasets: [{
-                    data: ['${dashInfo.nDasTaskMan }','${dashInfo.nDasTaskIns }','${dashInfo.nDasTaskDes }'],
+                    data: ['${dashInfo.nDasTaskMan }','${dashInfo.nDasTaskDel }','${dashInfo.nDasTaskIns }','${dashInfo.nDasTaskDes }'],
                     backgroundColor: ["#a3e1d4","#dedede","#b5b8cf"]
                 }]
             } ;

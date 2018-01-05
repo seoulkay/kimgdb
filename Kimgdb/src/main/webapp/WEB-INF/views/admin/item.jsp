@@ -190,15 +190,16 @@
                 	<div class="col-sm-3"></div>
                 </div>
                 <input type="hidden" id="td_numbers" name="td_numbers">
-                <input type="hidden" id="cItmCodeSrcBulk" name="cItmCode">
                 <input type="hidden" id="cItmProdSrcBulk" name="cItmProd">
-                <input type="hidden" id="cItmComSrcBulk" name="cItmCom">
-                <input type="hidden" id="cItmVenueSrcBulk" name="cItmVenue">
                 <input type="hidden" id="cItmSportSrcBulk" name="cItmSport">
                 <input type="hidden" id="cItmDeptSrcBulk" name="cItmDept">
-                <input type="hidden" id="cItmEventSrcBulk" name="cItmEvent">
                 <input type="hidden" id="cItmMateSrcBulk" name="cItmMate">
 	
+	   			<input type="hidden" id="cItmComSrcBulk" name="cItmCom">
+                <input type="hidden" id="cItmEventSrcBulk" name="cItmEvent">
+                <input type="hidden" id="cItmVenueSrcBulk" name="cItmVenue">
+                <input type="hidden" id="cItmCodeSrcBulk" name="cItmCode">
+             
                 </form>
             </div>
           
@@ -264,10 +265,10 @@
 <%--                                         ${ele.cItmEvent} --%>
 <!--                                     </td>                                     -->
                                     <td>
-                                        <c:if test="${ele.cItmCate eq 'LK'}"><span class="label label-primary">룩</span></c:if>
-                                        <c:if test="${ele.cItmCate eq 'SI'}"><span class="label label-success">사이니지</span></c:if>
-                                        <c:if test="${ele.cItmCate eq 'SP'}"><span class="label label-danger">스펙타큘러</span></c:if>
-                                        <c:if test="${ele.cItmCate eq 'SE'}"><span class="label label-warning">스포츠장비</span></c:if>
+                                        <c:if test="${ele.cItmCate eq 'lok'}"><span class="label label-primary">룩</span></c:if>
+                                        <c:if test="${ele.cItmCate eq 'sin'}"><span class="label label-success">사이니지</span></c:if>
+                                        <c:if test="${ele.cItmCate eq 'spc'}"><span class="label label-danger">스펙타큘러</span></c:if>
+                                        <c:if test="${ele.cItmCate eq 'eqi'}"><span class="label label-warning">스포츠장비</span></c:if>
                                     </td>
 <!--                                     <td> -->
 <%--                                         ${ele.cItmMate} --%>
@@ -347,9 +348,9 @@
                                     </td>
                                     <td class="text-right">                                    
                                         <div class="btn-group">
-                                            <button class="btn-white btn btn-xs" onclick="prePhoForm(${ele.nItmCnt})">설치전</button>
-                                            <button class="btn-white btn btn-xs" onclick="posPhoForm(${ele.nItmCnt})">설치후</button>
-                                            <button class="btn-white btn btn-xs" onclick="desPhoForm(${ele.nItmCnt})">철거후</button>
+                                            <button class="<c:if test='${!empty ele.cItmPrePho}'>btn-success </c:if><c:if test='${empty ele.cItmPrePho}'>btn-white </c:if> btn btn-xs" onclick="prePhoForm('${ele.nItmCnt}', 'pre')">설치전</button>
+                                            <button class="<c:if test='${!empty ele.cItmPosPho}'>btn-success </c:if><c:if test='${empty ele.cItmPosPho}'>btn-white </c:if> btn btn-xs" onclick="prePhoForm('${ele.nItmCnt}', 'pos')">설치후</button>
+                                            <button class="<c:if test='${!empty ele.cItmDesPho}'>btn-success </c:if><c:if test='${empty ele.cItmDesPho}'>btn-white </c:if> btn btn-xs" onclick="prePhoForm('${ele.nItmCnt}', 'des')">철거후</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -358,7 +359,7 @@
                                 <tfoot>
 	                                <tr>
 	                                    <td colspan="1"><input type="checkbox" class="form-check-input" id="selectAlltd"></td>
-	                                    <td>일괄선택</td>
+	                                    <td><strong>일괄선택</strong></td>
 	                                    <td colspan="14" class="footable-visible">
 	                                        <ul class="pagination pull-right"></ul>
 	                                    </td>
@@ -515,22 +516,22 @@
 			                                <div class="form-group"><label class="col-sm-2 control-label">조직위 노무비 금액</label>
 			                                    <div class="col-sm-10"><input type="number" class="form-control"  id="cItmLaborPrice1" maxlength="20" readonly="readonly" step="0.01"></div>
 			                                </div>
-			                                <div class="form-group"><label class="col-sm-2 control-label">하도급 단가 합계</label>
+			                                <div class="form-group"><label class="col-sm-2 control-label">외주 단가 합계</label>
 			                                    <div class="col-sm-10"><input type="number" class="form-control" id="cItmUnitPrice2" maxlength="20" readonly="readonly" step=".001"></div>
 			                                </div>
-			                                <div class="form-group"><label class="col-sm-2 control-label">하도급 금액 합계</label>
+			                                <div class="form-group"><label class="col-sm-2 control-label">외주 금액 합계</label>
 			                                    <div class="col-sm-10"><input type="number" class="form-control"  id="cItmPrice2" maxlength="20" readonly="readonly" step=".001"></div>
 			                                </div>
-			                                <div class="form-group"><label class="col-sm-2 control-label">하도급 재료비 단가</label>
+			                                <div class="form-group"><label class="col-sm-2 control-label">외주 재료비 단가</label>
 			                                    <div class="col-sm-10"><input type="number" class="form-control" id="cItmMateUnitPrice2" maxlength="20" readonly="readonly" step=".001"></div>
 			                                </div>
-			                                <div class="form-group"><label class="col-sm-2 control-label">하도급 재료비 금액</label>
+			                                <div class="form-group"><label class="col-sm-2 control-label">외주 재료비 금액</label>
 			                                    <div class="col-sm-10"><input type="number" class="form-control"  id="cItmMatePrice2" maxlength="20" readonly="readonly" step=".001"></div>
 			                                </div>
-			                                <div class="form-group"><label class="col-sm-2 control-label">하도급 노무비 단가</label>
+			                                <div class="form-group"><label class="col-sm-2 control-label">외주 노무비 단가</label>
 			                                    <div class="col-sm-10"><input type="number" class="form-control"  id="cImtLaborUnitPrice2" maxlength="20" readonly="readonly" step="0.01"></div>
 			                                </div>
-			                                <div class="form-group"><label class="col-sm-2 control-label">하도급 노무비 금액</label>
+			                                <div class="form-group"><label class="col-sm-2 control-label">외주 노무비 금액</label>
 			                                    <div class="col-sm-10"><input type="number" class="form-control" id="cItmLaborPrice2" maxlength="20" readonly="readonly" step="0.01"></div>
 			                                </div>
 			                                
@@ -543,37 +544,52 @@
 			                                 <input type="hidden" id="photoUid" name="photoUid">
 			                                 <div id="pictureDom"></div>
 			                             </form>
+			                             <form id="photoForm" name="photoForm" method="POST">
+			                             <input type="hidden" id="photoUid2" name="photoUid2">
+			                             <input type="hidden" id="nItmCntPho" name="nItmCnt">
+			                             <input type="hidden" id="phoType" name="phoType">
+			                             
+			                             	<input type="hidden" id="cItmComSrcPho" name="cItmCom">
+							                <input type="hidden" id="cItmEventSrcPho" name="cItmEvent">
+							                <input type="hidden" id="cItmVenueSrcPho" name="cItmVenue">
+							                <input type="hidden" id="cItmCodeSrcPho" name="cItmCode">
+							             
+	 		                             </form>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-white" data-dismiss="modal">닫기</button>
                                             <button type="button" class="btn btn-primary" onclick="submitAddForm();" id="addBtn">제출</button>
                                             <button type="button" class="btn btn-primary" onclick="submitUpdateForm();" id="updateBtn">수정</button>
+                                            
+                                            <button type="button" class="btn btn-primary" onclick="submitPrePhoForm();" id="addPreBtn" style = "display:none">설치 전 사진 제출</button>
+                                            <button type="button" class="btn btn-primary" onclick="submitPrePhoForm();" id="addPosBtn" style = "display:none">설치 후 사진 제출</button>
+                                            <button type="button" class="btn btn-primary" onclick="submitPrePhoForm();" id="addDesBtn" style = "display:none">철거 후 사진 제출</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             
-<div class="modal inmodal" id="addPrePho" tabindex="-1" role="dialog"  aria-hidden="true">
-     <div class="modal-dialog">
-         <div class="modal-content animated fadeIn">
-             <div class="modal-header">
-                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">닫기</span></button>
-                 <i class="fa fa-clock-o modal-icon"></i>
-                 <h4 class="modal-title">설치전 사진</h4>
-             </div>
-             <div class="modal-body">
-              <form method="POST" class="form-horizontal" id="addPrePhoForm">
-              <div id="pictureDom2"></div>
-              </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-white" data-dismiss="modal">닫기</button>
-                <button type="button" class="btn btn-primary" onclick="submitAddForm();" id="addBtn">제출</button>
-                <button type="button" class="btn btn-primary" onclick="submitUpdateForm();" id="updateBtn">수정</button>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- <div class="modal inmodal" id="addPrePho" tabindex="-1" role="dialog"  aria-hidden="true"> -->
+<!--      <div class="modal-dialog"> -->
+<!--          <div class="modal-content animated fadeIn"> -->
+<!--              <div class="modal-header"> -->
+<!--                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">닫기</span></button> -->
+<!--                  <i class="fa fa-clock-o modal-icon"></i> -->
+<!--                  <h4 class="modal-title">설치전 사진</h4> -->
+<!--              </div> -->
+<!--              <div class="modal-body"> -->
+<!--               <form method="POST" class="form-horizontal" id="addPrePhoForm"> -->
+<!--               <div id="pictureDom2"></div> -->
+<!--               </form> -->
+<!--             </div> -->
+<!--             <div class="modal-footer"> -->
+<!--                 <button type="button" class="btn btn-white" data-dismiss="modal">닫기</button> -->
+<!--                 <button type="button" class="btn btn-primary" onclick="submitAddForm();" id="addBtn">제출</button> -->
+<!--                 <button type="button" class="btn btn-primary" onclick="submitUpdateForm();" id="updateBtn">수정</button> -->
+<!--             </div> -->
+<!--         </div> -->
+<!--     </div> -->
+<!-- </div> -->
 
 
 
@@ -602,6 +618,13 @@ $('#cItmSportSrcBulk').val("${srcPar.cItmSport}");
 $('#cItmDeptSrcBulk').val("${srcPar.cItmDept}");
 $('#cItmEventSrcBulk').val("${srcPar.cItmEvent}");
 $('#cItmMateSrcBulk').val("${srcPar.cItmMate}");
+
+$("#cItmCodeSrcPho").val("${srcPar.cItmCode}");
+$('#cItmVenueSrcPho').val("${srcPar.cItmVenue}");
+$('#cItmEventSrcPho').val("${srcPar.cItmEvent}");
+$('#cItmComSrcPho').val("${srcPar.cItmCom}");
+
+
 </script>
 <script src="https://cdn.ckeditor.com/4.7.1/basic/ckeditor.js"></script>
 <script>
@@ -660,20 +683,57 @@ $('#trigger-upload').click(function() {
    uploader.uploadStoredFiles();
 });
 
-function prePhoForm(id){
+function prePhoForm(ref, type){
 	showItemModal();
 	$("#mainItem").css("display", "none");
+	$("#addBtn").hide();
+	$("#updateBtn").hide();
+	$("#addPreBtn").hide();
+	$("#addPosBtn").hide();
+	$("#addDesBtn").hide();
+	
+	$("#addPreBtn").show();
+	
+	$("#nItmCntPho").val(ref);
+	$("#phoType").val(type);
+
+    
+	$.post( "selectDetail/"+type+"/"+ref)
+    .done(function( data ) {
+    	
+    	var vo = JSON.parse(JSON.stringify(data));
+     	
+    	$("#pictureDom").empty();
+    	
+    	if(type == 'pre'){
+    		if(vo[0].cItmPrePho){
+    			$("#pictureDom").append("<div class='row' id='Pho"+vo[0].cItmPrePho+"'><div><a downlaod='"+vo[0].cItmPrePho+"' href='https://www.kimgdb.com/image/"+vo[0].cItmPrePho+"'><img class='img-responsive' src='https://www.kimgdb.com/image/"+vo[0].cItmPrePho+"'></a></div></div><br>")
+    		}
+    	}else if(type == 'pos'){
+    		if(vo[0].cItmPrePho){
+    		$("#pictureDom").append("<div class='row' id='Pho"+vo[0].cItmPosPho+"'><div><a downlaod='"+vo[0].cItmPosPho+"' href='https://www.kimgdb.com/image/"+vo[0].cItmPosPho+"'><img class='img-responsive' src='https://www.kimgdb.com/image/"+vo[0].cItmPosPho+"'></a></div></div><br>")
+    		}
+    	}else if(type == 'des'){
+    		if(vo[0].cItmPrePho){
+    		$("#pictureDom").append("<div class='row' id='Pho"+vo[0].cItmDesPho+"'><div><a downlaod='"+vo[0].cItmDesPho+"' href='https://www.kimgdb.com/image/"+vo[0].cItmDesPho+"'><img class='img-responsive' src='https://www.kimgdb.com/image/"+vo[0].cItmDesPho+"'></a></div></div><br>")
+    		}
+    	}
+    });	
 }
 
-function posPhoForm(id){
-	showItemModal();
-	$("#mainItem").css("display", "none");
+function submitPrePhoForm(){
+	$("#photoUid2").val($("#photoUidTmp").val());
+	$("#photoForm").attr('action', 'photoFormAction');
+	
+	$('#cItmComSrcPho').val($('#cItmComSrc').val());
+	$('#cItmVenueSrcPho').val($('#cItmVenueSrc').val());
+	$("#cItmCodeSrcPho").val($("#cItmCodeSrc").val());
+	$('#cItmEventSrcPho').val($('#cItmEventSrc').val());
+
+	
+	$("#photoForm").submit();
 }
 
-function desPhoForm(id){
-	showItemModal();
-	$("#mainItem").css("display", "none");
-}
 					       
 function searchItem(){
 	$("#searchItemForm").submit();
@@ -683,6 +743,10 @@ function searchItem(){
 $('#addItemBtn').click(function(){
 	$("#addBtn").hide();
 	$("#updateBtn").hide();
+	$("#addPreBtn").hide();
+	$("#addPosBtn").hide();
+	$("#addDesBtn").hide();
+	
 	$("#addBtn").show();
 	
 	CKEDITOR.instances['cItmDesc'].setData('');
@@ -716,9 +780,12 @@ function selectItemOne(ref){
          	var vo = JSON.parse(JSON.stringify(data));
          	
          	$("#addBtn").hide();
-			$("#updateBtn").hide();
+        	$("#updateBtn").hide();
+        	$("#addPreBtn").hide();
+        	$("#addPosBtn").hide();
+        	$("#addDesBtn").hide();
+        	
 			$("#updateBtn").show();
-			
 			
 			CKEDITOR.instances['cItmDesc'].setData(vo[0].cItmDesc);
 			
@@ -773,6 +840,9 @@ function selectItemOne(ref){
        });
 }
 
+
+
+
 function deletePhoto(ref){
 	$.post( "deletePhoto/"+ref)
 		.done(function(data){
@@ -811,14 +881,15 @@ function submitBulk(){
 	selectAllTds();
 	//alert($('#td_numbers').val());
 // 	//검색값 찾아오기
-	$("#cItmCodeSrcBulk").val($("#cItmCodeSrc").val());
 	$('#cItmProdSrcBulk').val($('#cItmProdSrc').val());
-	$('#cItmComSrcBulk').val($('#cItmComSrc').val());
-	$('#cItmVenueSrcBulk').val($('#cItmVenueSrc').val());
 	$('#cItmSportSrcBulk').val($('#cItmSportSrc').val());
 	$('#cItmDeptSrcBulk').val($('#cItmDeptSrc').val());
-	$('#cItmEventSrcBulk').val($('#cItmEventSrc').val());
 	$('#cItmMateSrcBulk').val($('#cItmMateSrc').val());
+	
+	$('#cItmComSrcBulk').val($('#cItmComSrc').val());
+	$('#cItmVenueSrcBulk').val($('#cItmVenueSrc').val());
+	$("#cItmCodeSrcBulk").val($("#cItmCodeSrc").val());
+	$('#cItmEventSrcBulk').val($('#cItmEventSrc').val());
 	
 	
 	$("#itemBulkForm").submit();

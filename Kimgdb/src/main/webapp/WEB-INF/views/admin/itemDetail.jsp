@@ -89,13 +89,23 @@
                                        	<strong>위치 :</strong> ${item.cItmFloor } --%>
                                        	 <table class="table">
                                        		<tbody>                                       		                                       		
-                                       		<tr><td style="border-top: none; width:15%; font-weight: bold;">게임 :</td>	<td style="border-top: none; width:85%">${item.cEvnName }</td></tr>
-                                       		<tr><td style="border-top: none; width:15%; font-weight: bold;">스포츠 :</td> <td style="border-top: none; width:85%">${item.cSptName }</td></tr>
-                                       		<tr><td style="border-top: none; width:15%; font-weight: bold;">FA :</td>   <td style="border-top: none; width:85%">${item.cDptName }</td></tr>
-                                       		<tr><td style="border-top: none; width:15%; font-weight: bold;">카테고리 :</td><td style="border-top: none; width:85%">${item.cCatName }</td></tr>
-                                       		<tr><td style="border-top: none; width:15%; font-weight: bold;">재질 :</td>	<td style="border-top: none; width:85%">${item.cItmMate }</td></tr>
-                                       		<tr><td style="border-top: none; width:15%; font-weight: bold;">위치 :</td>	<td style="border-top: none; width:85%">${item.cItmFloor }</td></tr>
-                                       		<tr><td style="border-top: none; width:15%; font-weight: bold;">담당업체 :</td>	<td style="border-top: none; width:85%">${item.cItmCom }</td></tr>
+                                       		<tr>
+                                       			<td style="border-top: none; width:15%; font-weight: bold;">게임 :</td>	
+                                       			<td style="border-top: none; width:35%">${item.cEvnName }</td>
+                                       			<td style="border-top: none; width:15%; font-weight: bold;">개수 :</td>	
+                                       			<td style="border-top: none; width:35%">${item.cItmQty1 }</td>
+                                       		</tr>
+                                       		<tr>
+                                       			<td style="border-top: none; width:15%; font-weight: bold;">스포츠 :</td> 
+                                       			<td style="border-top: none; width:35%">${item.cSptName }</td>
+                                       			<td style="border-top: none; width:15%; font-weight: bold;">수량 :</td>	
+                                       			<td style="border-top: none; width:35%">${item.cItmQty2 }</td>
+                                       		</tr>
+                                       		<tr><td style="border-top: none; width:15%; font-weight: bold;">FA :</td>   <td style="border-top: none; width:35%">${item.cDptName }</td></tr>
+                                       		<tr><td style="border-top: none; width:15%; font-weight: bold;">카테고리 :</td><td style="border-top: none; width:35%">${item.cCatName }</td></tr>
+                                       		<tr><td style="border-top: none; width:15%; font-weight: bold;">재질 :</td>	<td style="border-top: none; width:35%">${item.cItmMate }</td></tr>
+                                       		<tr><td style="border-top: none; width:15%; font-weight: bold;">위치 :</td>	<td style="border-top: none; width:35%">${item.cItmFloor }</td></tr>
+                                       		<tr><td style="border-top: none; width:15%; font-weight: bold;">담당업체 :</td>	<td style="border-top: none; width:35%">${item.cItmCom }</td></tr>
                                        		
                                        		</tbody>
                                        	</table>

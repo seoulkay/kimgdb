@@ -25,13 +25,13 @@
         </div>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-2">
-                    <h2>제품</h2>
+                    <h2>품목</h2>
                     <ol class="breadcrumb">
                         <li>
                             <a>홈</a>
                         </li>
                         <li class="active">
-                            <a><strong>제품</strong></a>
+                            <a><strong>품목</strong></a>
                         </li>
                     </ol>
                 </div>
@@ -122,10 +122,10 @@
                                        	${ele.cPrdLocalName}
                                     </td>
                                     <td>
-                                        <c:if test="${ele.cPrdCat eq 'LK'}"><span class="label label-primary">룩</span></c:if>
-                                        <c:if test="${ele.cPrdCat eq 'SI'}"><span class="label label-success">사이니지</span></c:if>
-                                        <c:if test="${ele.cPrdCat eq 'SP'}"><span class="label label-danger">스펙타큘러</span></c:if>
-                                        <c:if test="${ele.cPrdCat eq 'SE'}"><span class="label label-warning">스포츠장비</span></c:if>
+                                        <c:if test="${ele.cPrdCat eq 'lok'}"><span class="label label-primary">룩</span></c:if>
+                                        <c:if test="${ele.cPrdCat eq 'sin'}"><span class="label label-success">사이니지</span></c:if>
+                                        <c:if test="${ele.cPrdCat eq 'spc'}"><span class="label label-danger">스펙타큘러</span></c:if>
+                                        <c:if test="${ele.cPrdCat eq 'eqi'}"><span class="label label-warning">스포츠장비</span></c:if>
                                     </td>
 <!--                                     <td> -->
 <%--                                         ${ele.cPrdDesc} --%>
@@ -183,19 +183,19 @@
 			                                    <div class="col-sm-10"><input type="text" class="form-control" name="cPrdLocalName" id="cPrdLocalName" maxlength="200"></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">조직위재료비</label>
-			                                    <div class="col-sm-10"><input type="number" class="form-control" name="nPrdPriceOcog" id="nPrdPriceOcog" step=any></div>
+			                                    <div class="col-sm-10"><input type="number" class="form-control" name="nPrdPriceOcog" id="nPrdPriceOcog" step=any value="0"></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">조직위노무비</label>
-			                                    <div class="col-sm-10"><input type="number" class="form-control" name="nPrdLaborOcog" id="nPrdLaborOcog" step=any></div>
+			                                    <div class="col-sm-10"><input type="number" class="form-control" name="nPrdLaborOcog" id="nPrdLaborOcog" step=any value="0"></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">조직위합계</label>
 			                                    <div class="col-sm-10" id="OcogTotal"></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">외주재료비</label>
-			                                    <div class="col-sm-10"><input type="number" class="form-control" name="nPrdPriceCont" id="nPrdPriceCont" step=any></div>
+			                                    <div class="col-sm-10"><input type="number" class="form-control" name="nPrdPriceCont" id="nPrdPriceCont" step=any value="0"></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">외주노무비</label>
-			                                    <div class="col-sm-10"><input type="number" class="form-control" name="nPrdLaborCont" id="nPrdLaborCont" step=any></div>
+			                                    <div class="col-sm-10"><input type="number" class="form-control" name="nPrdLaborCont" id="nPrdLaborCont" step=any value="0"></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">외주합계</label>
 			                                    <div class="col-sm-10" id="ContTotal"></div>
@@ -323,6 +323,9 @@
 								$("#addProductForm")[0].reset();
 								uploader.clearStoredFiles();
 								$('#addProductModal').modal("show");
+								
+								$("#OcogTotal").text(0);
+								$("#ContTotal").text(0);
 							}
 							
 							function submitAddForm(){
@@ -385,9 +388,33 @@
 								}else{
 									
 								}
-								
 							}
+							
+
+							function refreshCal(){
+								$("#OcogTotal").text(parseFloat($("#nPrdPriceOcog").val())+parseFloat($("#nPrdLaborOcog").val()));
+								$("#ContTotal").text(parseFloat($("#nPrdPriceCont").val())+parseFloat($("#nPrdLaborCont").val()));
+							}
+							
+							
+							$( "#nPrdPriceOcog" ).change(function() {
+								refreshCal();
+							});
+							
+							$( "#nPrdLaborOcog" ).change(function() {
+								refreshCal();
+							});
+							
+							$( "#nPrdPriceCont" ).change(function() {
+								refreshCal();
+							});
+							
+							$( "#nPrdLaborCont" ).change(function() {
+								refreshCal();
+							});
+							
 							</script>
+							
 </body>
 
 </html>

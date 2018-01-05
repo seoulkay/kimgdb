@@ -43,8 +43,8 @@ public class KimgItemVO extends KimgProductVO{
 	private int nItmDel;
 	
 	private String cItmPrePho;
-	private String cItmImpPho;
 	private String cItmPosPho;
+	private String cItmDesPho;
 	
 	
 	private int nManStatus;
@@ -81,7 +81,25 @@ public class KimgItemVO extends KimgProductVO{
 	private String cTstType;
 	private String cTtpType;
 	
+	//사진 업로드
+	private String photoUid2;
+	private String phoType;
 	
+	
+	
+	
+	public String getPhotoUid2() {
+		return photoUid2;
+	}
+	public void setPhotoUid2(String photoUid2) {
+		this.photoUid2 = photoUid2;
+	}
+	public String getPhoType() {
+		return phoType;
+	}
+	public void setPhoType(String phoType) {
+		this.phoType = phoType;
+	}
 	public String getTd_numbers() {
 		return td_numbers;
 	}
@@ -460,11 +478,12 @@ public class KimgItemVO extends KimgProductVO{
 	public void setcItmPrePho(String cItmPrePho) {
 		this.cItmPrePho = cItmPrePho;
 	}
-	public String getcItmImpPho() {
-		return cItmImpPho;
+	
+	public String getcItmDesPho() {
+		return cItmDesPho;
 	}
-	public void setcItmImpPho(String cItmImpPho) {
-		this.cItmImpPho = cItmImpPho;
+	public void setcItmDesPho(String cItmDesPho) {
+		this.cItmDesPho = cItmDesPho;
 	}
 	public String getcItmPosPho() {
 		return cItmPosPho;
