@@ -85,9 +85,24 @@ public class KimgItemVO extends KimgProductVO{
 	private String photoUid2;
 	private String phoType;
 	
+	//페이징
+	private int nItmPage;
+	private int nItmPageTemp;
 	
 	
 	
+	public int getnItmPageTemp() {
+		return nItmPageTemp;
+	}
+	public void setnItmPageTemp(int nItmPageTemp) {
+		this.nItmPageTemp = nItmPageTemp;
+	}
+	public int getnItmPage() {
+		return nItmPage;
+	}
+	public void setnItmPage(int nItmPage) {
+		this.nItmPage = nItmPage;
+	}
 	public String getPhotoUid2() {
 		return photoUid2;
 	}

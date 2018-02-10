@@ -80,7 +80,9 @@
                 	<div class="col-sm-3"></div>
                 	<div class="col-sm-3"></div>
                 	<div class="col-sm-3">
+                		<c:if test='${sessionScope.cred.cPerCom eq "adm"}'>
                 		<button type="button" class="btn btn-primary btn-sm btn-block" type="button" id="addProductBtn">생성</button>
+                		</c:if>
                 	</div>
                 	<div class="col-sm-3">
                 		<button type="button" class="btn btn-primary btn-sm btn-block" onclick="searchItem()">검색</button>
@@ -132,8 +134,18 @@
 <!--                                     </td> -->
                                     <td class="text-right">
                                         <div class="btn-group">
-                                            <button class="btn-white btn btn-xs" onclick="selectProductOne('${ele.nPrdCnt}')">보기 / 수정</button>
+                                        <c:choose>
+                                        	<c:when test='${sessionScope.cred.cPerCom eq "adm"}'>
+                                        	  <button class="btn-white btn btn-xs" onclick="selectProductOne('${ele.nPrdCnt}')">보기 / 수정</button>
+                                        	</c:when>
+                                        	<c:otherwise>
+                                        	  <button class="btn-white btn btn-xs" onclick="selectProductOne('${ele.nPrdCnt}')">보기</button>
+                                        	</c:otherwise>
+                                        </c:choose>
+                                          
+                                            <c:if test='${sessionScope.cred.cPerCom eq "adm"}'>
                                             <button class="btn-white btn btn-xs" onclick="deleteProduct('${ele.nPrdCnt}')">삭제</button>
+                                            </c:if>
                                         </div>
                                     </td>
                                 </tr>
@@ -182,25 +194,42 @@
 			                                <div class="form-group"><label class="col-sm-2 control-label">품목이름(한)</label>
 			                                    <div class="col-sm-10"><input type="text" class="form-control" name="cPrdLocalName" id="cPrdLocalName" maxlength="200"></div>
 			                                </div>
+			                                <c:choose>
+												<c:when test='${(sessionScope.cred.cPerCom eq "adm") || (sessionScope.cred.cPerCom eq "POC") }'>
+												<div style="display: block;">
+												</c:when>
+												<c:otherwise>
+												<div style="display: none;">
+												</c:otherwise>
+											</c:choose>
 			                                <div class="form-group"><label class="col-sm-2 control-label">조직위재료비</label>
 			                                    <div class="col-sm-10"><input type="number" class="form-control" name="nPrdPriceOcog" id="nPrdPriceOcog" step=any value="0"></div>
 			                                </div>
-			                                <div class="form-group"><label class="col-sm-2 control-label">조직위노무비</label>
+			                                <div class="form-group"><label class="col-sm-2 control-label">조직위 노무비+경비</label>
 			                                    <div class="col-sm-10"><input type="number" class="form-control" name="nPrdLaborOcog" id="nPrdLaborOcog" step=any value="0"></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">조직위합계</label>
 			                                    <div class="col-sm-10" id="OcogTotal"></div>
 			                                </div>
+			                                </div>
+			                                <c:choose>
+												<c:when test='${sessionScope.cred.cPerCom eq "POC" }'>
+												<div style="display: none;">
+												</c:when>
+												<c:otherwise>
+												<div style="display: block;">
+												</c:otherwise>
+											</c:choose>
 			                                <div class="form-group"><label class="col-sm-2 control-label">외주재료비</label>
 			                                    <div class="col-sm-10"><input type="number" class="form-control" name="nPrdPriceCont" id="nPrdPriceCont" step=any value="0"></div>
 			                                </div>
-			                                <div class="form-group"><label class="col-sm-2 control-label">외주노무비</label>
+			                                <div class="form-group"><label class="col-sm-2 control-label">외주 노무비+경비</label>
 			                                    <div class="col-sm-10"><input type="number" class="form-control" name="nPrdLaborCont" id="nPrdLaborCont" step=any value="0"></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">외주합계</label>
 			                                    <div class="col-sm-10" id="ContTotal"></div>
 			                                </div>
-			                                
+			                                </div>
 			                                
 			                                <div class="form-group"><label class="col-sm-2 control-label">카테고리</label>
 			                                    <div class="col-sm-10">
@@ -208,6 +237,16 @@
 			                                   		<c:forEach items="${catList }" var="ele">
 			                                   		<option value="${ele.cCatType }">${ele.cCatName }</option>
 			                                   		</c:forEach>
+			                                    </select>
+			                                    </div>
+			                                </div>
+			                                
+			                                <div class="form-group"><label class="col-sm-2 control-label">개수 단위</label>
+			                                    <div class="col-sm-10">
+			                                   	<select class="form-control m-b" name="cPrdScale" id="cPrdScale" >
+			                                   		<option value="ea">EA</option>
+			                                   		<option value="m2">m2</option>
+			                                   		<option value="set">set</option>
 			                                    </select>
 			                                    </div>
 			                                </div>
@@ -223,8 +262,10 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-white" data-dismiss="modal">닫기</button>
+                                            <c:if test='${sessionScope.cred.cPerCom eq "adm"}'>
                                             <button type="button" class="btn btn-primary" onclick="submitAddForm();" id="addBtn">제출</button>
                                             <button type="button" class="btn btn-primary" onclick="submitUpdateForm();" id="updateBtn">수정</button>
+                                            </c:if>
                                         </div>
                                     </div>
                                 </div>
@@ -361,6 +402,7 @@
 										$("#nPrdLaborCont").val(vo[0].nPrdLaborCont);
 										$("#OcogTotal").text(vo[0].nPrdPriceOcog+vo[0].nPrdLaborOcog);
 										$("#ContTotal").text(vo[0].nPrdPriceCont+vo[0].nPrdLaborCont);
+										$("#cPrdScale").val(vo[0].cPrdScale);
 										CKEDITOR.instances['cPrdDesc'].setData(vo[0].cPrdDesc);
 										$("#pictureDom").empty();
 										for(var i = 0; i < vo.length; i++){

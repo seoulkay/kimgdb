@@ -115,7 +115,7 @@
 
                                     <div>
                                         <div class="btn-group">
-                                            <c:if test='${sessionScope.cred.cPerCom eq "adm"}'><button class="btn btn-primary btn-sm" id="addItemBtn"><i class="fa fa-star"></i> 작업추가 </button></c:if>
+                                            <button class="btn btn-primary btn-sm" id="addItemBtn"><i class="fa fa-star"></i> 작업추가 </button>
                                         </div>
 <!--                                         <div class="btn-group"> -->
 <%-- 	                                        <c:if test='${sessionScope.cred.cPerCom eq "adm"}'><button class="btn btn-primary btn-sm" onclick="showPrice();"><i class="fa fa-star"></i> 단가보기 </button></c:if> --%>
@@ -160,7 +160,7 @@
                                         		<button class="btn-white btn btn-xs" onclick="selectItemOneReadOnly(${ele.nTskCnt})">보기</button>
                                         	</c:if>
                                             <c:if test='${sessionScope.cred.cPerCom eq "adm"}'><button class="btn-white btn btn-xs" onclick="selectItemOne(${ele.nTskCnt})">보기 / 수정</button></c:if>
-                                            <button class="btn-white btn btn-xs <c:if test='${sessionScope.cred.cPerCom ne "adm"}'>disabled</c:if>" onclick="<c:if test='${sessionScope.cred.cPerCom eq "adm"}'>deleteItem(${ele.nTskCnt})</c:if>">삭제</button>
+                                            <button class="btn-white btn btn-xs"  onclick="deleteItem(${ele.nTskCnt})">삭제</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -224,10 +224,22 @@
 			                                <div class="form-group"><label class="col-sm-2 control-label">업체</label>
 			                                    <div class="col-sm-10">
 			                                    	<select class="selectpicker form-control m-b" data-live-search="true" name="cTskComp" id="cTskComp">
-					                            	<option value="">전체</option>
-					                            	<c:forEach items="${companyList }" var="ele">
-					                            	<option value="${ele.cComCode }">${ele.cComName }</option> 
-					                            	</c:forEach>
+					                            	<c:choose>
+					                            		<c:when test='${(sessionScope.cred.cPerCom eq "adm") || (sessionScope.cred.cPerCom eq "POC") }'>
+						                            		<option value="">전체</option>
+							                            	<c:forEach items="${companyList }" var="ele">
+							                            	<option value="${ele.cComCode }">${ele.cComName }</option> 
+							                            	</c:forEach>
+					                            		</c:when>
+					                            		<c:otherwise>
+					                            			<option value="">전체</option>
+							                            	<c:forEach items="${companyList }" var="ele">
+								                            	<c:if test='${sessionScope.cred.cPerCom eq ele.cComCode}'>
+								                            		<option value="${ele.cComCode }">${ele.cComName }</option> 
+								                            	</c:if>
+							                            	</c:forEach>
+					                            		</c:otherwise>
+					                            	</c:choose>
 					                            	</select>
 			                                    </div>
 			                                </div>

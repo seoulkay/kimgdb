@@ -126,7 +126,7 @@
                                     <td>${ele.cTskCrtUsr }</td>
                                     <td><fmt:formatDate pattern = "yyyy-MM-dd HH:mm"  value = "${ele.dTskMod }" /></td>
                                     <td>
-                                    <c:if test="${ele.cTskStatus ne 'TRQ' }"><span class="label label-success">처리완료</span></c:if>
+                                    <c:if test="${ele.cTskStatus eq 'ERQ' || ele.cTskStatus eq 'CNF'}"><span class="label label-success">처리완료</span></c:if>
                                     </td>
                                     <td class="text-right">
                                         <div class="btn-group">

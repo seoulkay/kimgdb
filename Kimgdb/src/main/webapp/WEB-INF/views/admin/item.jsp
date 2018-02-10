@@ -90,7 +90,7 @@
                            	<select class="selectpicker form-control m-b" data-live-search="true" name="cItmVenue" id="cItmVenueSrc" >
                            		<option value="">전체</option>
                             	<c:forEach items="${venueList }" var="ele">
-                            	<option value="${ele.cVenCode }">${ele.cVenName }</option> 
+                            		<option value="${ele.cVenCode }">${ele.cVenName }</option> 
                             	</c:forEach>
                             </select>
                         </div>
@@ -107,6 +107,7 @@
                         </div>
                     </div>
                 </div>
+                <input type="hidden" id="nItmPage" name="nItmPage" value="${ srcPar.nItmPage}">
 <!--                 <div class="row"> -->
 <!--                     <div class="col-sm-3"> -->
 <!--                         <div class="form-group"> -->
@@ -147,9 +148,9 @@
                 	<div class="col-sm-3"></div>
                		<div class="col-sm-3">
                		<label class="control-label" for="cItmDept"></label>
-                	<c:if test='${sessionScope.cred.cPerCom eq "adm"}'>
+<%--                 	<c:if test='${sessionScope.cred.cPerCom eq "adm"}'> --%>
                 		<button type="button" class="btn btn-primary btn-sm btn-block" id="addItemBtn">생성</button>
-                	</c:if>
+<%--                 	</c:if> --%>
                 	</div>
                 	<div class="col-sm-3">
                 		<label class="control-label" for="cItmDept"></label>
@@ -207,29 +208,14 @@
                 <div class="col-lg-12">
                     <div class="ibox">
                         <div class="ibox-content">
-                            <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                            <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="200">
                                 <thead>
                                 <tr>
 									<th></th>
                                     <th>아이템코드</th>
-<!--                                     <th data-hide="all">품목</th> -->
                                     <th>업체</th>
                                     <th>베뉴</th>
-<!--                                     <th data-hide="all">스포츠</th>                                     -->
-<!--                                     <th data-hide="all" >FA</th> -->
-<!--                                     <th data-hide="all" >게임</th> -->
                                     <th>카테고리</th>
-<!--                                     <th data-hide="all">재질</th> -->
-<!--                                     <th data-hide="all">Floor</th> -->
-<!--                                     <th data-hide="all">Location</th> -->
-<!--                                     <th data-hide="all">W (가로)</th> -->
-<!--                                     <th data-hide="all">H (세로)</th> -->
-<!--                                     <th data-hide="all">D (폭)</th> -->
-<!--                                     <th data-hide="all">개수</th> -->
-<!--                                     <th data-hide="all">개수 단위</th> -->
-<!--                                     <th data-hide="all">수량</th> -->
-<!--                                     <th data-hide="all">수량 단위</th> -->
-<!--                                     <th data-hide="all">비고</th> -->
                                     <th data-hide="phone">제작</th>
                                     <th data-hide="phone">배송</th>
                                     <th data-hide="phone">설치</th>
@@ -246,63 +232,18 @@
                                      <td>
                                         ${ele.cItmCode}
                                     </td>
-<!--                                     <td> -->
-<%--                                     	${ele.cPrdName } --%>
-<!--                                     </td> -->
                                     <td>
                                         ${ele.cItmCom}
                                     </td>
                                     <td>
                                         ${ele.cItmVenue}
                                     </td>
-<!--                                     <td> -->
-<%--                                         ${ele.cItmSport} --%>
-<!--                                     </td> -->
-<!--                                     <td> -->
-<%--                                         ${ele.cItmDept} --%>
-<!--                                     </td> -->
-<!--                                     <td> -->
-<%--                                         ${ele.cItmEvent} --%>
-<!--                                     </td>                                     -->
                                     <td>
                                         <c:if test="${ele.cItmCate eq 'lok'}"><span class="label label-primary">룩</span></c:if>
                                         <c:if test="${ele.cItmCate eq 'sin'}"><span class="label label-success">사이니지</span></c:if>
                                         <c:if test="${ele.cItmCate eq 'spc'}"><span class="label label-danger">스펙타큘러</span></c:if>
                                         <c:if test="${ele.cItmCate eq 'eqi'}"><span class="label label-warning">스포츠장비</span></c:if>
                                     </td>
-<!--                                     <td> -->
-<%--                                         ${ele.cItmMate} --%>
-<!--                                     </td> -->
-<!--                                     <td> -->
-<%--                                         ${ele.cItmFloor} --%>
-<!--                                     </td> -->
-<!--                                     <td> -->
-<%--                                         ${ele.cItmLocation} --%>
-<!--                                     </td> -->
-<!--                                     <td> -->
-<%--                                         ${ele.cItmWidth} --%>
-<!--                                     </td> -->
-<!--                                     <td> -->
-<%--                                         ${ele.cItmHeight} --%>
-<!--                                     </td> -->
-<!--                                     <td> -->
-<%--                                         ${ele.cItmDimen} --%>
-<!--                                     </td> -->
-<!--                                     <td> -->
-<%--                                         ${ele.cItmQty1} --%>
-<!--                                     </td> -->
-<!--                                     <td> -->
-<%--                                         ${ele.cItemUnit1} --%>
-<!--                                     </td> -->
-<!--                                     <td> -->
-<%--                                         ${ele.cItmQty2} --%>
-<!--                                     </td> -->
-<!--                                     <td> -->
-<%--                                         ${ele.cItmUnit2} --%>
-<!--                                     </td> -->
-<!--                                     <td> -->
-<%--                                         ${ele.cItmDesc} --%>
-<!--                                     </td> -->
                                     <td class="text-center">
                                         <c:if test="${ele.nManStatus gt 0 }"><span class="pie">${ele.nManStatus},${100 - ele.nManStatus}
 		                                    <svg class="peity" height="16" width="16">
@@ -342,8 +283,8 @@
                                     <td class="text-right">                                    
                                         <div class="btn-group">
                                             <button class="btn-white btn btn-xs" onclick="location.href='itemDetail?nItmCnt= ${ele.nItmCnt}' ">보기</button>
-                                            <button class="btn-white btn btn-xs <c:if test='${sessionScope.cred.cPerCom ne "adm"}'>disabled</c:if>" onclick="<c:if test='${sessionScope.cred.cPerCom eq "adm"}'>selectItemOne(${ele.nItmCnt})</c:if>">수정</button>
-                                            <button class="btn-white btn btn-xs <c:if test='${sessionScope.cred.cPerCom ne "adm"}'>disabled</c:if>" onclick="<c:if test='${sessionScope.cred.cPerCom eq "adm"}'>deleteItem(${ele.nItmCnt})</c:if>">삭제</button>
+                                            <button class="btn-white btn btn-xs" onclick="selectItemOne(${ele.nItmCnt})">수정</button>
+                                            <button class="btn-white btn btn-xs" onclick="deleteItem(${ele.nItmCnt})">삭제</button>
                                         </div>
                                     </td>
                                     <td class="text-right">                                    
@@ -360,8 +301,17 @@
 	                                <tr>
 	                                    <td colspan="1"><input type="checkbox" class="form-check-input" id="selectAlltd"></td>
 	                                    <td><strong>일괄선택</strong></td>
-	                                    <td colspan="14" class="footable-visible">
-	                                        <ul class="pagination pull-right"></ul>
+	                                    <td>총 ${ itemcnt} 건</td>
+	                                    <td colspan="6"></td>
+	                                    <td colspan="1">
+<!-- 	                                        <ul class="pagination pull-right"></ul> -->
+												<c:if test='${srcPar.nItmPage ne 1}'>
+												<button onclick="prevPage()"><span class="glyphicon glyphicon-backward" ></span> </button>
+												</c:if>
+												${ srcPar.nItmPage} 
+												<c:if test='${srcPar.nItmPage < (itemcnt/30 + 1)}'>
+												<button onclick="nextPage()"><span class="glyphicon glyphicon-forward" ></span></button>
+												</c:if>
 	                                    </td>
 	                                </tr>
                                 </tfoot>
@@ -486,18 +436,34 @@
 			                                <div class="form-group"><label class="col-sm-2 control-label">개수</label>
 			                                    <div class="col-sm-10"><input type="number" class="form-control" name="cItmQty1" id="cItmQty1" maxlength="20"></div>
 			                                </div>
+<!-- 			                                <div class="form-group"><label class="col-sm-2 control-label">개수 단위</label> -->
+<!-- 			                                    <div class="col-sm-10"><input type="text" class="form-control" name="cItemUnit1" id="cItemUnit1" maxlength="20"></div> -->
+<!-- 			                                </div> -->
 			                                <div class="form-group"><label class="col-sm-2 control-label">개수 단위</label>
-			                                    <div class="col-sm-10"><input type="text" class="form-control" name="cItemUnit1" id="cItemUnit1" maxlength="20"></div>
+			                                    <div class="col-sm-10">
+			                                   	<select class="form-control m-b" name="cPrdScale" id="cItemUnit1" disabled>
+			                                   		<option value="ea">EA</option>
+			                                   		<option value="m2">m2</option>
+			                                   		<option value="set">set</option>
+			                                    </select>
+			                                    </div>
 			                                </div>
-			                                <div class="form-group"><label class="col-sm-2 control-label">수량</label>
-			                                    <div class="col-sm-10"><input type="number" class="form-control" name="cItmQty2" id="cItmQty2" maxlength="20"></div>
-			                                </div>
-			                                <div class="form-group"><label class="col-sm-2 control-label">수량 단위</label>
-			                                    <div class="col-sm-10"><input type="text" class="form-control" name="cItmUnit2" id="cItmUnit2" maxlength="20"></div>
-			                                </div>
-			                                <div class="form-group"><label class="col-sm-2 control-label">비고</label>
-			                                    <div class="col-sm-10"><textarea class="form-control" name="cItmDesc" id="cItmDesc" maxlength="500"></textarea></div>
-			                                </div>
+<!-- 			                                <div class="form-group"><label class="col-sm-2 control-label">수량</label> -->
+<!-- 			                                    <div class="col-sm-10"><input type="number" class="form-control" name="cItmQty2" id="cItmQty2" maxlength="20"></div> -->
+<!-- 			                                </div> -->
+<!-- 			                                <div class="form-group"><label class="col-sm-2 control-label">수량 단위</label> -->
+<!-- 			                                    <div class="col-sm-10"><input type="text" class="form-control" name="cItmUnit2" id="cItmUnit2" maxlength="20"></div> -->
+<!-- 			                                </div> -->
+<%-- 			                                <c:if test='${sessionScope.cred.cPerCom eq "adm"}'> --%>
+											<c:choose>
+												<c:when test='${(sessionScope.cred.cPerCom eq "adm") || (sessionScope.cred.cPerCom eq "POC") }'>
+												<div style="display: block;">
+												</c:when>
+												<c:otherwise>
+												<div style="display: none;">
+												</c:otherwise>
+											</c:choose>
+											
 			                                <div class="form-group"><label class="col-sm-2 control-label">조직위 단가 합계</label>
 			                                    <div class="col-sm-10"><input type="number" class="form-control"  id="cItmUnitPrice1" maxlength="20" readonly="readonly" step=".01"></div>
 			                                </div>
@@ -510,14 +476,24 @@
 			                                <div class="form-group"><label class="col-sm-2 control-label">조직위 재료비 금액</label>
 			                                    <div class="col-sm-10"><input type="number" class="form-control"  id="cItmMatePrice1" maxlength="20" readonly="readonly" step="0.01"></div>
 			                                </div>
-			                                <div class="form-group"><label class="col-sm-2 control-label">조직위 노무비 단가</label>
+			                                <div class="form-group"><label class="col-sm-2 control-label">조직위 노무비+경비 단가</label>
 			                                    <div class="col-sm-10"><input type="number" class="form-control" id="cImtLaborUnitPrice1" maxlength="20" readonly="readonly" step="0.01"></div>
 			                                </div>
-			                                <div class="form-group"><label class="col-sm-2 control-label">조직위 노무비 금액</label>
+			                                <div class="form-group"><label class="col-sm-2 control-label">조직위 노무비+경비 금액</label>
 			                                    <div class="col-sm-10"><input type="number" class="form-control"  id="cItmLaborPrice1" maxlength="20" readonly="readonly" step="0.01"></div>
 			                                </div>
+			                                </div>
+											
+											<c:choose>
+												<c:when test='${sessionScope.cred.cPerCom eq "POC" }'>
+												<div style="display: none;">
+												</c:when>
+												<c:otherwise>
+												<div style="display: block;">
+												</c:otherwise>
+											</c:choose>
 			                                <div class="form-group"><label class="col-sm-2 control-label">외주 단가 합계</label>
-			                                    <div class="col-sm-10"><input type="number" class="form-control" id="cItmUnitPrice2" maxlength="20" readonly="readonly" step=".001"></div>
+			                                    <div class="col-sm-10"><input type="number" class="form-control" id="cItmUnitPrice2" maxlength="20" readonly="readonly"></div>
 			                                </div>
 			                                <div class="form-group"><label class="col-sm-2 control-label">외주 금액 합계</label>
 			                                    <div class="col-sm-10"><input type="number" class="form-control"  id="cItmPrice2" maxlength="20" readonly="readonly" step=".001"></div>
@@ -528,14 +504,17 @@
 			                                <div class="form-group"><label class="col-sm-2 control-label">외주 재료비 금액</label>
 			                                    <div class="col-sm-10"><input type="number" class="form-control"  id="cItmMatePrice2" maxlength="20" readonly="readonly" step=".001"></div>
 			                                </div>
-			                                <div class="form-group"><label class="col-sm-2 control-label">외주 노무비 단가</label>
+			                                <div class="form-group"><label class="col-sm-2 control-label">외주 노무비+경비 단가</label>
 			                                    <div class="col-sm-10"><input type="number" class="form-control"  id="cImtLaborUnitPrice2" maxlength="20" readonly="readonly" step="0.01"></div>
 			                                </div>
-			                                <div class="form-group"><label class="col-sm-2 control-label">외주 노무비 금액</label>
+			                                <div class="form-group"><label class="col-sm-2 control-label">외주 노무비+경비 금액</label>
 			                                    <div class="col-sm-10"><input type="number" class="form-control" id="cItmLaborPrice2" maxlength="20" readonly="readonly" step="0.01"></div>
 			                                </div>
-			                                
-			                                
+			                                <div class="form-group"><label class="col-sm-2 control-label">비고</label>
+			                                    <div class="col-sm-10"><textarea class="form-control" name="cItmDesc" id="cItmDesc" maxlength="500"></textarea></div>
+			                                </div>
+			                                </div>
+<%-- 			                                </c:if> --%>
 			                                </div>
 			                                
 			                                <div class="form-group"><label class="col-sm-2 control-label">사진</label>
@@ -569,28 +548,6 @@
                                 </div>
                             </div>
                             
-<!-- <div class="modal inmodal" id="addPrePho" tabindex="-1" role="dialog"  aria-hidden="true"> -->
-<!--      <div class="modal-dialog"> -->
-<!--          <div class="modal-content animated fadeIn"> -->
-<!--              <div class="modal-header"> -->
-<!--                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">닫기</span></button> -->
-<!--                  <i class="fa fa-clock-o modal-icon"></i> -->
-<!--                  <h4 class="modal-title">설치전 사진</h4> -->
-<!--              </div> -->
-<!--              <div class="modal-body"> -->
-<!--               <form method="POST" class="form-horizontal" id="addPrePhoForm"> -->
-<!--               <div id="pictureDom2"></div> -->
-<!--               </form> -->
-<!--             </div> -->
-<!--             <div class="modal-footer"> -->
-<!--                 <button type="button" class="btn btn-white" data-dismiss="modal">닫기</button> -->
-<!--                 <button type="button" class="btn btn-primary" onclick="submitAddForm();" id="addBtn">제출</button> -->
-<!--                 <button type="button" class="btn btn-primary" onclick="submitUpdateForm();" id="updateBtn">수정</button> -->
-<!--             </div> -->
-<!--         </div> -->
-<!--     </div> -->
-<!-- </div> -->
-
 
 
 </body>
@@ -624,7 +581,18 @@ $('#cItmVenueSrcPho').val("${srcPar.cItmVenue}");
 $('#cItmEventSrcPho').val("${srcPar.cItmEvent}");
 $('#cItmComSrcPho').val("${srcPar.cItmCom}");
 
+$('#nItmPage').val("${srcPar.nItmPage} ");
 
+
+function prevPage(){
+	$('#nItmPage').val(parseInt("${srcPar.nItmPage}")-1);
+	searchItem2();
+}
+
+function nextPage(){
+	$('#nItmPage').val(parseInt("${srcPar.nItmPage}")+1);
+	searchItem2();
+}
 </script>
 <script src="https://cdn.ckeditor.com/4.7.1/basic/ckeditor.js"></script>
 <script>
@@ -691,8 +659,13 @@ function prePhoForm(ref, type){
 	$("#addPreBtn").hide();
 	$("#addPosBtn").hide();
 	$("#addDesBtn").hide();
-	
-	$("#addPreBtn").show();
+	if(type == 'pre'){
+		$("#addPreBtn").show();
+	}else if(type == 'pos'){
+		$("#addPosBtn").show();
+	}else if(type = 'des'){
+		$("#addDesBtn").show();
+	}
 	
 	$("#nItmCntPho").val(ref);
 	$("#phoType").val(type);
@@ -736,6 +709,11 @@ function submitPrePhoForm(){
 
 					       
 function searchItem(){
+	$('#nItmPage').val(1);
+	$("#searchItemForm").submit();
+}
+
+function searchItem2(){
 	$("#searchItemForm").submit();
 }
                      
@@ -804,9 +782,9 @@ function selectItemOne(ref){
 			$("#cItmWidth").val(vo[0].cItmWidth);
 			$("#cItmHeight").val(vo[0].cItmHeight);
 			$("#cItmDimen").val(vo[0].cItmDimen);
-			$("#cItmQty1").val(vo[0].cItmQty1);
-			$("#cItemUnit1").val(vo[0].cItemUnit1);
-			$("#cItmQty2").val(vo[0].cItmQty2);
+			$("#cItmQty1").val(parseInt(vo[0].cItmQty1));
+			$("#cItemUnit1").val(vo[0].cPrdScale);
+			$("#cItmQty2").val(parseInt(vo[0].cItmQty2));
 			$("#cItmUnit2").val(vo[0].cItmUnit2);
 			
 // 			private double nPrdPriceOcog;
@@ -814,21 +792,52 @@ function selectItemOne(ref){
 // 			private double nPrdLaborOcog;
 // 			private double nPrdLaborCont;
 			
-// 			cItmQty2
+// 			cItmQty2 가격
+
+//cItemUnit1 ea / m2 / set
+
+//cItmWidth / cItmHeight
+
 			
-			$("#cItmUnitPrice1").val(Math.round(vo[0].nPrdPriceOcog+vo[0].nPrdLaborOcog * 1000) / 1000);
-			$("#cItmPrice1").val(Math.round((vo[0].nPrdPriceOcog+vo[0].nPrdLaborOcog)*parseFloat(vo[0].cItmQty2) * 1000) / 1000);
+			
+			if($("#cItemUnit1").val() == 'ea'){
+				$("#cItmPrice1").val(Math.round((vo[0].nPrdPriceOcog+vo[0].nPrdLaborOcog)*parseFloat(vo[0].cItmQty1) * 1000) / 1000);
+				$("#cItmMatePrice1").val(Math.round(vo[0].nPrdPriceOcog*parseFloat(vo[0].cItmQty1) * 1000) / 1000);
+				$("#cItmLaborPrice1").val(Math.round(vo[0].nPrdLaborOcog*parseFloat(vo[0].cItmQty1) * 1000) / 1000);
+				
+				$("#cItmPrice2").val(Math.round((vo[0].nPrdPriceCont+vo[0].nPrdLaborCont)*parseFloat(vo[0].cItmQty1) * 1000) / 1000);
+				$("#cItmMatePrice2").val(Math.round(vo[0].nPrdPriceCont*parseFloat(vo[0].cItmQty1) * 1000) / 1000);
+				$("#cItmLaborPrice2").val(Math.round(vo[0].nPrdLaborCont*parseFloat(vo[0].cItmQty1) * 1000) / 1000);
+				
+			}else if($("#cItemUnit1").val() == 'm2'){
+				$("#cItmPrice1").val(Math.round((vo[0].nPrdPriceOcog+vo[0].nPrdLaborOcog)*parseFloat((vo[0].cItmQty1*vo[0].cItmWidth*vo[0].cItmHeight)) * 1000) / 1000);
+				$("#cItmMatePrice1").val(Math.round(vo[0].nPrdPriceOcog*parseFloat((vo[0].cItmQty1*vo[0].cItmWidth*vo[0].cItmHeight)) * 1000) / 1000);
+				$("#cItmLaborPrice1").val(Math.round(vo[0].nPrdLaborOcog*parseFloat((vo[0].cItmQty1*vo[0].cItmWidth*vo[0].cItmHeight)) * 1000) / 1000);
+				
+				$("#cItmPrice2").val(Math.round((vo[0].nPrdPriceCont+vo[0].nPrdLaborCont)*parseFloat((vo[0].cItmQty1*vo[0].cItmWidth*vo[0].cItmHeight)) * 1000) / 1000);
+				$("#cItmMatePrice2").val(Math.round(vo[0].nPrdPriceCont*parseFloat((vo[0].cItmQty1*vo[0].cItmWidth*vo[0].cItmHeight)) * 1000) / 1000);
+				$("#cItmLaborPrice2").val(Math.round(vo[0].nPrdLaborCont*parseFloat((vo[0].cItmQty1*vo[0].cItmWidth*vo[0].cItmHeight)) * 1000) / 1000);
+				
+			}else if($("#cItemUnit1").val() == 'set'){
+				$("#cItmPrice1").val(Math.round((vo[0].nPrdPriceOcog+vo[0].nPrdLaborOcog)*parseFloat(vo[0].cItmQty1 / 2) * 1000) / 1000);
+				$("#cItmMatePrice1").val(Math.round(vo[0].nPrdPriceOcog*parseFloat(vo[0].cItmQty1 / 2) * 1000) / 1000);
+				$("#cItmLaborPrice1").val(Math.round(vo[0].nPrdLaborOcog*parseFloat(vo[0].cItmQty1 / 2) * 1000) / 1000);
+
+				$("#cItmPrice2").val(Math.round((vo[0].nPrdPriceCont+vo[0].nPrdLaborCont)*parseFloat(vo[0].cItmQty1 / 2) * 1000) / 1000);
+				$("#cItmMatePrice2").val(Math.round(vo[0].nPrdPriceCont*parseFloat(vo[0].cItmQty1 / 2) * 1000) / 1000);
+				$("#cItmLaborPrice2").val(Math.round(vo[0].nPrdLaborCont*parseFloat(vo[0].cItmQty1 / 2) * 1000) / 1000);
+			}
+			
+			//조직위단가 합
+			$("#cItmUnitPrice1").val(Math.round((vo[0].nPrdPriceOcog+vo[0].nPrdLaborOcog) * 1000) / 1000);
 			$("#cItmMateUnitPrice1").val(Math.round(vo[0].nPrdPriceOcog * 1000) / 1000);
-			$("#cItmMatePrice1").val(Math.round(vo[0].nPrdPriceOcog*parseFloat(vo[0].cItmQty2) * 1000) / 1000);
 			$("#cImtLaborUnitPrice1").val(Math.round(vo[0].nPrdLaborOcog * 1000) / 1000);
-			$("#cItmLaborPrice1").val(Math.round(vo[0].nPrdLaborOcog*parseFloat(vo[0].cItmQty2) * 1000) / 1000);
 			
-			$("#cItmUnitPrice2").val(Math.round(vo[0].nPrdPriceCont+vo[0].nPrdLaborCont * 1000) / 1000);
-			$("#cItmPrice2").val(Math.round((vo[0].nPrdPriceCont+vo[0].nPrdLaborCont)*parseFloat(vo[0].cItmQty2) * 1000) / 1000);
+			//외주단가 합
+			$("#cItmUnitPrice2").val(Math.round((vo[0].nPrdPriceCont+vo[0].nPrdLaborCont) * 1000) / 1000);
 			$("#cItmMateUnitPrice2").val(Math.round(vo[0].nPrdPriceCont * 1000) / 1000);
-			$("#cItmMatePrice2").val(Math.round(vo[0].nPrdPriceCont*parseFloat(vo[0].cItmQty2) * 1000) / 1000);
-			$("#cImtLaborUnitPrice2").val(Math.round(vo[0].nPrdPriceCont * 1000) / 1000);
-			$("#cItmLaborPrice2").val(Math.round(vo[0].nPrdPriceCont*parseFloat(vo[0].cItmQty2) * 1000) / 1000);
+			$("#cImtLaborUnitPrice2").val(Math.round(vo[0].nPrdLaborCont * 1000) / 1000);
+			
 			
 			$("#pictureDom").empty();
 			for(var i = 0; i < vo.length; i++){
@@ -862,6 +871,7 @@ function deleteItem(ref){
 		
 $("#selectAlltd").change(function() {
     if(this.checked) {
+    	alert('총 '+$(".select_td").length +'개가 선택 됩니다.');
     	$(".select_td").prop('checked', true);
     }else{
     	$(".select_td").prop('checked', false);

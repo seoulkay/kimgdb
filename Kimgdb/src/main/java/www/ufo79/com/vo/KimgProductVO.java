@@ -19,8 +19,16 @@ public class KimgProductVO extends KimgPhotoVO{
 	private double nPrdLaborOcog;
 	private double nPrdLaborCont;
 	
+	private String cPrdScale;
+	
 		
 	
+	public String getcPrdScale() {
+		return cPrdScale;
+	}
+	public void setcPrdScale(String cPrdScale) {
+		this.cPrdScale = cPrdScale;
+	}
 	public void setnPrdLaborCont(int nPrdLaborCont) {
 		this.nPrdLaborCont = nPrdLaborCont;
 	}

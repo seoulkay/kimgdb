@@ -235,8 +235,48 @@ group by a.cItmVenue) b left join KIMG.kimgVenue v on b.ven = v.cVenCode
   	<select id="selectAllItem" resultType="KimgItem">
   	SELECT * FROM KIMG.kimgItem item
 	left join KIMG.kimgProduct prod on item.cItmProd = prod.cPrdCode
-	where nItmDel = 0;
+	where nItmDel = 0 limit 100;
   	</select>
+  	
+  	
+  	<select id="selectAllItemSrcParCnt" resultType="Integer" parameterType="KimgItem">
+  	SELECT
+	count(0)
+ 	
+  	FROM KIMG.kimgItem item
+	
+	where nItmDel = 0 and 
+	(
+	1=1
+	<if test="cItmCode != null and cItmCode != ''">
+	and item.cItmCode like CONCAT('%',#{cItmCode},'%') 
+	</if>
+	<if test="cItmProd != null and cItmProd != ''">
+    and item.cItmProd like CONCAT('%',#{cItmProd},'%') 
+    </if>
+    <if test="cItmMate != null and cItmMate != ''"> 
+    and item.cItmMate like CONCAT('%',#{cItmMate},'%') 
+    </if>
+    <if test="cItmCom != null and cItmCom != ''">
+    and item.cItmCom like CONCAT('%',#{cItmCom},'%') 
+    </if>
+    <if test="cItmVenue != null and cItmVenue != ''">
+    and item.cItmVenue like CONCAT('%',#{cItmVenue},'%') 
+    </if>
+    <if test="cItmSport != null and cItmSport != ''">
+    and item.cItmSport like CONCAT('%',#{cItmSport},'%') 
+    </if>
+    <if test="cItmDept != null and cItmDept != ''">
+    and item.cItmDept like CONCAT('%',#{cItmDept},'%') 
+    </if>
+    <if test="cItmEvent != null and cItmEvent != ''">
+    and item.cItmEvent like CONCAT('%',#{cItmEvent},'%') 
+    </if>
+    )
+    
+  	</select>
+  	
+  	
   	<select id="selectAllItemSrcPar" resultType="KimgItem" parameterType="KimgItem">
   	SELECT
   	item.`nItmCnt`,
@@ -284,8 +324,7 @@ group by a.cItmVenue) b left join KIMG.kimgVenue v on b.ven = v.cVenCode
     and item.cItmEvent like CONCAT('%',#{cItmEvent},'%') 
     </if>
     )
-    
-    order by nItmCnt desc
+    order by nItmCnt desc limit #{nItmPageTemp} , 30
   	</select>
   	<select id="selectAllItemDetail" resultType="KimgItem" parameterType="Integer">
   	SELECT * FROM KIMG.kimgItem item
@@ -331,7 +370,9 @@ group by a.cItmVenue) b left join KIMG.kimgVenue v on b.ven = v.cVenCode
 	`nPrdPriceOcog`,
 	`nPrdPriceCont`,
 	`nPrdLaborOcog`,
-	`nPrdLaborCont`)
+	`nPrdLaborCont`,
+	`cPrdScale`
+	)
 	VALUES
 	(
 	#{cPrdCode},
@@ -347,7 +388,8 @@ group by a.cItmVenue) b left join KIMG.kimgVenue v on b.ven = v.cVenCode
 	#{nPrdPriceOcog},
 	#{nPrdPriceCont},
 	#{nPrdLaborOcog},
-	#{nPrdLaborCont});
+	#{nPrdLaborCont},
+	#{cPrdScale});
   	</insert>
   	<select id="selectProductOne" parameterType="Integer" resultType="KimgProduct">
   	SELECT * FROM KIMG.kimgProduct pro
@@ -397,6 +439,9 @@ group by a.cItmVenue) b left join KIMG.kimgVenue v on b.ven = v.cVenCode
 	</if>
 	<if test="nPrdLaborCont != null and nPrdLaborCont != ''">
 	`nPrdLaborCont` = #{nPrdLaborCont},
+	</if>	
+	<if test="cPrdScale != null and cPrdScale != ''">
+	`cPrdScale` = #{cPrdScale},
 	</if>	
 	`dPrdMod` = now(),
 	`cPrdModUsr` = #{cPrdModUsr}
@@ -735,4 +780,9 @@ group by a.cItmVenue) b left join KIMG.kimgVenue v on b.ven = v.cVenCode
     and nTskDel = 0
 	order by t.nTskCnt desc
   	</select>
+  	
+  	<select id="selectVenueDist" resultType="String" parameterType="String">
+  	SELECT distinct cItmVenue FROM KIMG.kimgItem where cItmCom = #{param}
+  	</select>
+  	
 </mapper>

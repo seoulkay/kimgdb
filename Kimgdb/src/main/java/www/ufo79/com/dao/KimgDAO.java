@@ -95,11 +95,16 @@ public class KimgDAO extends SqlSessionDaoSupport{
 	}
 	
 	public List<KimgItemVO> selectAllItemSrcPar(KimgItemVO vo){
+		vo.setnItmPageTemp(30*(vo.getnItmPage()-1));
 		return getSqlSession().selectList("mapper.selectAllItemSrcPar", vo);
 	}
 	
 	public KimgItemVO selectAllItemDetail(int vo){
-		return getSqlSession().selectOne("mapper.selectAllItemDetail", vo);
+		 List<KimgItemVO> list = getSqlSession().selectList("mapper.selectAllItemDetail", vo);
+		 if(list.size() > 1){
+			 System.out.println("Item "+ list.get(0).getcPrdCode() + " has " +list.size() + " entities.");
+		 }
+		 return list.get(0);
 	}
 	
 	public int insertProduct(KimgProductVO vo){
@@ -127,7 +132,12 @@ public class KimgDAO extends SqlSessionDaoSupport{
 	}
 	
 	public List<KimgItemVO> selectItemOne(int vo){
-		return getSqlSession().selectList("mapper.selectItemOne", vo);
+		List<KimgItemVO> list = getSqlSession().selectList("mapper.selectItemOne", vo);
+//		for(KimgItemVO ele : list){
+//			ele.setcItmQty1(""+Integer.parseInt(ele.getcItmQty1()));
+//			ele.setcItmQty2(""+Integer.parseInt(ele.getcItmQty2()));
+//		}
+		 return list;
 	}
 	
 	public int insertItem(KimgItemVO vo){
@@ -178,5 +188,11 @@ public class KimgDAO extends SqlSessionDaoSupport{
 	}
 	public List<KimgProgressVO> selectProgress(){
 		return getSqlSession().selectList("mapper.selectProgress");
+	}
+	public int selectAllItemSrcParCnt(KimgItemVO vo){
+		return getSqlSession().selectOne("mapper.selectAllItemSrcParCnt", vo);
+	}
+	public List<String> selectVenueDist(String vo){
+		return getSqlSession().selectList("mapper.selectVenueDist", vo);
 	}
 }
